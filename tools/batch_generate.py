@@ -2,7 +2,7 @@
 batch_generate.py — Batch runner for the two-prompt SEO content pipeline.
 
 Reads page_config.csv, skips already-completed pages, tracks progress in
-.tmp/progress.csv. Safe to interrupt and resume at any time.
+inputs/progress.csv. Outputs saved to output/. Safe to interrupt and resume at any time.
 
 Usage:
     python tools/batch_generate.py
@@ -24,18 +24,34 @@ from generate_page import generate_single_page
 
 def _default_base_dir():
     tools_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(os.path.dirname(tools_dir), ".tmp")
+    return os.path.join(os.path.dirname(tools_dir), "inputs")
 
 
-def _init_progress(page_config_path: str, progress_path: str) -> pd.DataFrame:
-    """Create progress.csv from page_config.csv with all rows as 'pending'."""
+def _init_progress(page_config_path: str, progress_path: str, output_dir: str = None) -> pd.DataFrame:
+    """Create progress.csv from page_config.csv, marking already-completed pages as 'done'."""
+    from urllib.parse import urlparse
+
     pages = pd.read_csv(page_config_path)
+
+    statuses = []
+    url_slugs = []
+    for url in pages["url"]:
+        slug = urlparse(url).path.rstrip("/").split("/")[-1]
+        if output_dir and slug:
+            content_path = os.path.join(output_dir, slug, "content.html")
+            if os.path.exists(content_path):
+                statuses.append("done")
+                url_slugs.append(slug)
+                continue
+        statuses.append("pending")
+        url_slugs.append("")
+
     progress = pd.DataFrame(
         {
             "url": pages["url"],
             "keyword": pages["keyword"],
-            "url_slug": "",
-            "status": "pending",
+            "url_slug": url_slugs,
+            "status": statuses,
             "error": "",
             "timestamp": "",
         }
@@ -44,32 +60,46 @@ def _init_progress(page_config_path: str, progress_path: str) -> pd.DataFrame:
     return progress
 
 
-def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
+def _load_progress(progress_path: str, page_config_path: str, output_dir: str = None) -> pd.DataFrame:
     """Load existing progress.csv, falling back to re-init if corrupt."""
     try:
         df = pd.read_csv(progress_path)
         required = {"url", "keyword", "url_slug", "status", "error", "timestamp"}
         if not required.issubset(df.columns):
             raise ValueError("Missing columns")
+        for col in ("url_slug", "status", "error", "timestamp"):
+            df[col] = df[col].fillna("").astype(str)
         return df
     except Exception:
-        print("  progress.csv appears corrupt — reinitializing from page_config.csv")
-        return _init_progress(page_config_path, progress_path)
+        print(f"  {os.path.basename(progress_path)} appears corrupt — reinitializing from page_config.csv")
+        return _init_progress(page_config_path, progress_path, output_dir=output_dir)
 
 
-def run_batch(cluster: str, limit: int = None, base_dir: str = None):
+def run_batch(
+    cluster: str,
+    limit: int = None,
+    base_dir: str = None,
+    model: str = "openai/gpt-4o-mini",
+    temperature: float = 0.3,
+    run_label: str = None,
+):
     if base_dir is None:
         base_dir = _default_base_dir()
 
     page_config_path = os.path.join(base_dir, "page_config.csv")
-    progress_path = os.path.join(base_dir, "progress.csv")
+    if run_label:
+        progress_path = os.path.join(base_dir, f"progress_{run_label}.csv")
+        output_dir = os.path.join(os.path.dirname(base_dir), "output", run_label)
+    else:
+        progress_path = os.path.join(base_dir, "progress.csv")
+        output_dir = os.path.join(os.path.dirname(base_dir), "output")
 
     # Initialize or load progress
     if not os.path.exists(progress_path):
         print("No progress.csv found — initializing from page_config.csv")
-        progress_df = _init_progress(page_config_path, progress_path)
+        progress_df = _init_progress(page_config_path, progress_path, output_dir=output_dir)
     else:
-        progress_df = _load_progress(progress_path, page_config_path)
+        progress_df = _load_progress(progress_path, page_config_path, output_dir=output_dir)
 
     # Select pending rows
     pending = progress_df[progress_df["status"] != "done"].copy()
@@ -84,6 +114,9 @@ def run_batch(cluster: str, limit: int = None, base_dir: str = None):
     done_count = (progress_df["status"] == "done").sum()
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
     print(f"Cluster: {cluster}")
+    print(f"Model: {model} | Temperature: {temperature}")
+    if run_label:
+        print(f"Run label: {run_label} → {output_dir}")
     print()
 
     completed = 0
@@ -97,6 +130,9 @@ def run_batch(cluster: str, limit: int = None, base_dir: str = None):
             url=row.url,
             cluster=cluster,
             base_dir=base_dir,
+            output_dir=output_dir,
+            model=model,
+            temperature=temperature,
         )
 
         # Update progress_df in memory
@@ -137,6 +173,19 @@ if __name__ == "__main__":
         default=None,
         help="Max pages to process in this run (for testing)",
     )
+    parser.add_argument("--model", default="openai/gpt-4o-mini", help="Model name (provider-prefixed, e.g. openai/gpt-4o-mini)")
+    parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
+    parser.add_argument(
+        "--run-label",
+        default=None,
+        help="Label for this run (creates separate output dir and progress file)",
+    )
     args = parser.parse_args()
 
-    run_batch(cluster=args.cluster, limit=args.limit)
+    run_batch(
+        cluster=args.cluster,
+        limit=args.limit,
+        model=args.model,
+        temperature=args.temperature,
+        run_label=args.run_label,
+    )

@@ -16,7 +16,7 @@ import pandas as pd
 
 def _default_base_dir():
     tools_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(os.path.dirname(tools_dir), ".tmp")
+    return os.path.join(os.path.dirname(tools_dir), "inputs")
 
 
 def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> dict:
@@ -25,11 +25,12 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
 
     Returns:
         {
-            "GLOBAL_CONFIG": str,    # JSON string
-            "SHARED_RULES": str,     # raw multi-line text
-            "CLUSTER_CONFIG": str,   # JSON string
-            "SECTION_MENU": str,     # raw long-form text block
-            "PAGE_CONFIG": str,      # JSON string: {"keyword": "..."}
+            "GLOBAL_CONFIG": str,    # JSON: website, language, target_audience, positioning_statement
+            "WRITER_CONFIG": str,    # JSON: website, language, target_audience (slim — for prompt_2)
+            "CONTENT_RULES": str,    # raw text from content_rules.csv
+            "CLUSTER_CONFIG": str,   # JSON: page_type, cluster_context, target_word_count
+            "SECTION_MENU": str,     # raw long-form text block (from cluster_config.csv)
+            "PAGE_CONFIG": str,      # JSON: {"keyword": "..."}
             "url_slug": str          # last path segment of URL
         }
     """
@@ -38,12 +39,14 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
 
     global_csv = os.path.join(base_dir, "global_config.csv")
     cluster_csv = os.path.join(base_dir, "cluster_config.csv")
+    content_rules_csv = os.path.join(base_dir, "content_rules.csv")
 
     # Read CSVs — pandas handles complex multi-line quoted fields correctly
     global_df = pd.read_csv(global_csv)
     cluster_df = pd.read_csv(cluster_csv)
+    content_rules_df = pd.read_csv(content_rules_csv)
 
-    # --- GLOBAL_CONFIG ---
+    # --- GLOBAL_CONFIG (full — for prompt_1) ---
     row = global_df.iloc[0]
     global_config = json.dumps(
         {
@@ -55,8 +58,18 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
         ensure_ascii=False,
     )
 
-    # --- SHARED_RULES ---
-    shared_rules = str(row["shared_rules"])
+    # --- WRITER_CONFIG (slim — for prompt_2, omits positioning_statement) ---
+    writer_config = json.dumps(
+        {
+            "website": row["website"],
+            "language": row["language"],
+            "target_audience": row["target_audience"],
+        },
+        ensure_ascii=False,
+    )
+
+    # --- CONTENT_RULES ---
+    content_rules = str(content_rules_df.iloc[0]["shared_rules"])
 
     # --- CLUSTER_CONFIG ---
     matches = cluster_df[cluster_df["cluster"] == cluster]
@@ -84,10 +97,13 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
 
     # --- URL slug ---
     url_slug = urlparse(url).path.rstrip("/").split("/")[-1]
+    if not url_slug:
+        raise ValueError(f"Could not derive a url_slug from URL: {url!r}")
 
     return {
         "GLOBAL_CONFIG": global_config,
-        "SHARED_RULES": shared_rules,
+        "WRITER_CONFIG": writer_config,
+        "CONTENT_RULES": content_rules,
         "CLUSTER_CONFIG": cluster_config,
         "SECTION_MENU": section_menu,
         "PAGE_CONFIG": page_config,
@@ -116,8 +132,11 @@ if __name__ == "__main__":
         print("GLOBAL_CONFIG:")
         print(config["GLOBAL_CONFIG"])
         print()
-        print("SHARED_RULES (first 300 chars):")
-        print(config["SHARED_RULES"][:300])
+        print("WRITER_CONFIG:")
+        print(config["WRITER_CONFIG"])
+        print()
+        print("CONTENT_RULES (first 300 chars):")
+        print(config["CONTENT_RULES"][:300])
         print()
         print("CLUSTER_CONFIG:")
         print(config["CLUSTER_CONFIG"])

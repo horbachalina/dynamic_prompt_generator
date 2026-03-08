@@ -1,5 +1,5 @@
 .env
-.tmp/
+inputs/
 credentials.json
 token.json
 __pycache__/

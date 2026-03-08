@@ -1,8 +1,8 @@
 """
 generate_page.py — Single-page orchestrator for the two-prompt LLM pipeline.
 
-Loads config, assembles prompts, calls OpenAI twice, extracts blueprint,
-saves outputs to .tmp/output/{url-slug}/.
+Loads config, assembles prompts, calls LLM twice via LiteLLM proxy, extracts blueprint,
+saves outputs to output/{url-slug}/.
 
 Usage (CLI):
     python tools/generate_page.py --keyword "Annotate Quitclaim Deed" \
@@ -30,40 +30,69 @@ from load_config import load_config
 
 def _default_base_dir():
     tools_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(os.path.dirname(tools_dir), ".tmp")
+    return os.path.join(os.path.dirname(tools_dir), "inputs")
 
 
 
 def _call_llm_with_retry(
     client: OpenAI,
     prompt: str,
-    model: str = "gpt-4o",
-    temperature: float = 0.7,
+    model: str = "openai/gpt-4o-mini",
+    temperature: float = 0.3,
     max_tokens: int = 4096,
 ) -> str:
-    """Call OpenAI with exponential backoff retry on transient errors."""
+    """Call LLM via LiteLLM proxy with exponential backoff retry on transient errors."""
     delays = [5, 15, 45]
     last_exc = None
+    supports_temperature = True
+    use_max_completion_tokens = True
 
     for attempt, delay in enumerate(delays + [None]):
         try:
-            response = client.chat.completions.create(
+            kwargs = dict(
                 model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
                 messages=[{"role": "user", "content": prompt}],
             )
+            if use_max_completion_tokens:
+                kwargs["max_completion_tokens"] = max_tokens
+            else:
+                kwargs["max_tokens"] = max_tokens
+            if supports_temperature:
+                kwargs["temperature"] = temperature
+            response = client.chat.completions.create(**kwargs)
             return response.choices[0].message.content
-        except (
-            openai.RateLimitError,
-            openai.APIConnectionError,
-            openai.APIStatusError,
-        ) as e:
+        except openai.RateLimitError as e:
             last_exc = e
             if delay is None:
                 break
-            print(f"  API error (attempt {attempt + 1}/3): {e}. Retrying in {delay}s...")
+            print(f"  Rate limit (attempt {attempt + 1}/3): retrying in {delay}s...")
             time.sleep(delay)
+        except openai.APIConnectionError as e:
+            last_exc = e
+            if delay is None:
+                break
+            print(f"  Connection error (attempt {attempt + 1}/3): retrying in {delay}s...")
+            time.sleep(delay)
+        except openai.BadRequestError as e:
+            # Some models don't support temperature — retry once without it
+            if e.param == "temperature" and supports_temperature:
+                supports_temperature = False
+                continue
+            # Some models expect max_tokens instead of max_completion_tokens
+            if "max_completion_tokens" in str(e) and use_max_completion_tokens:
+                use_max_completion_tokens = False
+                continue
+            raise
+        except openai.APIStatusError as e:
+            # Only retry server-side errors (5xx); 4xx are non-retryable
+            if e.status_code >= 500:
+                last_exc = e
+                if delay is None:
+                    break
+                print(f"  Server error {e.status_code} (attempt {attempt + 1}/3): retrying in {delay}s...")
+                time.sleep(delay)
+            else:
+                raise
 
     raise last_exc
 
@@ -74,6 +103,9 @@ def generate_single_page(
     cluster: str = "group_annotate",
     base_dir: str = None,
     output_dir: str = None,
+    model: str = "openai/gpt-4o-mini",
+    temperature: float = 0.3,
+    timeout: int = None,
 ) -> dict:
     """
     Run the full two-prompt pipeline for a single page.
@@ -94,14 +126,20 @@ def generate_single_page(
         if base_dir is None:
             base_dir = _default_base_dir()
         if output_dir is None:
-            output_dir = os.path.join(base_dir, "output")
+            output_dir = os.path.join(os.path.dirname(base_dir), "output")
 
         env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
         load_dotenv(env_path)
-        api_key = os.environ.get("OPENAI_API_KEY")
+        api_key = os.environ.get("LITELLM_API_KEY")
+        base_url = os.environ.get("LITELLM_PROXY_URL")
         if not api_key:
-            raise ValueError("OPENAI_API_KEY not set in .env")
-        client = OpenAI(api_key=api_key)
+            raise ValueError("LITELLM_API_KEY not set in .env")
+        if not base_url:
+            raise ValueError("LITELLM_PROXY_URL not set in .env")
+        client_kwargs = dict(api_key=api_key, base_url=base_url)
+        if timeout is not None:
+            client_kwargs["timeout"] = float(timeout)
+        client = OpenAI(**client_kwargs)
 
         # --- Load config ---
         config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
@@ -122,13 +160,13 @@ def generate_single_page(
         prompt1 = prompt1_template
         prompt1 = prompt1.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
         prompt1 = prompt1.replace("{{CLUSTER_CONFIG}}", config["CLUSTER_CONFIG"])
-        prompt1 = prompt1.replace("{{SECTION_MENU}}", config["SECTION_MENU"])
         prompt1 = prompt1.replace("{{PAGE_CONFIG}}", config["PAGE_CONFIG"])
+        prompt1 = prompt1.replace("{{SECTION_MENU}}", config["SECTION_MENU"])
 
         # --- Call LLM: Prompt 1 ---
         print(f"  Running Prompt 1 (Strategist)...")
         p1_response = _call_llm_with_retry(
-            client, prompt1, model="gpt-4o", temperature=0.7, max_tokens=4096
+            client, prompt1, model=model, temperature=temperature, max_tokens=8192
         )
 
         # --- Extract blueprint ---
@@ -155,12 +193,13 @@ def generate_single_page(
         # --- Assemble Prompt 2 ---
         prompt2 = prompt2_template
         prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
-        prompt2 = prompt2.replace("{{SHARED_RULES}}", config["SHARED_RULES"])
+        prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["WRITER_CONFIG"])
+        prompt2 = prompt2.replace("{{CONTENT_RULES}}", config["CONTENT_RULES"])
 
         # --- Call LLM: Prompt 2 ---
         print(f"  Running Prompt 2 (Writer)...")
         p2_response = _call_llm_with_retry(
-            client, prompt2, model="gpt-4o", temperature=0.7, max_tokens=8192
+            client, prompt2, model=model, temperature=temperature, max_tokens=8192
         )
 
         # --- Strip markdown code fence if LLM wrapped output in ```html ... ``` ---
@@ -206,10 +245,21 @@ if __name__ == "__main__":
     parser.add_argument("--keyword", required=True, help="Target keyword")
     parser.add_argument("--url", required=True, help="Target page URL")
     parser.add_argument("--cluster", default="group_annotate", help="Cluster name")
+    parser.add_argument("--model", default="openai/gpt-4o-mini", help="Model name (e.g. openai/gpt-4o-mini, anthropic/claude-3-5-sonnet-20241022, gemini/gemini-1.5-pro)")
+    parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
+    parser.add_argument("--output-dir", default=None, help="Override output directory")
     args = parser.parse_args()
 
     print(f"Generating page for: {args.keyword}")
-    result = generate_single_page(args.keyword, args.url, args.cluster)
+    print(f"  Model: {args.model} | Temperature: {args.temperature}")
+    result = generate_single_page(
+        args.keyword,
+        args.url,
+        args.cluster,
+        output_dir=args.output_dir,
+        model=args.model,
+        temperature=args.temperature,
+    )
 
     if result["status"] == "done":
         print(f"Done.")

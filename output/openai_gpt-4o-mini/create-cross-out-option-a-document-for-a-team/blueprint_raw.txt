@@ -1,0 +1,163 @@
+```blueprint
+## A. KEYWORD INTELLIGENCE
+
+1. USER INTENT: The user is trying to create a cross-out option in a document for team collaboration, specifically to mark text that is no longer relevant or needs to be revised. This action is crucial for small and medium-sized businesses that require clear communication in document revisions.
+
+2. PLATFORM OR ENVIRONMENT: No specific platform — generic web browser context.
+
+3. KEYWORD FUNCTION: MIXED — The keyword combines an action (create) with a noun (cross-out option), indicating a specific feature within a document.
+
+4. PRIMARY KEYWORD: Create Cross Out Option in a Document for a Team
+
+5. SEO KEYWORD SET:
+   5a. SEMANTIC VARIANTS: How do I cross out text in a document? | Cross out text | Create a strikethrough in a PDF document for collaboration | 
+   5b. LSI KEYWORDS: document collaboration, PDF editing, strikethrough tool, team communication, document markup, text annotation.
+   5c. COMPARISON QUERIES: How does pdfFiller's cross-out feature compare to Adobe Acrobat? | Is pdfFiller better than Nitro PDF for document annotations? 
+   5d. INDUSTRY/ROLE VARIANTS: Marketing manager reviewing proposals, HR specialist updating employee handbooks, Operations coordinator revising SOPs.
+   5e. DENSITY TARGET: Primary keyword 5 times, 5 variants across body, ≥1 LSI per section.
+
+---
+## B. PAGE BLUEPRINT
+
+6. PAGE ANGLE: This page addresses the need for effective document collaboration by providing clear instructions on how to create a cross-out option in a document. It emphasizes the importance of marking revisions for team clarity and avoids generic examples by focusing on specific professional roles and document types relevant to small and medium-sized businesses.
+
+7. H1: Create a Cross Out Option in a Document for a Team
+
+8. TL;DR ANSWER: Create a cross-out option in your document to clearly indicate revisions for your team. Use pdfFiller's intuitive tools to enhance collaboration and streamline your document workflow.
+
+9. SECTION OUTLINE + CONTENT BRIEFS:
+
+   - **HEADING:** What is the Cross Out Option in pdfFiller?
+     - **PURPOSE:** Understand the functionality of the cross-out option in pdfFiller.
+     - **KEYWORD_EMBED:** cross-out option + document markup
+     - **MUST_INCLUDE:**
+       - Definition of the cross-out tool.
+       - UI path: Tools → Cross Out.
+       - Example role: Marketing manager.
+       - Limitation: Cannot modify original text.
+     - **MUST_AVOID:** Generic descriptions of annotation tools.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Provide a clear definition and context for the tool.
+
+   - **HEADING:** How Does the Cross Out Option Improve Document Collaboration?
+     - **PURPOSE:** Learn how using the cross-out option facilitates team communication.
+     - **KEYWORD_EMBED:** improve collaboration + document revision
+     - **MUST_INCLUDE:**
+       - Specific benefits for teams.
+       - Example role: HR specialist.
+       - Mention of pdfFiller's collaboration tools.
+       - Limitation: Requires internet access for real-time collaboration.
+     - **MUST_AVOID:** Overly broad benefits that do not relate to the cross-out feature.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Focus on practical benefits of the feature.
+
+   - **HEADING:** Step-by-Step Guide to Create a Cross Out Option in Your Document
+     - **PURPOSE:** Follow detailed instructions to use the cross-out tool effectively.
+     - **KEYWORD_EMBED:** create cross-out option + PDF editing
+     - **MUST_INCLUDE:**
+       - Step-by-step actions using exact UI paths.
+       - Example role: Operations coordinator.
+       - Mention of document types (e.g., proposals).
+       - Limitation: Cannot undo once saved.
+     - **MUST_AVOID:** Generic "how to annotate" phrases.
+     - **FORMAT:** ordered_list
+     - **MIN_WORDS:** 350
+     - **STRUCTURE_NOTE:** Ensure each step is clear and actionable.
+
+   - **HEADING:** Managing Crossed-Out Annotations After Placement
+     - **PURPOSE:** Learn how to edit or remove crossed-out annotations.
+     - **KEYWORD_EMBED:** manage annotations + document editing
+     - **MUST_INCLUDE:**
+       - Instructions for selecting and deleting annotations.
+       - Example role: Project manager.
+       - Mention of the Undo feature.
+       - Limitation: Crossed-out text cannot be recovered once cleared.
+     - **MUST_AVOID:** Vague instructions on annotation management.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Provide clear management options.
+
+   - **HEADING:** Scenarios for Using the Cross Out Option in Team Documents
+     - **PURPOSE:** Explore real-world applications of the cross-out feature.
+     - **KEYWORD_EMBED:** scenarios for cross-out + team collaboration
+     - **MUST_INCLUDE:**
+       - Specific roles and document types.
+       - Examples of situations where cross-out is beneficial.
+       - Mention of collaboration tools.
+       - Limitation: May not be suitable for all document types.
+     - **MUST_AVOID:** Default scenarios like legal or education.
+     - **FORMAT:** unordered_list
+     - **MIN_WORDS:** 250
+     - **STRUCTURE_NOTE:** Ensure variety in scenarios.
+
+   - **HEADING:** Limitations of the Cross Out Option in pdfFiller
+     - **PURPOSE:** Understand the constraints of using the cross-out tool.
+     - **KEYWORD_EMBED:** limitations of cross-out + PDF editing
+     - **MUST_INCLUDE:**
+       - Specific limitations of the tool.
+       - Example role: Finance manager.
+       - Mention of document types affected.
+       - Limitation: Cannot alter original content.
+     - **MUST_AVOID:** Overstating capabilities of the tool.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 150
+     - **STRUCTURE_NOTE:** Focus on clear and concise limitations.
+
+   - **HEADING:** How Does pdfFiller's Cross Out Option Compare to Adobe Acrobat?
+     - **PURPOSE:** Evaluate the cross-out feature against a competitor.
+     - **KEYWORD_EMBED:** compare pdfFiller + Adobe Acrobat
+     - **MUST_INCLUDE:**
+       - Differentiator favoring pdfFiller.
+       - Tradeoff for Adobe Acrobat.
+       - Mention of user experience.
+     - **MUST_AVOID:** Superlative language.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Ensure a balanced comparison.
+
+   - **HEADING:** Next Steps After Using the Cross Out Option
+     - **PURPOSE:** Guide users on what to do after marking text.
+     - **KEYWORD_EMBED:** next steps + document workflow
+     - **MUST_INCLUDE:**
+       - Suggested actions after using the cross-out tool.
+       - Example role: Team leader.
+       - Mention of sharing or exporting documents.
+       - Limitation: May require additional permissions for sharing.
+     - **MUST_AVOID:** Generic calls to action.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Connect to broader workflow.
+
+   - **HEADING:** Uploading Documents for Cross-Out Annotation
+     - **PURPOSE:** Understand how to upload documents for annotation.
+     - **KEYWORD_EMBED:** upload documents + PDF editing
+     - **MUST_INCLUDE:**
+       - Upload methods in pdfFiller.
+       - Example role: Administrative assistant.
+       - Mention of accepted formats.
+       - Limitation: File size restrictions may apply.
+     - **MUST_AVOID:** Confusing upload instructions.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Provide clear upload paths.
+
+   - **HEADING:** Document Management After Using the Cross Out Tool
+     - **PURPOSE:** Learn how to manage documents post-annotation.
+     - **KEYWORD_EMBED:** document management + PDF editing
+     - **MUST_INCLUDE:**
+       - Actions available in My Documents.
+       - Example role: Operations manager.
+       - Mention of document organization features.
+       - Limitation: Deleted documents may not be recoverable.
+     - **MUST_AVOID:** Generic management tips.
+     - **FORMAT:** prose
+     - **MIN_WORDS:** 200
+     - **STRUCTURE_NOTE:** Focus on specific management actions.
+
+10. COMPARISON BRIEF: 
+    - **Adobe Acrobat:** pdfFiller runs entirely in the browser — no desktop installation required. | Adobe Acrobat offers more advanced features for professional editing.
+    - **Nitro PDF:** pdfFiller provides a more intuitive user interface for document collaboration. | Nitro PDF may have more extensive formatting options.
+    - **Foxit PDF Editor:** pdfFiller integrates seamlessly with cloud storage solutions. | Foxit PDF Editor may offer more robust offline capabilities.
+```

@@ -57,14 +57,15 @@ This loop is how the framework improves over time.
 
 **Directory layout:**
 ```
-.tmp/           # Temporary files (scraped data, intermediate exports). Regenerated as needed.
+inputs/         # Permanent inputs — prompt templates, config CSVs, progress.csv
+output/         # Disposable runtime outputs — generated content, comparison CSVs (regenerated as needed)
 tools/          # Python scripts for deterministic execution
 workflows/      # Markdown SOPs defining what to do and how
 .env            # API keys and environment variables (NEVER store secrets anywhere else)
 credentials.json, token.json  # Google OAuth (gitignored)
 ```
 
-**Core principle:** Local files are just for processing. Anything I need to see or use lives in cloud services. Everything in `.tmp/` is disposable.
+**Core principle:** Local files are just for processing. Anything I need to see or use lives in cloud services. Runtime outputs in `output/` are disposable. Prompt templates and config CSVs in `inputs/` are permanent inputs — do not delete them.
 
 ## Bottom Line
 
