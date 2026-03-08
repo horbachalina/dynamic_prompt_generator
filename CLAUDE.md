@@ -38,6 +38,9 @@ When you hit an error:
 **3. Keep workflows current**
 Workflows should evolve as you learn. When you find better methods, discover constraints, or encounter recurring issues, update the workflow. That said, don't create or overwrite workflows without asking unless I explicitly tell you to. These are your instructions and need to be preserved and refined, not tossed after one use.
 
+**4. Commit and push major changes**
+After completing any significant work — new tools, workflow updates, bug fixes, or structural changes — commit and push to the remote repository. Use a clear, descriptive commit message. This keeps the codebase backed up and the history meaningful.
+
 ## The Self-Improvement Loop
 
 Every failure is a chance to make the system stronger:
