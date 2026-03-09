@@ -77,3 +77,13 @@ Produce ALL sections below inside <blueprint></blueprint> tags. Be precise. Do n
     - One factual differentiator favoring the product (aligned with positioning_statement)
     - One honest tradeoff
     If page_type is feature-only and no competitor appears in the keyword, write: "Comparison not central — brief mention in body only."
+
+---
+## PRE-OUTPUT CHECKLIST
+Before closing </blueprint> tags, verify each item and correct any failure before outputting:
+- A1–A5 are all present and non-empty
+- B6 PAGE ANGLE explicitly names at least one structural risk from cluster_context and states how this angle avoids it
+- B7 H1 is under 65 characters and contains none of the banned phrases
+- B9 section count is between 10 and 12
+- B9 MIN_WORDS values sum to at least the lower bound of target_word_count
+- B10 names at least 2 competitors OR contains the exact phrase "Comparison not central"

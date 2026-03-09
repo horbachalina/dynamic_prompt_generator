@@ -99,6 +99,20 @@ Do not repeat the same technique consecutively in the same section. Techniques m
 
 ---
 
+## PHASE 7 — SELF-VERIFICATION BEFORE OUTPUT
+
+Before writing any HTML, perform these checks against your draft and correct any failures:
+
+1. **Brand mentions**: Count exact occurrences of the brand name — must be 5–6. Add or remove occurrences to land in range.
+2. **Word count**: Estimate total prose word count — must be within the target_word_count range from blueprint Section 9. If short, identify which section is below its MIN_WORDS and extend it using a Phase 4 depth technique. Never add filler.
+3. **Banned words**: Scan for every term in the BANNED WORDS list from content_rules. Remove any found.
+4. **Banned openers**: Verify no section opens with a phrase from the BANNED OPENERS list.
+5. **Banned closers**: Verify no section ends with a pattern from the BANNED CLOSERS list.
+
+Only output HTML after all 5 checks pass.
+
+---
+
 ## OUTPUT FORMAT SPECIFICATION
 
 - Valid HTML using only: `<h2>`, `<h3>`, `<h4>`, `<p>`, `<ul>`, `<ol>`, `<li>`
