@@ -26,7 +26,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
     Returns:
         {
             "GLOBAL_CONFIG": str,    # JSON: website, language, target_audience, positioning_statement
-            "WRITER_CONFIG": str,    # JSON: website, language, target_audience (slim — for prompt_2)
             "CLUSTER_CONFIG": str,   # JSON: page_type, cluster_context, target_word_count
             "SECTION_MENU": str,     # raw long-form text block (from cluster_config.csv)
             "PAGE_CONFIG": str,      # JSON: {"keyword": "..."}
@@ -51,16 +50,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
             "language": row["language"],
             "target_audience": row["target_audience"],
             "positioning_statement": row["positioning_statement"],
-        },
-        ensure_ascii=False,
-    )
-
-    # --- WRITER_CONFIG (slim — for prompt_2, omits positioning_statement) ---
-    writer_config = json.dumps(
-        {
-            "website": row["website"],
-            "language": row["language"],
-            "target_audience": row["target_audience"],
         },
         ensure_ascii=False,
     )
@@ -96,7 +85,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
 
     return {
         "GLOBAL_CONFIG": global_config,
-        "WRITER_CONFIG": writer_config,
         "CLUSTER_CONFIG": cluster_config,
         "SECTION_MENU": section_menu,
         "PAGE_CONFIG": page_config,
@@ -124,9 +112,6 @@ if __name__ == "__main__":
         print("=" * 60)
         print("GLOBAL_CONFIG:")
         print(config["GLOBAL_CONFIG"])
-        print()
-        print("WRITER_CONFIG:")
-        print(config["WRITER_CONFIG"])
         print()
         print("CLUSTER_CONFIG:")
         print(config["CLUSTER_CONFIG"])

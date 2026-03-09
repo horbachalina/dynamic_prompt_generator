@@ -37,8 +37,8 @@ BEFORE ANALYSIS — extract and apply:
 4. PRIMARY KEYWORD: Confirmed phrase. Fix any slug artifacts.
 
 5. SEO KEYWORD SET:
-   5a. SEMANTIC VARIANTS (6–8): ≥1 question query, ≥1 short head term (2–3 words), ≥1 long tail (6+ words).
-   5b. LSI KEYWORDS (6–8): Related features, formats, platforms, document types, professional tasks.
+   5a. SEMANTIC VARIANTS (4–5): ≥1 question query, ≥1 short head term (2–3 words), ≥1 long tail (6+ words). Exclude near-duplicates.
+   5b. LSI KEYWORDS (5–6, comma-separated inline): Related features, formats, platforms, document types, professional tasks.
    5c. COMPARISON QUERIES (2–3): Tool-evaluation searches.
    5d. INDUSTRY/ROLE VARIANTS (3–4): Feature + professional context matching target_audience.
    5e. DENSITY TARGET: Primary keyword [N] times; [N] variants across body; ≥1 LSI per section.
@@ -53,19 +53,18 @@ BEFORE ANALYSIS — extract and apply:
 
 8. TL;DR ANSWER (40–60 words): Starts with action verb. Self-contained. References platform/document context from A2 if identified.
 
-9. SECTION OUTLINE + CONTENT BRIEFS: Select 10–12 sections from section_menu, constrained by page_type rules. Maintain section_menu order. For each section:
+9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select 10–12 sections from section_menu, constrained by page_type rules. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
 
-   HEADING: Full heading for this specific keyword. Question-form where it matches search intent.
+   HEADING: Human-readable heading for this specific keyword (≤65 characters). Question-form where it matches search intent. Never use the section code name (FEAT_DEF, WORKFLOW, STEPS, etc.).
    PURPOSE: 1 sentence — what the reader gains.
-   KEYWORD_EMBED: Semantic variant + LSI term to embed.
-   MUST_INCLUDE: 3–5 bullets — specific facts, UI element names, or platform constraints. ≥1 named role + document type (differ across sections; match target_audience; exclude cluster_context defaults). ≥1 limitation or conditional.
-   MUST_AVOID: The specific generic phrase or pattern to prevent.
-   FORMAT: prose | unordered_list | ordered_list
-   MIN_WORDS: Definition/concept: 200 | Workflow/problem: 200 | Step-by-step: 350 (min 7 steps) | Scenario: 250 (min 3) | Comparison: 200 | Limitation/security/format: 150
-   STRUCTURE_NOTE: One specific structural instruction.
+   KEYWORD_EMBED: 1–2 keyword phrases to embed. If two, join with +.
+   MUST_INCLUDE: 3–4 bullets (hard max 4) — specific facts, UI element names, or platform constraints not inferable from the section heading alone. ≥1 named role + document type (differ across sections; match target_audience; exclude cluster_context defaults). ≥1 limitation or conditional. Each bullet ≤12 words.
+   MUST_AVOID: ≤8 words — the exact pattern to prevent.
+   FORMAT | MIN_WORDS: [prose|unordered_list|ordered_list] [200 / 350 (7+ steps) / 250 (3+ scenarios) / 150]
+   STRUCTURE_NOTE: One structural instruction (≤12 words). Example: "Frame as problem → consequence → solution."
 
-10. COMPARISON BRIEF: 3 named competitors relevant to this keyword. For each: one factual differentiator favoring the product (aligned with positioning_statement) + one honest tradeoff.
-    If feature-only and no competitor in keyword: write "Comparison not central — brief mention in body only."
+10. COMPARISON BRIEF: 3 named competitors relevant to this keyword. For each: 1 sentence differentiator (grounded in positioning_statement) + 1 sentence honest tradeoff. Max 2 sentences per competitor.
+    If feature-only and no competitor in keyword: write "Comparison not central — brief mention in body only." No competitor entries.
 
 ---
 ## PRE-OUTPUT CHECKLIST

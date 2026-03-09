@@ -43,8 +43,8 @@ python tools/compare_models.py \
     --url "https://www.pdffiller.com/en/functionality/highlight-formula-and-header-in-pdf"
 ```
 
-Check the output CSV in `output/compare_{timestamp}.csv`. Each model's HTML is in its own column. Verify:
-- Cells start with `<h2>` containing the keyword-based heading
+Check the output CSV in `output/compare_{timestamp}.csv`. Each model has two columns: `{model_slug}_blueprint` and `{model_slug}_content`. Verify:
+- `_content` cells start with `<h2>` containing the keyword-based heading
 - No cell reads `ERROR: ...`
 
 ### 2. Full batch — all pages in page_config.csv, 3 models
@@ -58,13 +58,13 @@ The script prints `[i/total] keyword` for each page, and `✓ Done` or `✗ Erro
 
 ### 3. Review the CSV
 
-Open `output/compare_{timestamp}.csv` in a spreadsheet app. For each URL row, compare HTML content across model columns. Look for:
+Open `output/compare_{timestamp}.csv` in a spreadsheet app. Each model has two columns: `{model_slug}_blueprint` (Prompt 1 output) and `{model_slug}_content` (Prompt 2 HTML). For each URL row, compare across models. Look for:
 
 - Heading quality and keyword placement
 - Section coverage and structure (matches blueprint)
 - Word count and depth
 - Tone consistency with prompt_2 writing rules
-- Brand mention density (target: 5–8 per article)
+- Brand mention density (target: 5–6 per article)
 
 ---
 
@@ -72,22 +72,12 @@ Open `output/compare_{timestamp}.csv` in a spreadsheet app. For each URL row, co
 
 ```
 output/
-├── compare_{timestamp}.csv          # rows=URLs, columns=model slugs, cells=HTML or ERROR
-├── openai_gpt-4o-mini/
-│   └── {url-slug}/
-│       ├── blueprint.md
-│       └── content.html
-├── anthropic_claude-3-5-sonnet-20241022/
-│   └── {url-slug}/
-│       ├── blueprint.md
-│       └── content.html
-└── gemini_gemini-1.5-pro/
-    └── {url-slug}/
-        ├── blueprint.md
-        └── content.html
+└── compare_{timestamp}.csv   # rows=URLs, two columns per model: {slug}_blueprint and {slug}_content
 ```
 
-Model folder names are sanitized versions of the `--models` arguments (`/` → `_`, lowercased).
+Example columns: `url, keyword, url_slug, openai_gpt-4o-mini_blueprint, openai_gpt-4o-mini_content, ...`
+
+No per-model subdirectories are created. All content is captured in the CSV.
 
 ---
 
@@ -134,5 +124,5 @@ This creates a new timestamped CSV. There is no resume functionality — each ru
 - **Rate limit delay:** 3 seconds between pages; models for the same page run in parallel with no delay.
 - **Timeout:** Default 120s for the full two-prompt pipeline per model (Prompt 1 + Prompt 2 combined). Timed-out cells show `TIMEOUT` in the CSV (not `ERROR:`). Use `--timeout 60` for OpenAI-only runs.
 - **Live CSV:** The CSV is updated after every individual model result, not just after each page. You can open it at any time to see partial results.
-- **CSV file size:** Each HTML cell is ~6–8 KB. A 5-URL × 3-model run produces ~90–120 KB CSV — normal for spreadsheet apps.
+- **CSV file size:** Each model produces two cells (blueprint ~2–4 KB, HTML ~6–8 KB). A 5-URL × 3-model run produces ~120–180 KB CSV — normal for spreadsheet apps.
 - **Model slug collision:** Two model names that sanitize to the same slug (e.g., `openai/gpt4` and `openai/gpt-4`) will cause an error before any API calls are made. Use distinct model names.

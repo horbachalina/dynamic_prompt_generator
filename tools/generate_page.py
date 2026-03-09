@@ -83,12 +83,18 @@ def _call_llm_with_retry(
             print(f"  Connection error (attempt {attempt + 1}/3): retrying in {delay}s...")
             time.sleep(delay)
         except openai.BadRequestError as e:
+            err_str = str(e)
             # Some models don't support temperature — retry once without it
-            if e.param == "temperature" and supports_temperature:
+            # Check both e.param (standard) and the error body (some models omit param)
+            if supports_temperature and (
+                e.param == "temperature"
+                or "'temperature'" in err_str
+                or '"temperature"' in err_str
+            ):
                 supports_temperature = False
                 continue
             # Some models expect max_tokens instead of max_completion_tokens
-            if "max_completion_tokens" in str(e) and use_max_completion_tokens:
+            if "max_completion_tokens" in err_str and use_max_completion_tokens:
                 use_max_completion_tokens = False
                 continue
             raise
@@ -218,7 +224,7 @@ def generate_single_page(
         # --- Assemble Prompt 2 ---
         prompt2 = prompt2_template
         prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
-        prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["WRITER_CONFIG"])
+        prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
 
         # --- Call LLM: Prompt 2 ---
         print(f"  Running Prompt 2 (Writer)...")

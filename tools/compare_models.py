@@ -1,13 +1,14 @@
 """
 compare_models.py — Run the two-prompt pipeline across multiple models and compare outputs.
 
-Generates content for each model, saves per-model files to output/{model_slug}/{url_slug}/,
-and writes a comparison CSV to output/compare_{timestamp}.csv.
+Writes a comparison CSV to output/compare_{timestamp}.csv with two columns per model:
+{model_slug}_blueprint (Prompt 1 output) and {model_slug}_content (Prompt 2 HTML).
+No per-model subdirectories are created — all output is captured in the CSV.
 
 Features:
 - Parallel model execution per page (all models run concurrently for the same URL)
 - Live CSV updates after every individual model result
-- 30s timeout per LLM call (shows TIMEOUT in CSV)
+- 120s timeout per LLM call (shows TIMEOUT in CSV)
 - Detailed logging with timestamps and elapsed times
 
 Usage (single page):
@@ -25,6 +26,7 @@ import argparse
 import os
 import re
 import sys
+import tempfile
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -64,6 +66,9 @@ def _derive_url_slug(url: str) -> str:
 def write_comparison_csv(rows: list, models: list, output_path: str) -> None:
     """Write comparison results to a CSV file (thread-safe via external lock)."""
     model_slugs = [sanitize_model_name(m) for m in models]
+    columns = ["url", "keyword", "url_slug"]
+    for slug in model_slugs:
+        columns += [f"{slug}_blueprint", f"{slug}_content"]
     records = []
     for row in rows:
         record = {
@@ -72,9 +77,11 @@ def write_comparison_csv(rows: list, models: list, output_path: str) -> None:
             "url_slug": row["url_slug"],
         }
         for slug in model_slugs:
-            record[slug] = row["model_results"].get(slug, "")
+            result = row["model_results"].get(slug, {})
+            record[f"{slug}_blueprint"] = result.get("blueprint", "")
+            record[f"{slug}_content"] = result.get("content", "")
         records.append(record)
-    df = pd.DataFrame(records, columns=["url", "keyword", "url_slug"] + model_slugs)
+    df = pd.DataFrame(records, columns=columns)
     df.to_csv(output_path, index=False, encoding="utf-8")
 
 
@@ -96,46 +103,56 @@ def _run_single_model(
     print(f"  [{_ts()}] [{page_idx}/{total_pages}] ▶ Starting {model_short}")
     sys.stdout.flush()
 
-    model_output_dir = os.path.join(os.path.dirname(base_dir), "output", model_slug)
-    try:
-        result = generate_single_page(
-            keyword=keyword,
-            url=url,
-            cluster=cluster,
-            base_dir=base_dir,
-            output_dir=model_output_dir,
-            model=model,
-            temperature=temperature,
-            timeout=timeout,
-        )
-    except Exception as e:
-        elapsed = time.time() - start
-        error_str = str(e)
-        if "timed out" in error_str.lower() or "timeout" in error_str.lower():
-            print(f"  [{_ts()}] [{page_idx}/{total_pages}] ⏱ TIMEOUT {model_short} ({elapsed:.1f}s)")
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        try:
+            result = generate_single_page(
+                keyword=keyword,
+                url=url,
+                cluster=cluster,
+                base_dir=base_dir,
+                output_dir=tmp_dir,
+                model=model,
+                temperature=temperature,
+                timeout=timeout,
+            )
+        except Exception as e:
+            elapsed = time.time() - start
+            error_str = str(e)
+            if "timed out" in error_str.lower() or "timeout" in error_str.lower():
+                print(f"  [{_ts()}] [{page_idx}/{total_pages}] ⏱ TIMEOUT {model_short} ({elapsed:.1f}s)")
+                sys.stdout.flush()
+                return model_slug, {"blueprint": "TIMEOUT", "content": "TIMEOUT"}
+            print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✗ {model_short} crashed ({elapsed:.1f}s): {error_str[:120]}")
             sys.stdout.flush()
-            return model_slug, "TIMEOUT"
-        print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✗ {model_short} crashed ({elapsed:.1f}s): {error_str[:120]}")
-        sys.stdout.flush()
-        return model_slug, f"ERROR: {error_str}"
+            return model_slug, {"blueprint": f"ERROR: {error_str}", "content": f"ERROR: {error_str}"}
 
-    elapsed = time.time() - start
-    if result["status"] == "done":
-        with open(result["content_path"], "r", encoding="utf-8") as f:
-            html = f.read()
-        word_count = len(html.split())
-        print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✓ {model_short} done ({elapsed:.1f}s, ~{word_count} words)")
-        sys.stdout.flush()
-        return model_slug, html
-    else:
-        error_str = result["error"] or "unknown error"
-        if "timed out" in error_str.lower() or "timeout" in error_str.lower():
-            print(f"  [{_ts()}] [{page_idx}/{total_pages}] ⏱ TIMEOUT {model_short} ({elapsed:.1f}s)")
+        elapsed = time.time() - start
+        if result["status"] == "done":
+            with open(result["blueprint_path"], "r", encoding="utf-8") as f:
+                blueprint = f.read()
+            with open(result["content_path"], "r", encoding="utf-8") as f:
+                html = f.read()
+            word_count = len(html.split())
+            print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✓ {model_short} done ({elapsed:.1f}s, ~{word_count} words)")
             sys.stdout.flush()
-            return model_slug, "TIMEOUT"
-        print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✗ {model_short} error ({elapsed:.1f}s): {error_str[:120]}")
-        sys.stdout.flush()
-        return model_slug, f"ERROR: {error_str}"
+            return model_slug, {"blueprint": blueprint, "content": html}
+        else:
+            error_str = result["error"] or "unknown error"
+            if "timed out" in error_str.lower() or "timeout" in error_str.lower():
+                print(f"  [{_ts()}] [{page_idx}/{total_pages}] ⏱ TIMEOUT {model_short} ({elapsed:.1f}s)")
+                sys.stdout.flush()
+                return model_slug, {"blueprint": "TIMEOUT", "content": "TIMEOUT"}
+            # Prompt 1 may have succeeded (blueprint exists) even if Prompt 2 failed
+            blueprint_text = f"ERROR: {error_str}"
+            if result.get("blueprint_path"):
+                try:
+                    with open(result["blueprint_path"], "r", encoding="utf-8") as f:
+                        blueprint_text = f.read()
+                except OSError:
+                    pass
+            print(f"  [{_ts()}] [{page_idx}/{total_pages}] ✗ {model_short} error ({elapsed:.1f}s): {error_str[:120]}")
+            sys.stdout.flush()
+            return model_slug, {"blueprint": blueprint_text, "content": f"ERROR: {error_str}"}
 
 
 def run_comparison(
@@ -145,7 +162,7 @@ def run_comparison(
     cluster: str = "group_annotate",
     base_dir: str = None,
     temperature: float = 0.3,
-    timeout: int = 30,
+    timeout: int = 120,
     max_workers: int = None,
 ) -> str:
     """Orchestrate single-page or batch model comparison with parallel execution."""
@@ -220,7 +237,7 @@ def run_comparison(
                 "url": u,
                 "keyword": kw,
                 "url_slug": url_slug,
-                "model_results": {sanitize_model_name(m): error_msg for m in models},
+                "model_results": {sanitize_model_name(m): {"blueprint": error_msg, "content": error_msg} for m in models},
             }
             rows.append(row)
             error_count += len(models)
@@ -254,10 +271,11 @@ def run_comparison(
                 model_slug, result_content = future.result()
                 row["model_results"][model_slug] = result_content
 
-                # Update counters
-                if result_content == "TIMEOUT":
+                # Update counters (check the content value)
+                content_val = result_content.get("content", "")
+                if content_val == "TIMEOUT":
                     timeout_count += 1
-                elif result_content.startswith("ERROR:"):
+                elif content_val.startswith("ERROR:"):
                     error_count += 1
                 else:
                     done_count += 1
@@ -267,7 +285,10 @@ def run_comparison(
                     write_comparison_csv(rows, models, csv_path)
 
         page_elapsed = time.time() - page_start
-        page_done = sum(1 for v in row["model_results"].values() if not v.startswith("ERROR:") and v != "TIMEOUT")
+        page_done = sum(
+            1 for v in row["model_results"].values()
+            if v.get("content", "") not in ("TIMEOUT", "") and not v.get("content", "").startswith("ERROR:")
+        )
         page_err = len(row["model_results"]) - page_done
         print(f"  [{_ts()}] Page done in {page_elapsed:.1f}s — {page_done} ok, {page_err} failed")
         sys.stdout.flush()
