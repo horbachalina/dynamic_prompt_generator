@@ -122,6 +122,15 @@ def run_batch(
     completed = 0
     errors = 0
 
+    # Load config and prompt templates once — only PAGE_CONFIG and url_slug change per page.
+    from load_config import load_config
+    _dummy_url = "https://example.com/placeholder"
+    config_cache = load_config(cluster=cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
+    with open(os.path.join(base_dir, "prompt_1.md"), "r", encoding="utf-8") as f:
+        config_cache["PROMPT_1_TEMPLATE"] = f.read()
+    with open(os.path.join(base_dir, "prompt_2.md"), "r", encoding="utf-8") as f:
+        config_cache["PROMPT_2_TEMPLATE"] = f.read()
+
     for i, row in enumerate(pending.itertuples(), 1):
         print(f"[{i}/{total}] {row.keyword}")
 
@@ -133,6 +142,7 @@ def run_batch(
             output_dir=output_dir,
             model=model,
             temperature=temperature,
+            config_cache=config_cache,
         )
 
         # Update progress_df in memory

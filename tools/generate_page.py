@@ -115,6 +115,7 @@ def generate_single_page(
     model: str = "openai/gpt-4o-mini",
     temperature: float = 0.3,
     timeout: int = None,
+    config_cache: dict = None,
 ) -> dict:
     """
     Run the full two-prompt pipeline for a single page.
@@ -151,19 +152,34 @@ def generate_single_page(
         client = OpenAI(**client_kwargs)
 
         # --- Load config ---
-        config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
+        # If a pre-loaded cache is provided (e.g. from a batch run), reuse the stable
+        # fields and only recompute the two values that change per page.
+        if config_cache is not None:
+            from urllib.parse import urlparse
+            import json
+            url_slug = urlparse(url).path.rstrip("/").split("/")[-1]
+            if not url_slug:
+                raise ValueError(f"Could not derive a url_slug from URL: {url!r}")
+            config = dict(config_cache)
+            config["url_slug"] = url_slug
+            config["PAGE_CONFIG"] = json.dumps({"keyword": keyword}, ensure_ascii=False)
+        else:
+            config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
         url_slug = config["url_slug"]
         slug_output_dir = os.path.join(output_dir, url_slug)
         os.makedirs(slug_output_dir, exist_ok=True)
 
-        # --- Read and clean prompt templates ---
-        prompt1_path = os.path.join(base_dir, "prompt_1.md")
-        prompt2_path = os.path.join(base_dir, "prompt_2.md")
-
-        with open(prompt1_path, "r", encoding="utf-8") as f:
-            prompt1_template = f.read()
-        with open(prompt2_path, "r", encoding="utf-8") as f:
-            prompt2_template = f.read()
+        # --- Read prompt templates (use cache if available) ---
+        if config_cache is not None and "PROMPT_1_TEMPLATE" in config_cache:
+            prompt1_template = config_cache["PROMPT_1_TEMPLATE"]
+            prompt2_template = config_cache["PROMPT_2_TEMPLATE"]
+        else:
+            prompt1_path = os.path.join(base_dir, "prompt_1.md")
+            prompt2_path = os.path.join(base_dir, "prompt_2.md")
+            with open(prompt1_path, "r", encoding="utf-8") as f:
+                prompt1_template = f.read()
+            with open(prompt2_path, "r", encoding="utf-8") as f:
+                prompt2_template = f.read()
 
         # --- Assemble Prompt 1 ---
         prompt1 = prompt1_template
