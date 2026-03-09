@@ -14,6 +14,7 @@ Run the two-prompt LLM pipeline to generate blueprint and HTML content for all p
 - Python dependencies installed: `pip install -r requirements.txt`
 - `inputs/` contains: `prompt_1.md`, `prompt_2.md`, `global_config.csv`, `cluster_config.csv`, `page_config.csv`
 
+
 ---
 
 ## Model Selection
@@ -51,7 +52,7 @@ In practice, the only thing that changes between pages is the keyword. Everythin
 python tools/load_config.py --cluster group_annotate --test
 ```
 
-Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION_MENU should show the full section definitions block from cluster_config.csv. CONTENT_RULES should show the banned words list.
+Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION_MENU should show the full section definitions block from cluster_config.csv.
 
 ### 2. Run a test batch (recommended before full run)
 

@@ -1,407 +1,65 @@
 cluster,page_type,target_word_count,cluster_context,section_menu
-group_annotate,feature-only,1200-1500,"The group_annotate cluster covers all PDF markup and annotation features available in pdfFiller. Each page targets a specific annotation action — such as highlighting, underlining, adding stamps, drawing lines, inserting arrows, attaching sticky notes, or applying crossouts — sometimes combined with a platform (Linux, Ubuntu, Samsung, iOS, Android), a cloud integration (Google Drive, Dropbox, OneDrive, Box), a competitor context (Adobe Acrobat alternative), or a document type (contract, quote, marketing agreement). The cluster goal is to capture long-tail annotation feature searches and establish pdfFiller as the browser-based annotation tool that works across every environment without requiring software installation. Pages in this cluster share the same structural risk: every page tends to produce identical introductions, the same generic industry examples (legal teams marking contracts, educators highlighting study materials), the same browser compatibility paragraph, and the same vague collaboration benefits. Content for each page must be differentiated by the specific annotation action and any platform or document context implied by the keyword. Feature-only pages with no platform modifier — like this one — must find their angle in the specific annotation type itself: what makes highlighting dates and text different from general highlighting, who specifically needs to mark dates in documents, and what workflows depend on this specific combination of content types.","# SECTION_MENU — group_annotate cluster
-
----
+group_annotate,feature-only,1200-1500,"PDF annotation and markup tools in pdfFiller's browser-based editor (Edit Mode). Tools split across two access paths:
+Tools menu: Highlight, Draw, Line, Arrow, Sticky Note, Blackout, Watermark (+ Date Stamp, Page Numbering, Bates Numbering)
+Main toolbar: Circle, Checkmark, Cross, Text Box, Erase
+All tools add visual layers on top of the PDF without modifying the original content. Exception: Blackout permanently hides content beneath opaque rectangles — content is unrecoverable after saving.","# SECTION_MENU — group_annotate cluster
 
 ## FEAT_DEF — Feature Definition
-
-Define what this annotation action does technically and how it differs from similar tools in pdfFiller's editor.
-
-**Annotation tool reference (use exact names and paths):**
-- **Highlight** (Tools → Highlight): transparent color overlay, freeform area, yellow default, adjustable transparency, stackable
-- **Draw** (Tools → Draw): freehand marks, color + thickness options, auto curve-smoothing; touchscreen/stylus-optimized
-- **Line** (Tools → Line): straight geometric line, adjustable length/angle, custom color/thickness
-- **Arrow** (Tools → Arrow): straight line + directional arrowhead, resizable, custom color/thickness
-- **Sticky Note** (Tools → Sticky Note): clickable icon expanding into comment window, movable, multi-note support
-- **Blackout** (Tools → Blackout): permanent opaque redaction; content unrecoverable after save
-- **Watermark** (Tools → Watermark): semi-transparent text/image overlay; sub-tools: Date Stamp, Page Numbering, Bates Numbering
-- **Circle** (main toolbar): circular marker, adjustable border/color, fill options (plan-dependent)
-- **Checkmark** (main toolbar): tick symbol, one-click placement
-- **Cross** (main toolbar): X symbol for false/not-applicable marking
-- **Text Box** (main toolbar): bordered text container for notes/instructions
-- **Text** (main toolbar, ""T"" icon): free-floating text annotation, full formatting (font, size, color, bold/italic/underline, alignment)
-
-Explain when a user would choose this tool over the alternatives, grounded in practical workflow decisions.
-
----
+What the specific annotation tool does and when a user would choose it over similar tools in pdfFiller.
 
 ## WORKFLOW — Workflow Problem This Feature Solves
-
-Describe the specific document workflow problem this annotation addresses.
-
-- State concrete consequences of missing this annotation (e.g., overlooked deadlines, miscommunicated revisions, repeated review cycles)
-- Name specific professional roles encountering this problem (e.g., ""a procurement coordinator reviewing vendor contracts,"" ""an operations manager tracking milestones in a Gantt chart PDF"")
-- Connect to pdfFiller collaboration tools:
-  - **Share** (header → Share): Get Link, Invite via Email (view/fill/edit permissions), Invite Collaborators (real-time editing)
-  - **Comments** (speech-bubble icon → right-side panel): threaded comments linked to page locations, reply/resolve threads
-  - **Audit Trail** (Notifications bell → Audit Trail): timestamped log of all document actions; filterable by date; exportable as PDF via Download Report
-
----
-
-## ANNOTATABLE — What Can Be Annotated
-
-Specify which content types this annotation applies to and what its limits are.
-
-**Supported content:** text paragraphs, words, dates, numbers, table cells, headers, form field labels, handwritten content in image-based PDFs.
-
-**Key limitations:**
-- **Erase tool**: removes only user-added annotations; never modifies original PDF content
-- **Clear Content** (My Documents → More → Tools → Clear Content): permanently removes ALL annotations, highlights, watermarks, checkmarks, lines — cannot be undone
-- Annotations are layered overlays; underlying PDF structure is unchanged
-
-**Native vs. scanned PDFs:**
-- Native PDFs: text is selectable; all annotation tools work directly
-- Scanned/image-based PDFs: content is a flat image; freeform tools (Highlight, Draw, Circle) can mark areas, but text-specific selection requires OCR [VERIFY built-in OCR availability]
-- pdfFiller auto-converts DOCX, XLSX, images, PPT to PDF on upload; converted content may remain image-based
-
----
-
-## FILE_FORMATS — Supported Formats and Upload Options
-
-**Accepted upload formats:**
-- PDF (native), DOCX, XLSX, PPT/PPTX, JPG, PNG, GIF — all non-PDF files auto-converted to editable PDF on upload
-
-**Upload methods:**
-- Add New (left sidebar) → Upload Document
-- Dashboard → Upload/Drop card (drag-and-drop supported)
-- Import from: Google Drive, Dropbox, OneDrive, Box
-
-**Export/output options:**
-- Download PDF: header down-arrow icon, or Done → Download PDF
-- Save As: PDF, Word (.docx), Excel (.xlsx), PowerPoint (.pptx), Image (.jpg/.png) — via Done → Save As [plan requirements: VERIFY]
-- Print: header Print button or Done → Print (browser dialog; includes Save as PDF)
-- Compress: header Compress button (quality options: High, Medium, Low)
-- Send: Done → Email, Fax, Phone (SMS), Mail by USPS
-- File size limits: not specified in current documentation [VERIFY]
-
----
-
-## BROWSERS — Browser and Device Compatibility
-
-pdfFiller is fully browser-based — no desktop installation required. Editor loads directly in the browser window.
-
-**Confirmed behaviors:**
-- All annotation tools operate within the browser editor
-- Keyboard shortcuts: Ctrl+C/Cmd+C (copy), Ctrl+V/Cmd+V (paste), Delete key (remove selected element)
-- Drag-and-drop upload supported from desktop to browser
-- Contextual floating toolbar appears when clicking annotation elements (font, size, color, alignment)
-- Print uses standard browser print dialog
-
-**Browser compatibility:** Chrome, Firefox, Safari, Edge [VERIFY — inferred from browser-based architecture; confirm before publishing]
-
-**Mobile/touch:**
-- Draw tool explicitly supports touchscreens, tablets, stylus
-- Signature creation supports draw via mouse, trackpad, or stylus
-- Precise touch-based annotation placement may differ from mouse interaction [VERIFY specific mobile limitations]
-
----
-
-## CUSTOMIZATION — Appearance and Formatting Options
-
-**Per-tool customization:**
-- **Highlight**: yellow default; additional colors (plan-dependent); adjustable transparency; freeform shape
-- **Draw**: color (black, blue, red, etc.) + line thickness
-- **Line / Arrow**: color + thickness
-- **Circle**: border thickness/color; fill color (plan-dependent)
-- **Text / Text Box**: font (Arial, Times New Roman, Courier, etc.), size (8–72pt), color picker, bold/italic/underline, alignment (left/center/right); Text Box adds border + fill color
-- **Watermark**: text or image, size, color, transparency, rotation (e.g., 45°), page range (current / all / custom)
-- **Blackout**: solid opaque black only — no color options (designed for permanent redaction)
-
-**Reuse:**
-- Signatures and Initials saved for reuse across documents (draw, type, or image upload)
-- No documented ""save custom highlight preset"" feature [VERIFY whether color preferences persist between sessions]
-
-**Contextual toolbar**: appears after clicking a placed annotation; provides quick access to formatting options.
-
----
-
-## STEPS — Step-by-Step Instructions
-
-Section heading must describe the specific annotation action for this keyword — not generic ""how to annotate a PDF.""
-
-**Use exact pdfFiller UI element names and paths:**
-
-*Tools menu path* (toolbar → Tools → [name]): Highlight, Draw, Line, Arrow, Sticky Note, Blackout, Watermark (+ Date Stamp, Page Numbering, Bates Numbering)
-
-*Main toolbar icons* (direct access): Text (""T""), Text Box, Sign (pen icon), Initials, Image, Checkmark, Cross, Circle, Table (grid icon), Date (calendar icon), Erase (eraser icon), Select (pointer arrow icon)
-
-**Required step elements:**
-- Upload: ""Click Add New in the left sidebar and select Upload Document"" or ""Drag and drop your file onto the Dashboard upload card""
-- Activate tool: exact path (e.g., ""Click Tools in the toolbar, then select Highlight"")
-- Apply: describe cursor change and click-drag action
-- Adjust: ""Switch to the Select tool (pointer arrow icon) to move or resize"" + ""Drag corner handles to resize""
-- Undo: ""Click the Undo button (curved arrow pointing left) to reverse the last action""
-- Save: ""Click Done in the top-right corner, then select Download PDF""
-- Alternative save: ""Use Save As from the Done dropdown to export as Word, Excel, PowerPoint, or Image""
-
-**Requirements:** verb-first steps, single action per step, under 25 words each, minimum 7 steps.
-
----
-
-## MANAGE_AFTER — Managing Annotations After Placement
-
-How to select, move, resize, recolor, or delete placed annotations.
-
-**Selection and repositioning:**
-- **Select tool** (pointer arrow icon): click annotation to select; corner/side handles appear; drag to reposition; drag handles to resize
-- **Delete key**: removes selected annotation
-- **Copy/paste**: Ctrl+C / Ctrl+V to duplicate
-
-**Undo/Redo:**
-- **Undo** (curved arrow left): reverses last action; supports multiple undo levels
-- **Redo** (curved arrow right): reapplies undone action
-
-**Layer management:**
-- Right-click context menu (where supported): Bring to Front / Send to Back for overlapping annotations
-
-**Export behavior:**
-- All placed annotations embedded in downloaded/printed PDF output
-- **Clear Content** (My Documents → More → Tools → Clear Content): permanently removes ALL annotations — cannot be undone
-- Annotations persist when sharing via link or email; recipients see all placed annotations
-
-**Erase tool** (eraser icon): removes individual user-added annotations; does not affect original PDF content.
-
----
-
-## COLLAB — Collaboration and Review Use Cases
-
-How annotation integrates with pdfFiller's multi-user review workflow.
-
-**Sharing methods:**
-- **Share** (editor header): Get Link, Invite via Email (view / fill / edit permissions), Invite Collaborators (real-time editing)
-- **LinkToFill** (Done → LinkToFill): public or restricted link for form filling; each respondent submits own copy; optional expiration dates + email notifications per submission
-- **Send** (Done dropdown): Email (with access code), Fax, Phone (SMS), Mail by USPS
-
-**Comment system:**
-- **Comment toggle** (speech-bubble icon): opens right-side panel; comments linked to page locations; reply threads + resolve/reopen; Add Comment also available from document row in My Documents
-
-**Audit Trail** (Notifications bell → Audit Trail): timestamped log of opens, edits, saves, logins, IP addresses; filterable by date range; exportable via Download Report as PDF
-
-**Workspace/team features:**
-- Team Documents: shared repository for upload, view, edit, share across workspace members
-- Team Templates: shared template library
-- Workspace roles: Owner, Admin, User — configurable permissions
-
----
-
-## SCENARIOS — Industry and Role-Specific Scenarios
-
-3–4 concrete professional scenarios where this annotation action solves a named problem.
-
-**Requirements per scenario:**
-- Name a specific role (e.g., ""an account manager at a digital marketing agency,"" ""a benefits administrator at a 200-person company"")
-- Name the specific document type
-- Describe the problem and the annotation action taken (which tool, what is marked, why)
-- Minimum 50 words each
-
-**Industry variety — avoid defaulting to legal/education only:**
-- Marketing: campaign briefs, media plans, proposals
-- HR: offer letters, handbooks, benefits enrollment forms, performance reviews
-- Operations: SOPs, safety checklists, inspection reports, compliance audits
-- Sales: quotes, RFPs, order confirmations, pricing sheets
-- Finance: invoices, expense reports, tax forms, audit documents
-- Real estate: lease agreements, inspection reports, closing documents
-- Healthcare: patient intake forms, insurance claims, consent forms [HIPAA: VERIFY]
-- Construction: bid documents, change orders, safety plans, permits
-
----
-
-## LIMITS — Limitations and Known Constraints
-
-What the annotation tools cannot do.
-
-**Structural constraints:**
-- Erase tool cannot modify original PDF content (printed text, embedded images); use Blackout to hide original content
-- Clear Content removes ALL annotations permanently with no selective batch-clear and no undo
-- Annotations are layered overlays; they do not alter the underlying PDF text or structure
-
-**Scanned and image-based PDFs:**
-- Freeform tools (Highlight, Draw, Circle) can mark areas, but text-specific precision depends on whether content is recognized text or a flat image
-- pdfFiller auto-converts uploads to PDF, but resulting content may remain image-based without OCR [VERIFY built-in OCR]
-
-**Plan/tier restrictions:**
-- AI Assistant: Premium users only
-- Circle fill color, image opacity, advanced formatting: may vary by plan [VERIFY]
-- Certain Save As export formats may require specific plan levels [VERIFY]
-- Date Stamp pre-fill of current date: plan-dependent [VERIFY]
-
----
-
-## SECURITY — Security, Redaction, and Compliance
-
-**Document protection features:**
-- **Protect Document** (My Documents → More → Tools → Protect Document): password protection to open PDF; applies to entire document or selected pages
-- **Blackout tool**: permanent redaction; content beneath rectangle unrecoverable after saving; redaction persists in printed/downloaded output
-- **Audit Trail**: timestamped log of all account actions including IP addresses; filterable; exportable as PDF
-- **Share permissions**: view, fill, edit — controls what recipients can do
-
-**Security certifications** — all require verification before publishing:
-- SOC 2 Type II [VERIFY]
-- HIPAA compliance [VERIFY]
-- GDPR compliance [VERIFY]
-- 256-bit AES encryption [VERIFY]
-If unverifiable, omit the specific certification and write around it.
-
-**Annotation and document integrity:**
-- Annotations are embedded in the exported PDF and become part of the document on download, print, or share
-- Original PDF structure preserved beneath annotation layers until Clear Content is used
-
----
-
-## COMPARISON — Comparison with Named Alternatives
-
-Compare pdfFiller to 2-3 relevant competitor tools for this keyword/platform combination.
-
-**Common annotation competitors:** Adobe Acrobat, Foxit PDF Editor, Nitro PDF, Smallpdf, PDF-XChange Editor, Sejda, iLovePDF, PandaDoc, PDFgear, PDFelement, PDFescape
-
-**Per competitor, provide:**
-- One factual differentiator favoring pdfFiller (e.g., ""pdfFiller runs entirely in the browser — no desktop installation required"")
-- One honest tradeoff (e.g., ""Adobe Acrobat offers more granular annotation properties such as custom line endings and measurement tools"")
-
-**Rules:**
-- No superlatives (""best,"" ""most powerful,"" ""only tool that"")
-- Write heading as a reader-facing question (e.g., ""How Does pdfFiller's Highlighting Compare to Adobe Acrobat and Nitro PDF?"") — never use ""Comparison Brief"" as a heading
-
----
-
-## CLOSING — Next Steps and Broader Workflow Connection
-
-Connect this annotation action to pdfFiller's broader document workflow: annotate → share/send for review → collect comments → export or e-sign → store in workspace.
-
-**Required elements:**
-- Direct the user to start: ""Click Add New in the left sidebar to upload a document, or drag and drop a file onto the Dashboard""
-- Reference the specific tool path for this keyword (e.g., ""Open the document in the editor and select Tools → Highlight"")
-- Connect forward to at least one next workflow step (sharing, e-signing, or export)
-
-**Heading must NOT contain:** ""Conclusion,"" ""Summary,"" ""CTA,"" ""Call to Action,"" ""Get Started,"" ""Try pdfFiller""
-
-**Good heading examples:**
-- ""From Highlighting to Signing: Complete Your Document Workflow in pdfFiller""
-- ""Upload a Document and Start Highlighting Dates and Text""
-- ""What to Do After Highlighting Key Information in Your PDF""
-
----
+The document workflow problem this annotation addresses and the consequences of not using it.
 
 ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths (sidebar, drag-and-drop, cloud import) and format conversion behavior.
 
-Focus specifically on the upload and import experience as a standalone topic (use when the keyword implies user confusion about how to start).
+## FILE_FORMATS — Supported Formats and Export Options
+Accepted input file types and available export/download formats.
 
-**Upload paths:**
-- **Add New** (left sidebar, below search bar) → Upload Document (file browser)
-- **Dashboard** → Upload or Drop card (drag-and-drop from desktop)
-- **Import from cloud**: Google Drive, Dropbox, OneDrive, Box
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific annotation action named in the keyword.
 
-**Format conversion:** DOCX, XLSX, PPT/PPTX, JPG, PNG, GIF — all auto-converted to editable PDF on upload; text selectability may vary for image-based originals.
+## CUSTOMIZATION — Appearance and Formatting Options
+Per-tool color, size, thickness, and style options available in the editor.
 
-**Search and reuse:** Search bar (top) searches across My Docs, PDF Library, and USLegal Forms; results filter by category, date, status.
+## ANNOTATABLE — What Can Be Annotated
+Which content types the tool applies to and its limits across native vs. scanned PDFs.
 
----
-
-## MANAGE_DOCS — Document Management in My Documents
-
-Covers My Documents actions relevant to annotation workflows (use when keyword implies document organization or access).
-
-**Document row actions** (My Documents → More → [action]):**
-- **Rename, Move, Copy, Delete**
-- **Clear Content**: removes all annotations, highlights, watermarks permanently — cannot be undone
-- **Protect Document**: adds password protection
-- **Audit Trail**: access per-document activity log
-- **Download** (multiple formats)
-- **Share / Send**: same options as editor header
-
-**Folder and workspace organization:**
-- Create folders in left sidebar for document organization
-- Team Documents: shared repository visible to all workspace members
-- My Documents, Shared with Me, Deleted (30-day recovery window)
-
----
-
-## ESIGN_CONNECT — Connecting Annotation to E-Signature Workflows
-
-Use when keyword implies a review-then-sign workflow (e.g., highlighting clauses before signature collection).
-
-**E-signature workflow path (editor):**
-1. Annotate document in editor
-2. Switch to **Add fields** mode → place signature, initials, date, and text fields
-3. Assign fields to recipients in **Recipients panel**
-4. Click **Review and Send** → confirm recipients and signing order → Send
-
-**Field types available in Add Fields panel:** Text, Signature, Initials, Date, Name, Number, Dropdown, Checkbox, Radio button, Image, Formula, Email, Company, Title, US phone, ZIP, SSN, EIN, USD, EUR, US states, Gender, Age
-
-**Signing order:** sequential or parallel; each signer sees only fields assigned to them.
-
-**Tracking:** Audit Trail logs all signing events with timestamps; Notifications bell shows signature status updates.
-
----
+## MANAGE_AFTER — Managing Annotations After Placement
+How to select, move, resize, recolor, undo, or delete placed annotations.
 
 ## FORMS_FILL — Filling Forms vs. Annotating Documents
-
-Clarify the distinction between form-filling tools and annotation tools (use when keyword conflates ""filling in"" with ""annotating"").
-
-**Form-fill tools** (main toolbar, for completing forms):
-- **Text** (""T"" icon): places typed text on any PDF location
-- **Date** (calendar icon): inserts date fields
-- **Sign** (pen icon): places a saved or new signature
-- **Initials**: places saved initials
-- **Checkmark / Cross**: marks checkboxes or options
-- **Image**: inserts an image onto the PDF
-
-**Annotation tools** (for markup/review, not form completion):
-- Highlight, Draw, Line, Arrow, Sticky Note, Blackout, Watermark, Circle, Text Box
-
-**Key distinction:** Form-fill tools place content that becomes part of the completed document; annotation tools add review layers that can be cleared with Clear Content.
-
----
+Clarifies the distinction between form-fill tools and annotation/markup tools.
 
 ## WATERMARK_STAMP — Watermarks, Date Stamps, and Page Numbering
-
-Use when keyword involves document authentication, version control, or page organization.
-
-**Access:** Tools → Watermark → [sub-tool]
-
-**Sub-tools:**
-- **Watermark**: semi-transparent text or image overlay; customizable text, size, color, transparency, rotation (e.g., 45° diagonal), page range (current / all / custom)
-- **Date Stamp**: inserts current date as a stamp; plan-dependent pre-fill behavior [VERIFY]
-- **Page Numbering**: adds auto-incrementing page numbers; placement and format options
-- **Bates Numbering**: sequential document ID numbering for legal/compliance use
-
-**Appearance options:** font, size, color, transparency, rotation, page range selection.
-
-**Limitation:** Blackout cannot be used as a watermark alternative — it is opaque and permanent; Watermark is semi-transparent and editable until Clear Content is applied.
-
----
+Document-wide stamping tools: Watermark, Date Stamp, Page Numbering, Bates Numbering.
 
 ## REDACTION — Permanent Redaction with Blackout
+How Blackout permanently hides sensitive content and how it differs from Erase and Highlight.
 
-Use when keyword involves hiding, removing, or permanently obscuring sensitive content.
+## COLLAB — Collaboration and Review Use Cases
+How annotation integrates with sharing, comments, and audit trail for multi-user review.
 
-**Blackout tool** (Tools → Blackout):
-- Places a solid opaque black rectangle over selected content
-- Content beneath is visually hidden and unrecoverable after saving
-- No color customization — designed exclusively for permanent redaction
-- Redaction remains intact in downloaded PDF, printed output, and shared documents
+## ESIGN_CONNECT — Connecting Annotation to E-Signature Workflows
+How annotation precedes field placement and signature collection in a review-then-sign flow.
 
-**Important distinctions:**
-- Blackout ≠ Erase: Erase removes only user-added annotations; Blackout hides original document content
-- Blackout ≠ Highlight: Highlight is transparent; Blackout is fully opaque
-- Blackout ≠ Clear Content: Clear Content removes user annotations; Blackout overlays original content
+## MANAGE_DOCS — Document Management in My Documents
+My Documents actions relevant to annotation workflows: rename, clear, protect, audit trail.
 
-**Workflow:** Place Blackout over sensitive text/images → Download or Share — the redacted version is what recipients receive.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where this annotation solves a named workflow problem.
 
-**Limitation:** Once the document is saved and downloaded with Blackout applied, the hidden content cannot be recovered. This is by design for compliance and privacy use cases.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile/touch behavior, and no-installation access from any device.
 
----
+## LIMITS — Limitations and Known Constraints
+What the tool cannot do, plan-tier restrictions, and scanned PDF caveats.
 
-## ACCESSIBILITY_CONTEXT — Why Browser-Based Annotation Matters
+## SECURITY — Security, Redaction, and Compliance
+Document protection features, Blackout for redaction, and compliance certifications.
 
-Use when keyword implies remote access, cross-device use, or ""no software download"" context.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators and honest tradeoffs between pdfFiller and 2–3 competitor tools.
 
-**No installation required:** pdfFiller runs entirely in the browser; all annotation tools are available without desktop software.
-
-**Access from any device:** any device with a modern browser and internet connection can access the full editor [VERIFY specific mobile browser limitations].
-
-**Cloud storage and My Documents:** documents saved to pdfFiller's cloud are accessible from any login session; no local file dependency after upload.
-
-**Team access:** Invite Members (top bar) adds collaborators by email with role assignment (User, Admin); Team Documents repository is accessible to all workspace members.
-
-**Limitation:** offline use is not supported — the editor requires an active internet connection."
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to start and connects the annotation action to the broader pdfFiller workflow."

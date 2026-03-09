@@ -27,7 +27,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
         {
             "GLOBAL_CONFIG": str,    # JSON: website, language, target_audience, positioning_statement
             "WRITER_CONFIG": str,    # JSON: website, language, target_audience (slim — for prompt_2)
-            "CONTENT_RULES": str,    # raw text from content_rules.csv
             "CLUSTER_CONFIG": str,   # JSON: page_type, cluster_context, target_word_count
             "SECTION_MENU": str,     # raw long-form text block (from cluster_config.csv)
             "PAGE_CONFIG": str,      # JSON: {"keyword": "..."}
@@ -39,12 +38,10 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
 
     global_csv = os.path.join(base_dir, "global_config.csv")
     cluster_csv = os.path.join(base_dir, "cluster_config.csv")
-    content_rules_csv = os.path.join(base_dir, "content_rules.csv")
 
     # Read CSVs — pandas handles complex multi-line quoted fields correctly
     global_df = pd.read_csv(global_csv)
     cluster_df = pd.read_csv(cluster_csv)
-    content_rules_df = pd.read_csv(content_rules_csv)
 
     # --- GLOBAL_CONFIG (full — for prompt_1) ---
     row = global_df.iloc[0]
@@ -67,9 +64,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
         },
         ensure_ascii=False,
     )
-
-    # --- CONTENT_RULES ---
-    content_rules = str(content_rules_df.iloc[0]["shared_rules"])
 
     # --- CLUSTER_CONFIG ---
     matches = cluster_df[cluster_df["cluster"] == cluster]
@@ -103,7 +97,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
     return {
         "GLOBAL_CONFIG": global_config,
         "WRITER_CONFIG": writer_config,
-        "CONTENT_RULES": content_rules,
         "CLUSTER_CONFIG": cluster_config,
         "SECTION_MENU": section_menu,
         "PAGE_CONFIG": page_config,
@@ -134,9 +127,6 @@ if __name__ == "__main__":
         print()
         print("WRITER_CONFIG:")
         print(config["WRITER_CONFIG"])
-        print()
-        print("CONTENT_RULES (first 300 chars):")
-        print(config["CONTENT_RULES"][:300])
         print()
         print("CLUSTER_CONFIG:")
         print(config["CLUSTER_CONFIG"])

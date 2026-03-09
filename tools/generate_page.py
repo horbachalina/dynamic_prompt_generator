@@ -219,7 +219,6 @@ def generate_single_page(
         prompt2 = prompt2_template
         prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
         prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["WRITER_CONFIG"])
-        prompt2 = prompt2.replace("{{CONTENT_RULES}}", config["CONTENT_RULES"])
 
         # --- Call LLM: Prompt 2 ---
         print(f"  Running Prompt 2 (Writer)...")

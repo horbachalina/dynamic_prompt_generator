@@ -63,7 +63,7 @@ Open `output/compare_{timestamp}.csv` in a spreadsheet app. For each URL row, co
 - Heading quality and keyword placement
 - Section coverage and structure (matches blueprint)
 - Word count and depth
-- Tone consistency with `content_rules`
+- Tone consistency with prompt_2 writing rules
 - Brand mention density (target: 5–8 per article)
 
 ---
