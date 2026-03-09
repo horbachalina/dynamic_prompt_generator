@@ -122,7 +122,7 @@ This creates a new timestamped CSV. There is no resume functionality — each ru
 | `--url` | None | Single-page mode URL |
 | `--cluster` | `group_annotate` | Cluster name |
 | `--temperature` | `0.3` | Sampling temperature |
-| `--timeout` | `30` | Timeout in seconds per LLM call. On timeout, CSV cell shows `TIMEOUT` |
+| `--timeout` | `120` | Timeout in seconds for the full two-prompt pipeline per model. On timeout, CSV cell shows `TIMEOUT` |
 | `--workers` | number of models | Max parallel workers per page |
 
 ---
@@ -132,7 +132,7 @@ This creates a new timestamped CSV. There is no resume functionality — each ru
 - **No resume:** Each invocation creates a new CSV. If interrupted, the partial CSV contains results for all completed model calls (CSV is written after every individual model result).
 - **Parallel within page:** All models for the same page run concurrently (one thread per model). Pages are processed sequentially.
 - **Rate limit delay:** 3 seconds between pages; models for the same page run in parallel with no delay.
-- **Timeout:** Default 30s per LLM call. Timed-out cells show `TIMEOUT` in the CSV (not `ERROR:`).
+- **Timeout:** Default 120s for the full two-prompt pipeline per model (Prompt 1 + Prompt 2 combined). Timed-out cells show `TIMEOUT` in the CSV (not `ERROR:`). Use `--timeout 60` for OpenAI-only runs.
 - **Live CSV:** The CSV is updated after every individual model result, not just after each page. You can open it at any time to see partial results.
 - **CSV file size:** Each HTML cell is ~6–8 KB. A 5-URL × 3-model run produces ~90–120 KB CSV — normal for spreadsheet apps.
 - **Model slug collision:** Two model names that sanitize to the same slug (e.g., `openai/gpt4` and `openai/gpt-4`) will cause an error before any API calls are made. Use distinct model names.

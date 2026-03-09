@@ -27,6 +27,10 @@ from openai import OpenAI
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from load_config import load_config
 
+# Process-level cache of discovered model capabilities.
+# Keyed by model name; avoids repeated failed API calls to detect parameter support.
+_MODEL_CAPS: dict = {}
+
 
 def _default_base_dir():
     tools_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,8 +48,9 @@ def _call_llm_with_retry(
     """Call LLM via LiteLLM proxy with exponential backoff retry on transient errors."""
     delays = [5, 15, 45]
     last_exc = None
-    supports_temperature = True
-    use_max_completion_tokens = True
+    cached = _MODEL_CAPS.get(model, {})
+    supports_temperature = cached.get("supports_temperature", True)
+    use_max_completion_tokens = cached.get("use_max_completion_tokens", True)
 
     for attempt, delay in enumerate(delays + [None]):
         try:
@@ -60,6 +65,10 @@ def _call_llm_with_retry(
             if supports_temperature:
                 kwargs["temperature"] = temperature
             response = client.chat.completions.create(**kwargs)
+            _MODEL_CAPS[model] = {
+                "supports_temperature": supports_temperature,
+                "use_max_completion_tokens": use_max_completion_tokens,
+            }
             return response.choices[0].message.content
         except openai.RateLimitError as e:
             last_exc = e

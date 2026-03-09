@@ -152,9 +152,12 @@ def run_batch(
             errors += 1
             print(f"  ✗ Error: {result['error']}")
 
-        # Rate limit delay between pages (skip after last page)
+        # Rate limit delay between pages (skip after last page).
+        # Use a short delay normally; fall back to 3s if the last call hit a rate limit.
         if i < total:
-            time.sleep(3)
+            error_msg = result.get("error") or ""
+            delay = 3 if "rate limit" in error_msg.lower() else 0.5
+            time.sleep(delay)
 
     print()
     print(f"Batch complete.")

@@ -195,7 +195,7 @@ def run_comparison(
     print(f"  Models:   {len(models)} ({', '.join(m.split('/')[-1] for m in models)})")
     print(f"  Total:    {total_calls} API calls")
     print(f"  Parallel: {max_workers} workers per page")
-    print(f"  Timeout:  {timeout}s per LLM call")
+    print(f"  Timeout:  {timeout}s per model (two-prompt pipeline)")
     print(f"  Cluster:  {cluster} | Temperature: {temperature}")
     print(f"  CSV:      {csv_path}")
     print(f"{'=' * 60}")
@@ -302,7 +302,7 @@ if __name__ == "__main__":
     parser.add_argument("--url", default=None, help="Target URL (single-page mode)")
     parser.add_argument("--cluster", default="group_annotate", help="Cluster name")
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
-    parser.add_argument("--timeout", type=int, default=30, help="Timeout in seconds per LLM call (default: 30)")
+    parser.add_argument("--timeout", type=int, default=120, help="Timeout in seconds for the full two-prompt pipeline per model (default: 120)")
     parser.add_argument("--workers", type=int, default=None, help="Max parallel workers per page (default: number of models)")
     args = parser.parse_args()
 
