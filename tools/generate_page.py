@@ -122,16 +122,25 @@ def generate_single_page(
     temperature: float = 0.3,
     timeout: int = None,
     config_cache: dict = None,
+    return_raw: bool = False,
 ) -> dict:
     """
     Run the full two-prompt pipeline for a single page.
+
+    When return_raw=False (default): saves blueprint.md and content.html to disk,
+    returns paths. Used by generate_page CLI (single-page mode).
+
+    When return_raw=True: skips file I/O, returns raw blueprint and content strings.
+    Used by batch_generate for CSV output.
 
     Returns:
         {
             "status": "done" | "error",
             "url_slug": str,
-            "blueprint_path": str | None,
-            "content_path": str | None,
+            "blueprint_path": str | None,   # only set when return_raw=False
+            "content_path": str | None,     # only set when return_raw=False
+            "blueprint": str | None,        # only set when return_raw=True
+            "content": str | None,          # only set when return_raw=True
             "error": str | None
         }
     """
@@ -173,7 +182,8 @@ def generate_single_page(
             config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
         url_slug = config["url_slug"]
         slug_output_dir = os.path.join(output_dir, url_slug)
-        os.makedirs(slug_output_dir, exist_ok=True)
+        if not return_raw:
+            os.makedirs(slug_output_dir, exist_ok=True)
 
         # --- Read prompt templates (use cache if available) ---
         if config_cache is not None and "PROMPT_1_TEMPLATE" in config_cache:
@@ -203,6 +213,17 @@ def generate_single_page(
         # --- Extract blueprint ---
         match = re.search(r"<blueprint>(.*?)</blueprint>", p1_response, re.DOTALL)
         if not match:
+            if return_raw:
+                return {
+                    "status": "error",
+                    "url_slug": url_slug,
+                    "blueprint": p1_response,
+                    "content": "",
+                    "blueprint_path": None,
+                    "content_path": None,
+                    "error": "No <blueprint> block found in Prompt 1 response",
+                }
+            os.makedirs(slug_output_dir, exist_ok=True)
             raw_path = os.path.join(slug_output_dir, "blueprint_raw.txt")
             with open(raw_path, "w", encoding="utf-8") as f:
                 f.write(p1_response)
@@ -216,10 +237,12 @@ def generate_single_page(
 
         blueprint = match.group(1).strip()
 
-        # --- Save blueprint ---
-        blueprint_path = os.path.join(slug_output_dir, "blueprint.md")
-        with open(blueprint_path, "w", encoding="utf-8") as f:
-            f.write(blueprint)
+        # --- Save blueprint (skip in return_raw mode) ---
+        blueprint_path = None
+        if not return_raw:
+            blueprint_path = os.path.join(slug_output_dir, "blueprint.md")
+            with open(blueprint_path, "w", encoding="utf-8") as f:
+                f.write(blueprint)
 
         # --- Assemble Prompt 2 ---
         prompt2 = prompt2_template
@@ -239,12 +262,34 @@ def generate_single_page(
 
         # --- Validate HTML output ---
         if "<h2>" not in p2_response:
+            if return_raw:
+                return {
+                    "status": "error",
+                    "url_slug": url_slug,
+                    "blueprint": blueprint,
+                    "content": "",
+                    "blueprint_path": None,
+                    "content_path": None,
+                    "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
+                }
             return {
                 "status": "error",
                 "url_slug": url_slug,
                 "blueprint_path": blueprint_path,
                 "content_path": None,
                 "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
+            }
+
+        # --- Return raw strings (skip file I/O in return_raw mode) ---
+        if return_raw:
+            return {
+                "status": "done",
+                "url_slug": url_slug,
+                "blueprint": blueprint,
+                "content": p2_response,
+                "blueprint_path": None,
+                "content_path": None,
+                "error": None,
             }
 
         # --- Save HTML ---
@@ -261,13 +306,17 @@ def generate_single_page(
         }
 
     except Exception as e:
-        return {
+        result = {
             "status": "error",
             "url_slug": url_slug,
             "blueprint_path": None,
             "content_path": None,
             "error": str(e),
         }
+        if return_raw:
+            result["blueprint"] = ""
+            result["content"] = ""
+        return result
 
 
 if __name__ == "__main__":

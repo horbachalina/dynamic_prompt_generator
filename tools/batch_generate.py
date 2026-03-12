@@ -2,22 +2,23 @@
 batch_generate.py — Batch runner for the two-prompt SEO content pipeline.
 
 Reads page_config.csv, skips already-completed pages, tracks progress in
-inputs/progress.csv. Outputs saved to output/. Safe to interrupt and resume at any time.
+inputs/progress.csv. Output saved to output/batch_{timestamp}.csv.
+Safe to interrupt and resume at any time.
 
 Usage:
-    python tools/batch_generate.py
-    python tools/batch_generate.py --cluster group_annotate --limit 3
+    python tools/batch_generate.py --models openai/gpt-4o-mini
+    python tools/batch_generate.py --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022 --cluster group_annotate --limit 3
 """
 
 import argparse
 import os
+import re
 import sys
 import time
 from datetime import datetime
 
 import pandas as pd
 
-# Allow importing generate_page from the same tools/ directory
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generate_page import generate_single_page
 
@@ -27,31 +28,49 @@ def _default_base_dir():
     return os.path.join(os.path.dirname(tools_dir), "inputs")
 
 
-def _init_progress(page_config_path: str, progress_path: str, output_dir: str = None) -> pd.DataFrame:
-    """Create progress.csv from page_config.csv, marking already-completed pages as 'done'."""
+def sanitize_model_name(model: str) -> str:
+    """Convert a model name to a filesystem-safe column slug."""
+    slug = model.replace("/", "_")
+    slug = re.sub(r"[^a-zA-Z0-9._-]", "", slug)
+    return slug.lower()
+
+
+def write_batch_csv(rows: list, models: list, output_path: str) -> None:
+    """Write batch results to CSV — one row per URL, two columns per model."""
+    model_slugs = [sanitize_model_name(m) for m in models]
+    columns = ["url", "keyword", "url_slug", "cluster"]
+    for slug in model_slugs:
+        columns += [f"{slug}_blueprint", f"{slug}_content"]
+    records = []
+    for row in rows:
+        record = {
+            "url": row["url"],
+            "keyword": row["keyword"],
+            "url_slug": row["url_slug"],
+            "cluster": row["cluster"],
+        }
+        for slug in model_slugs:
+            result_data = row["model_results"].get(slug, {})
+            record[f"{slug}_blueprint"] = result_data.get("blueprint", "")
+            record[f"{slug}_content"] = result_data.get("content", "")
+        records.append(record)
+    df = pd.DataFrame(records, columns=columns)
+    df.to_csv(output_path, index=False, encoding="utf-8")
+
+
+def _init_progress(page_config_path: str, progress_path: str) -> pd.DataFrame:
+    """Create progress.csv from page_config.csv with all pages as pending."""
     from urllib.parse import urlparse
 
     pages = pd.read_csv(page_config_path)
-
-    statuses = []
-    url_slugs = []
-    for url in pages["url"]:
-        slug = urlparse(url).path.rstrip("/").split("/")[-1]
-        if output_dir and slug:
-            content_path = os.path.join(output_dir, slug, "content.html")
-            if os.path.exists(content_path):
-                statuses.append("done")
-                url_slugs.append(slug)
-                continue
-        statuses.append("pending")
-        url_slugs.append("")
+    url_slugs = [urlparse(u).path.rstrip("/").split("/")[-1] for u in pages["url"]]
 
     progress = pd.DataFrame(
         {
             "url": pages["url"],
             "keyword": pages["keyword"],
             "url_slug": url_slugs,
-            "status": statuses,
+            "status": "pending",
             "error": "",
             "timestamp": "",
         }
@@ -60,7 +79,7 @@ def _init_progress(page_config_path: str, progress_path: str, output_dir: str = 
     return progress
 
 
-def _load_progress(progress_path: str, page_config_path: str, output_dir: str = None) -> pd.DataFrame:
+def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
     """Load existing progress.csv, falling back to re-init if corrupt."""
     try:
         df = pd.read_csv(progress_path)
@@ -72,34 +91,40 @@ def _load_progress(progress_path: str, page_config_path: str, output_dir: str = 
         return df
     except Exception:
         print(f"  {os.path.basename(progress_path)} appears corrupt — reinitializing from page_config.csv")
-        return _init_progress(page_config_path, progress_path, output_dir=output_dir)
+        return _init_progress(page_config_path, progress_path)
 
 
 def run_batch(
+    models: list,
     cluster: str = None,
     limit: int = None,
     base_dir: str = None,
-    model: str = "openai/gpt-4o-mini",
     temperature: float = 0.3,
+    timeout: int = None,
     run_label: str = None,
 ):
     if base_dir is None:
         base_dir = _default_base_dir()
 
     page_config_path = os.path.join(base_dir, "page_config.csv")
-    if run_label:
-        progress_path = os.path.join(base_dir, f"progress_{run_label}.csv")
-        output_dir = os.path.join(os.path.dirname(base_dir), "output", run_label)
-    else:
-        progress_path = os.path.join(base_dir, "progress.csv")
-        output_dir = os.path.join(os.path.dirname(base_dir), "output")
+    progress_path = (
+        os.path.join(base_dir, f"progress_{run_label}.csv")
+        if run_label
+        else os.path.join(base_dir, "progress.csv")
+    )
+
+    output_root = os.path.join(os.path.dirname(base_dir), "output")
+    os.makedirs(output_root, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    csv_name = f"batch_{run_label}.csv" if run_label else f"batch_{timestamp}.csv"
+    csv_path = os.path.join(output_root, csv_name)
 
     # Initialize or load progress
     if not os.path.exists(progress_path):
         print("No progress.csv found — initializing from page_config.csv")
-        progress_df = _init_progress(page_config_path, progress_path, output_dir=output_dir)
+        progress_df = _init_progress(page_config_path, progress_path)
     else:
-        progress_df = _load_progress(progress_path, page_config_path, output_dir=output_dir)
+        progress_df = _load_progress(progress_path, page_config_path)
 
     # Build url → cluster mapping from page_config.csv
     page_df = pd.read_csv(page_config_path)
@@ -118,12 +143,17 @@ def run_batch(
         return
 
     done_count = (progress_df["status"] == "done").sum()
+    model_names = ", ".join(m.split("/")[-1] for m in models)
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
     if cluster:
         print(f"Cluster filter: {cluster}")
-    print(f"Model: {model} | Temperature: {temperature}")
+    print(f"Models: {model_names}")
+    print(f"Temperature: {temperature}")
+    if timeout:
+        print(f"Timeout: {timeout}s per model")
+    print(f"CSV: {csv_path}")
     if run_label:
-        print(f"Run label: {run_label} → {output_dir}")
+        print(f"Run label: {run_label}")
     print()
 
     completed = 0
@@ -139,63 +169,116 @@ def run_batch(
         prompt2_template = f.read()
 
     cluster_caches: dict = {}
+    rows = []  # accumulated result rows for CSV
 
     for i, row in enumerate(pending.itertuples(), 1):
         print(f"[{i}/{total}] {row.keyword}")
 
         row_cluster = url_to_cluster.get(row.url)
         if not row_cluster:
-            result = {
-                "status": "error",
-                "url_slug": None,
-                "error": f"No cluster found for URL: {row.url}",
+            page_row = {
+                "url": row.url,
+                "keyword": row.keyword,
+                "url_slug": row.url_slug or "",
+                "cluster": "",
+                "model_results": {
+                    sanitize_model_name(m): {
+                        "blueprint": "ERROR: cluster not found",
+                        "content": "ERROR: cluster not found",
+                    }
+                    for m in models
+                },
             }
-        else:
-            if row_cluster not in cluster_caches:
-                cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
-                cache["PROMPT_1_TEMPLATE"] = prompt1_template
-                cache["PROMPT_2_TEMPLATE"] = prompt2_template
-                cluster_caches[row_cluster] = cache
-            config_cache = cluster_caches[row_cluster]
+            rows.append(page_row)
+            write_batch_csv(rows, models, csv_path)
 
-            result = generate_single_page(
+            idx = progress_df[progress_df["url"] == row.url].index[0]
+            progress_df.at[idx, "status"] = "error"
+            progress_df.at[idx, "error"] = "No cluster found for URL"
+            progress_df.at[idx, "timestamp"] = datetime.now().isoformat(timespec="seconds")
+            progress_df.to_csv(progress_path, index=False)
+            errors += 1
+            print(f"  ✗ Error: No cluster found for URL")
+            continue
+
+        if row_cluster not in cluster_caches:
+            cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
+            cache["PROMPT_1_TEMPLATE"] = prompt1_template
+            cache["PROMPT_2_TEMPLATE"] = prompt2_template
+            cluster_caches[row_cluster] = cache
+        config_cache = cluster_caches[row_cluster]
+
+        page_row = {
+            "url": row.url,
+            "keyword": row.keyword,
+            "url_slug": row.url_slug or "",
+            "cluster": row_cluster,
+            "model_results": {},
+        }
+        rows.append(page_row)
+
+        page_ok = True
+        last_result = None
+
+        for model in models:
+            model_slug = sanitize_model_name(model)
+            model_short = model.split("/")[-1]
+
+            last_result = generate_single_page(
                 keyword=row.keyword,
                 url=row.url,
                 cluster=row_cluster,
                 base_dir=base_dir,
-                output_dir=output_dir,
                 model=model,
                 temperature=temperature,
+                timeout=timeout,
                 config_cache=config_cache,
+                return_raw=True,
             )
 
-        # Update progress_df in memory
-        idx = progress_df[progress_df["url"] == row.url].index[0]
-        progress_df.at[idx, "status"] = result["status"]
-        progress_df.at[idx, "url_slug"] = result.get("url_slug") or ""
-        progress_df.at[idx, "error"] = result.get("error") or ""
-        progress_df.at[idx, "timestamp"] = datetime.now().isoformat(timespec="seconds")
+            if last_result["status"] == "done":
+                page_row["model_results"][model_slug] = {
+                    "blueprint": last_result["blueprint"],
+                    "content": last_result["content"],
+                }
+                word_count = len(last_result["content"].split())
+                print(f"  ✓ {model_short} → ~{word_count} words")
+            else:
+                error_msg = last_result.get("error") or "unknown error"
+                blueprint_val = last_result.get("blueprint") or f"ERROR: {error_msg}"
+                page_row["model_results"][model_slug] = {
+                    "blueprint": blueprint_val,
+                    "content": f"ERROR: {error_msg}",
+                }
+                page_ok = False
+                print(f"  ✗ {model_short}: {error_msg}")
 
-        # Write to disk immediately after every page
+            # Write CSV after every model result (safe to interrupt mid-page)
+            write_batch_csv(rows, models, csv_path)
+
+        # Update progress
+        idx = progress_df[progress_df["url"] == row.url].index[0]
+        progress_df.at[idx, "status"] = "done" if page_ok else "error"
+        progress_df.at[idx, "url_slug"] = page_row["url_slug"]
+        progress_df.at[idx, "error"] = "" if page_ok else "one or more models failed — see CSV"
+        progress_df.at[idx, "timestamp"] = datetime.now().isoformat(timespec="seconds")
         progress_df.to_csv(progress_path, index=False)
 
-        if result["status"] == "done":
+        if page_ok:
             completed += 1
-            print(f"  ✓ Done → {result['content_path']}")
         else:
             errors += 1
-            print(f"  ✗ Error: {result['error']}")
 
-        # Rate limit delay between pages (skip after last page).
-        # Use a short delay normally; fall back to 3s if the last call hit a rate limit.
+        # Rate limit delay between pages (skip after last page)
         if i < total:
-            error_msg = result.get("error") or ""
+            error_msg = (last_result.get("error") or "") if last_result else ""
             delay = 3 if "rate limit" in error_msg.lower() else 0.5
             time.sleep(delay)
 
     print()
     print(f"Batch complete.")
     print(f"  {completed} done, {errors} errors")
+    print(f"  CSV: {csv_path}")
     if errors > 0:
         print(f"  Error details in: {progress_path}")
         print(f"  Re-run to retry failed pages.")
@@ -203,6 +286,11 @@ def run_batch(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Batch generate SEO content pages.")
+    parser.add_argument(
+        "--models",
+        default="openai/gpt-4o-mini",
+        help="Comma-separated model names (provider-prefixed, e.g. openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022)",
+    )
     parser.add_argument("--cluster", default=None, help="Filter by cluster name (optional — omit to process all clusters)")
     parser.add_argument(
         "--limit",
@@ -210,19 +298,25 @@ if __name__ == "__main__":
         default=None,
         help="Max pages to process in this run (for testing)",
     )
-    parser.add_argument("--model", default="openai/gpt-4o-mini", help="Model name (provider-prefixed, e.g. openai/gpt-4o-mini)")
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
+    parser.add_argument("--timeout", type=int, default=None, help="Timeout in seconds per model (default: none)")
     parser.add_argument(
         "--run-label",
         default=None,
-        help="Label for this run (creates separate output dir and progress file)",
+        help="Label for this run (creates separate progress file and fixed CSV name for resume)",
     )
     args = parser.parse_args()
 
+    models = [m.strip() for m in args.models.split(",") if m.strip()]
+    if not models:
+        print("Error: --models must specify at least one model.")
+        sys.exit(1)
+
     run_batch(
+        models=models,
         cluster=args.cluster,
         limit=args.limit,
-        model=args.model,
         temperature=args.temperature,
+        timeout=args.timeout,
         run_label=args.run_label,
     )

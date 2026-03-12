@@ -2,9 +2,13 @@
 
 ## Objective
 
-Run the two-prompt LLM pipeline to generate blueprint and HTML content for all pages in `page_config.csv` for a given cluster.
+Run the two-prompt LLM pipeline to generate blueprint and HTML content for pages in `page_config.csv`.
 
-**Pipeline:** `keyword → Prompt 1 (Strategist) → <blueprint> → Prompt 2 (Writer) → content.html`
+**Pipeline:** `keyword → Prompt 1 (Strategist) → <blueprint> → Prompt 2 (Writer) → content`
+
+**Two modes:**
+- **Single page** (`generate_page.py`) → saves `blueprint.md` + `content.html` to `output/{url-slug}/`
+- **Batch** (`batch_generate.py`) → saves all results to `output/batch_{timestamp}.csv` (supports 1+ models)
 
 ---
 
@@ -14,21 +18,19 @@ Run the two-prompt LLM pipeline to generate blueprint and HTML content for all p
 - Python dependencies installed: `pip install -r requirements.txt`
 - `inputs/` contains: `prompt_1.md`, `prompt_2.md`, `global_config.csv`, `cluster_config.csv`, `page_config.csv`
 
-
 ---
 
 ## Model Selection
 
-The pipeline routes all calls through the LiteLLM proxy. Use `--model` with provider-prefixed names:
+The pipeline routes all calls through the LiteLLM proxy. Use provider-prefixed model names:
 
-| Provider  | Example `--model` value                         |
+| Provider  | Example value                                   |
 |-----------|-------------------------------------------------|
 | OpenAI    | `openai/gpt-4o-mini` (default)                  |
 | Anthropic | `anthropic/claude-3-5-sonnet-20241022`          |
 | Google    | `gemini/gemini-1.5-pro`                         |
 
-Parameter quirks (`max_completion_tokens` vs `max_tokens`, no-temperature models) are handled
-automatically — no manual tuning needed when switching models.
+Parameter quirks (`max_completion_tokens` vs `max_tokens`, no-temperature models) are handled automatically — no manual tuning needed when switching models.
 
 ---
 
@@ -38,9 +40,7 @@ automatically — no manual tuning needed when switching models.
 |---|---|---|
 | Global | Switching to a different website | `global_config.csv` |
 | Cluster | Switching to a different content cluster | `cluster_config.csv` (match by `cluster` column) |
-| Page | Every page | `page_config.csv` (`keyword` column) |
-
-In practice, the only thing that changes between pages is the keyword. Everything else stays constant within a cluster run.
+| Page | Every page | `page_config.csv` (`cluster`, `url`, `keyword` columns) |
 
 ---
 
@@ -57,60 +57,52 @@ Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION
 ### 2. Run a test batch (recommended before full run)
 
 ```bash
-python tools/batch_generate.py --cluster group_annotate --limit 3
+python tools/batch_generate.py --models openai/gpt-4o-mini --cluster group_annotate --limit 3
 ```
 
-Open `output/{url-slug}/content.html` for one of the 3 generated pages. Verify:
-- Starts with `<h2>` containing the keyword-based heading
+Open `output/batch_{timestamp}.csv`. Verify the `_content` cells:
+- Start with `<h2>` containing the keyword-based heading
 - Followed by a `<p>` TL;DR
 - Section headings use `<h3>`, subsections use `<h4>`
 - No `<div>`, `<br>`, inline styles, classes, IDs, or markdown
 
-Open `output/{url-slug}/blueprint.md`. Verify the blueprint covers sections A1–A5 (keyword intelligence) and B6–B10 (page blueprint).
-
 ### 3. Run the full batch
 
 ```bash
-python tools/batch_generate.py --cluster group_annotate
+python tools/batch_generate.py --models openai/gpt-4o-mini --cluster group_annotate
 ```
 
-Progress is tracked in `inputs/progress.csv`. The script prints `[i/total] keyword` for each page and `✓ Done` or `✗ Error` per result.
+Progress is tracked in `inputs/progress.csv`. The script prints `[i/total] keyword` for each page and `✓ model_name` or `✗ model_name` per result. The CSV is written after every model result.
 
-**It is safe to interrupt at any time** (Ctrl+C). Completed pages are written to `progress.csv` after every page.
+**It is safe to interrupt at any time** (Ctrl+C). Completed pages are marked `done` in `progress.csv` and skipped on resume.
 
 ### 4. Resume after interruption
 
 Re-run the same command. Pages with `status=done` are automatically skipped.
 
 ```bash
-python tools/batch_generate.py --cluster group_annotate
+python tools/batch_generate.py --models openai/gpt-4o-mini --cluster group_annotate
 ```
 
----
+Use `--run-label` to keep a stable CSV filename across resume runs:
 
-## Outputs
-
-```
-inputs/
-└── progress.csv                      # status: pending | done | error
-
-output/
-└── {url-slug}/
-    ├── blueprint.md              # Prompt 1 output (keyword intelligence + page blueprint)
-    └── content.html              # Final HTML article
+```bash
+python tools/batch_generate.py --models openai/gpt-4o-mini --run-label annotate_run1
+# → writes to output/batch_annotate_run1.csv and inputs/progress_annotate_run1.csv
 ```
 
----
+### 5. Multi-model batch (for model comparison)
 
-## Error Handling
+```bash
+python tools/batch_generate.py \
+    --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022 \
+    --cluster group_annotate \
+    --limit 3
+```
 
-### API rate limit or connection error
-Retried automatically up to 3 times (5s → 15s → 45s). If all retries fail, the page is marked `error` in `progress.csv`. Re-running the batch retries all error pages.
+The CSV will have two columns per model: `{slug}_blueprint` and `{slug}_content`.
 
-### No `<blueprint>` block in Prompt 1 response
-The raw Prompt 1 response is saved to `output/{slug}/blueprint_raw.txt` for diagnosis. Common causes: the model hit `max_tokens` before closing the tag, or the prompt was too long. Fix: reduce the prompt or increase `max_tokens` in `generate_page.py`.
-
-### Re-running a single page
+### 6. Single page (saves to folder)
 
 ```bash
 python tools/generate_page.py \
@@ -118,6 +110,59 @@ python tools/generate_page.py \
   --url "https://www.pdffiller.com/en/document-management/quitclaim-deed-annotate"
 ```
 
+Output goes to `output/{url-slug}/blueprint.md` and `output/{url-slug}/content.html`.
+
+---
+
+## Outputs
+
+**Batch mode:**
+```
+inputs/
+└── progress.csv                      # status: pending | done | error
+
+output/
+└── batch_{timestamp}.csv             # url, keyword, url_slug, cluster, {model}_blueprint, {model}_content, ...
+```
+
+**Single page mode:**
+```
+output/
+└── {url-slug}/
+    ├── blueprint.md                  # Prompt 1 output (keyword intelligence + page blueprint)
+    └── content.html                  # Final HTML article
+```
+
+---
+
+## batch_generate.py CLI Options
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--models` | `openai/gpt-4o-mini` | Comma-separated model names (e.g. `openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022`) |
+| `--cluster` | None (all) | Filter by cluster name |
+| `--limit` | None | Max pages to process (for testing) |
+| `--temperature` | `0.3` | Sampling temperature |
+| `--timeout` | None | Timeout in seconds per model (shows `ERROR: timed out` in CSV on timeout) |
+| `--run-label` | None | Stable label for CSV filename and progress file (enables deterministic resume) |
+
+---
+
+## Error Handling
+
+### API rate limit or connection error
+Retried automatically up to 3 times (5s → 15s → 45s). If all retries fail, the cell shows `ERROR: ...` in the CSV and the page is marked `error` in `progress.csv`. Re-running the batch retries all error pages.
+
+### No `<blueprint>` block in Prompt 1 response
+In batch mode: the `_blueprint` CSV cell contains the raw Prompt 1 response for diagnosis.
+In single-page mode: raw response is saved to `output/{slug}/blueprint_raw.txt`.
+
+### Re-running a single page
+```bash
+python tools/generate_page.py \
+  --keyword "Annotate Quitclaim Deed" \
+  --url "https://www.pdffiller.com/en/document-management/quitclaim-deed-annotate"
+```
 This does not update `progress.csv` — update it manually or re-run the batch (the batch will retry `error` pages automatically).
 
 ---
@@ -127,15 +172,15 @@ This does not update `progress.csv` — update it manually or re-run the batch (
 1. Add a row to `inputs/cluster_config.csv` with columns: `cluster`, `target_word_count`, `cluster_context`, `section_menu`
 2. Add the new cluster's pages to `inputs/page_config.csv` with columns: `cluster`, `url`, `keyword`
 3. Validate: `python tools/load_config.py --cluster {new_cluster} --test`
-4. Run: `python tools/batch_generate.py --cluster {new_cluster}`
+4. Run: `python tools/batch_generate.py --models openai/gpt-4o-mini --cluster {new_cluster}`
 
-Note: `progress.csv` tracks by URL. If you reuse the same CSV for a new cluster's pages, the new URLs will be added as `pending` on first run automatically.
+Note: `progress.csv` tracks by URL. New URLs are added as `pending` on first run automatically.
 
 ---
 
 ## Known Constraints
 
-- Sequential execution only — no parallel API calls (avoids rate limit issues)
+- Sequential execution — models for each page run one after another (no parallelism)
 - `max_tokens=8192` for Prompt 2; target article length is 1200–1500 words (~6000–7000 tokens of HTML output, well within limit)
 - Section menu `[VERIFY]` flags indicate unconfirmed product details — review those sections before publishing
 - `progress.csv` is re-initialized only if missing or corrupt; all completed pages are preserved across runs
