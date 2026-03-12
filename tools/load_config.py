@@ -26,9 +26,9 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
     Returns:
         {
             "GLOBAL_CONFIG": str,    # JSON: website, language, target_audience, positioning_statement
-            "CLUSTER_CONFIG": str,   # JSON: page_type, cluster_context, target_word_count
+            "CLUSTER_CONFIG": str,   # JSON: cluster_context, target_word_count
             "SECTION_MENU": str,     # raw long-form text block (from cluster_config.csv)
-            "PAGE_CONFIG": str,      # JSON: {"keyword": "..."}
+            "PAGE_CONFIG": str,      # JSON: {"keyword": "...", "url": "..."}
             "url_slug": str          # last path segment of URL
         }
     """
@@ -65,7 +65,6 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
     cluster_row = matches.iloc[0]
     cluster_config = json.dumps(
         {
-            "page_type": cluster_row["page_type"],
             "cluster_context": cluster_row["cluster_context"],
             "target_word_count": cluster_row["target_word_count"],
         },
@@ -76,7 +75,7 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None) -> d
     section_menu = str(cluster_row["section_menu"])
 
     # --- PAGE_CONFIG ---
-    page_config = json.dumps({"keyword": keyword}, ensure_ascii=False)
+    page_config = json.dumps({"keyword": keyword, "url": url}, ensure_ascii=False)
 
     # --- URL slug ---
     url_slug = urlparse(url).path.rstrip("/").split("/")[-1]

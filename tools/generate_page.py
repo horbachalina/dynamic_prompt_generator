@@ -168,7 +168,7 @@ def generate_single_page(
                 raise ValueError(f"Could not derive a url_slug from URL: {url!r}")
             config = dict(config_cache)
             config["url_slug"] = url_slug
-            config["PAGE_CONFIG"] = json.dumps({"keyword": keyword}, ensure_ascii=False)
+            config["PAGE_CONFIG"] = json.dumps({"keyword": keyword, "url": url}, ensure_ascii=False)
         else:
             config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
         url_slug = config["url_slug"]

@@ -1,65 +1,964 @@
-cluster,page_type,target_word_count,cluster_context,section_menu
-group_annotate,feature-only,1200-1500,"PDF annotation and markup tools in pdfFiller's browser-based editor (Edit Mode). Tools split across two access paths:
-Tools menu: Highlight, Draw, Line, Arrow, Sticky Note, Blackout, Watermark (+ Date Stamp, Page Numbering, Bates Numbering)
-Main toolbar: Circle, Checkmark, Cross, Text Box, Erase
-All tools add visual layers on top of the PDF without modifying the original content. Exception: Blackout permanently hides content beneath opaque rectangles — content is unrecoverable after saving.","# SECTION_MENU — group_annotate cluster
+cluster,target_word_count,cluster_context,section_menu
+group_annotate,900-1200,"PDF annotation and markup tools in pdfFiller's browser-based editor, activated via the Edit Mode toggle. Tools split across two access points:
 
+Tools menu: Highlight, Draw, Line, Arrow, Sticky Note, Blackout, Watermark, Date Stamp, Page Numbering, Bates Numbering
+Main toolbar: Circle, Checkmark, Cross, Text Box, Erase
+
+Functional groupings:
+Markup: Highlight, Draw, Line, Arrow — visual emphasis layers
+Symbols: Checkmark, Cross, Circle — one-click placement for completing non-interactive/scanned forms
+Text: Text Box — static free-floating text annotation (not a fillable field)
+Redaction: Blackout — permanently hides content on finalization
+Document-wide: Watermark, Date Stamp, Page Numbering, Bates Numbering — apply across all pages
+Remove: Erase — removes placed annotations only, not original PDF content
+
+All tools overlay the document visually; underlying content is never altered. All tools work on both native and scanned PDFs regardless of whether text is selectable.
+
+Blackout exception: hidden content is unrecoverable after download/finalization. Undo is available only within the active editing session.
+
+Content accuracy rules:
+- Text Box is a static annotation, not a fillable field — fillable fields are created in Add Fields mode
+- Erase removes annotations only, not original document content
+- Sticky Note does not print by default
+- Watermark/Date Stamp/Bates are document-wide operations — treat distinctly from per-element tools
+- Named competitors: Adobe Acrobat, Smallpdf, PDF Expert, Foxit — differentiate on pdfFiller's browser-based, no-install access combined with annotation + signing + sharing in one workflow","# SECTION_MENU — group_annotate cluster
 ## FEAT_DEF — Feature Definition
 What the specific annotation tool does and when a user would choose it over similar tools in pdfFiller.
-
 ## WORKFLOW — Workflow Problem This Feature Solves
 The document workflow problem this annotation addresses and the consequences of not using it.
-
 ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
 Upload paths (sidebar, drag-and-drop, cloud import) and format conversion behavior.
-
 ## FILE_FORMATS — Supported Formats and Export Options
 Accepted input file types and available export/download formats.
-
 ## STEPS — Step-by-Step Instructions
 Numbered how-to for the specific annotation action named in the keyword.
-
 ## CUSTOMIZATION — Appearance and Formatting Options
 Per-tool color, size, thickness, and style options available in the editor.
-
 ## ANNOTATABLE — What Can Be Annotated
 Which content types the tool applies to and its limits across native vs. scanned PDFs.
-
 ## MANAGE_AFTER — Managing Annotations After Placement
 How to select, move, resize, recolor, undo, or delete placed annotations.
-
 ## FORMS_FILL — Filling Forms vs. Annotating Documents
 Clarifies the distinction between form-fill tools and annotation/markup tools.
-
 ## WATERMARK_STAMP — Watermarks, Date Stamps, and Page Numbering
 Document-wide stamping tools: Watermark, Date Stamp, Page Numbering, Bates Numbering.
-
 ## REDACTION — Permanent Redaction with Blackout
 How Blackout permanently hides sensitive content and how it differs from Erase and Highlight.
-
 ## COLLAB — Collaboration and Review Use Cases
 How annotation integrates with sharing, comments, and audit trail for multi-user review.
-
 ## ESIGN_CONNECT — Connecting Annotation to E-Signature Workflows
 How annotation precedes field placement and signature collection in a review-then-sign flow.
-
 ## MANAGE_DOCS — Document Management in My Documents
 My Documents actions relevant to annotation workflows: rename, clear, protect, audit trail.
-
 ## SCENARIOS — Industry and Role-Specific Scenarios
 3–4 concrete professional scenarios where this annotation solves a named workflow problem.
-
 ## BROWSERS — Browser and Device Compatibility
 Browser support, mobile/touch behavior, and no-installation access from any device.
-
 ## LIMITS — Limitations and Known Constraints
 What the tool cannot do, plan-tier restrictions, and scanned PDF caveats.
-
 ## SECURITY — Security, Redaction, and Compliance
 Document protection features, Blackout for redaction, and compliance certifications.
-
 ## COMPARISON — Comparison with Named Alternatives
 Factual differentiators and honest tradeoffs between pdfFiller and 2–3 competitor tools.
-
 ## CLOSING — Next Steps and Broader Workflow Connection
 Directs the user to start and connects the annotation action to the broader pdfFiller workflow."
+group_compress,1200-1400,"PDF file size optimization tool in pdfFiller's browser-based editor. Accessible via two paths:
+Editor header: Compress button in the top toolbar (requires active editing session)
+All Tools: accessible from the My Documents dashboard (no open document required)
+
+Mechanism: optimizes embedded images, flattens annotation and form field layers, applies file-level compression. Page content, text, structure, annotations, and form field data remain intact.
+
+Quality levels (plan-dependent):
+High — minimal visual change, modest size reduction
+Medium — balanced size/quality tradeoff
+Low — maximum size reduction, most visible image quality impact
+
+Yield varies by content type: image-heavy and scanned PDFs compress significantly; native text-only PDFs yield minimal reduction; already-optimized files yield near-zero reduction.
+
+Post-compression: user can download immediately or continue editing in the same session.
+
+Content accuracy rules:
+- Never promise specific size reduction percentages — yield depends on source document image density and optimization state
+- Quality loss applies to image fidelity only, not text, structure, or form field data
+- Compress, Delete Pages, Split, and Save As each solve a different problem — do not treat them as interchangeable
+- Compress preserves PDF format — format conversion is Save As's function
+- Do not imply compression is unconditionally free — quality level selection is plan-tier dependent
+- Named competitors: Smallpdf, ilovepdf, Adobe Acrobat (Standard/Pro), Foxit — differentiate on pdfFiller's all-in-one compress + edit + sign workflow","# SECTION_MENU — group_compress cluster
+
+## FEAT_DEF — Feature Definition
+What the Compress tool does mechanically and when a user would choose it over Delete Pages, Split, or Save As.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The file size problem that triggers compression and the consequences of skipping it (bounced emails, upload rejections, slow sharing).
+
+## ACCESS_PATHS — How to Access the Compress Tool
+Where Compress appears in the interface: editor header button vs. All Tools dashboard, and what state the document must be in.
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths (sidebar, drag-and-drop, cloud import) and format conversion behavior before compression.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for compressing a PDF file using the Compress tool named in the keyword.
+
+## QUALITY_LEVELS — Choosing a Compression Quality Level
+What High, Medium, and Low quality settings do to file size and image fidelity, including plan-tier availability.
+
+## CONTENT_BEHAVIOR — What Changes and What Stays Intact
+Which content types are affected (images, layers) vs. preserved (text, structure, annotations, form fields).
+
+## SIZE_EXPECTATIONS — Expected File Size Reduction
+How compression yield varies by document content type and why already-optimized files see minimal reduction.
+
+## POST_COMPRESS — After Compression: Download and Next Steps
+How to download the compressed file, format options, and what to do if the result is still too large.
+
+## COMPARE_TOOLS — Compress vs. Related Size-Reduction Methods
+How Compress differs from Delete Pages, Split, and Save As as approaches to reducing file size.
+
+## SHARE_CONNECT — Connecting Compression to Sharing and Email Workflows
+How compression integrates with pdfFiller's email, share, and send workflows; use case: compress then distribute via email attachment or shared link.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where file size limits create a named workflow problem solved by Compress.
+
+## FILE_FORMATS — Supported Formats and Export Options
+Accepted input file types for compression and available export/download formats after compression.
+
+## BROWSERS — Browser and Device Compatibility
+Browser support (Chrome, Firefox, Safari, Edge), OS and mobile behavior, and no-installation access from any device or platform.
+
+## LIMITS — Limitations and Known Constraints
+What Compress cannot do: plan-tier restrictions, content types with minimal yield, already-optimized file behavior.
+
+## SECURITY — Security and Compliance
+Document protection features, encryption behavior through compression, and compliance certifications.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators and honest tradeoffs between pdfFiller Compress and 2–3 competitor tools (Smallpdf, ilovepdf, Adobe Acrobat, Foxit).
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to start and connects compression to the broader pdfFiller document management workflow."
+group_convert,1000-1300,"PDF format conversion tool in pdfFiller. Accessible via three paths:
+Done dropdown (editor): Done → Save As → choose output format
+All Tools (dashboard): Convert to Word / Excel / PowerPoint / Images card (no open document required)
+More menu (document row): document-level conversion without entering the editor
+
+Supported conversions:
+PDF → Word (.docx), Excel (.xlsx), PowerPoint (.pptx), Image (.jpg / .png)
+Non-PDF → PDF: Word, Excel, PowerPoint, and image files convert to PDF automatically on upload
+
+Mechanism: server-side conversion, downloads immediately after processing. No software installation required.
+
+Content accuracy rules:
+- Conversion quality depends on source document type: native (digitally created) PDFs convert with higher text and layout fidelity; scanned PDFs produce image-based output in Word unless OCR is applied — do not promise editable text from scanned sources
+- Layout fidelity is not guaranteed: complex formatting (columns, tables, embedded graphics) may reflow in Word or Excel output
+- Image conversion produces one .jpg/.png file per page, not a single image for multi-page documents
+- Do not imply all conversions are unconditionally free — plan-tier restrictions may apply
+- Named competitors: Adobe Acrobat, ilovepdf, Smallpdf, Nitro, Foxit — differentiate on pdfFiller's all-in-one convert + edit + sign workflow, not on conversion speed or OCR accuracy claims","# SECTION_MENU — group_convert cluster
+
+## FEAT_DEF — Feature Definition
+What the conversion tool does and when a user would choose it over Download, Compress, or Save As PDF.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+Why format matters: editing in Word, extracting tables to Excel, using slides in PowerPoint, embedding images — and the friction of not having a converter.
+
+## ACCESS_PATHS — How to Access the Convert Tool
+Three access paths: Done dropdown in the editor, All Tools card on the dashboard, and More menu on the document row.
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and inbound conversion: how Word, Excel, PowerPoint, and image files convert to PDF on upload.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific conversion direction named in the keyword (e.g., PDF to Word, PDF to Excel, PDF to JPEG).
+
+## OUTPUT_FORMATS — Supported Output Formats
+All available output formats with file extension, primary use case, and plan-tier availability for each.
+
+## INPUT_FORMATS — Accepted Input File Types
+What file types pdfFiller accepts for inbound conversion to PDF, and any format-specific behavior on upload.
+
+## CONVERSION_QUALITY — What to Expect from the Converted File
+Layout fidelity, text editability, and OCR limitations — with clear distinctions between native PDFs and scanned documents.
+
+## COMPARE_TOOLS — Convert vs. Related Export Methods
+How Save As (convert) differs from Download (stays PDF), Compress (size reduction), and Print (browser PDF output).
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where converting to a specific format solves a named workflow problem.
+
+## BROWSERS — Browser, Device, and OS Compatibility
+Browser support, Mac vs. Windows behavior, mobile access, and no-installation access from any device.
+
+## FILE_SPECS — File Format Specifications
+Technical details: .docx vs. .doc, .jpg vs. .png, file size expectations post-conversion, and multi-page behavior for image output.
+
+## LIMITS — Limitations and Known Constraints
+Plan-tier restrictions, file size or page count limits, OCR availability, and formats with reduced fidelity on complex layouts.
+
+## SECURITY — Security and Data Handling
+How pdfFiller handles documents during server-side conversion, data retention policies, and compliance certifications.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators and honest tradeoffs between pdfFiller and Adobe Acrobat, ilovepdf, Smallpdf, Nitro, and Foxit.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+What to do with the converted file and how conversion connects to pdfFiller's edit, sign, and share workflow."
+group_create_template,1200-1500,"Document template creation in pdfFiller — building a reusable fillable document structure for a specific document type and saving it for repeated use.
+
+Two creation paths:
+Upload new file: upload a document from device or cloud → open in editor → use Add Fields mode to add fillable fields → save as template
+From existing document: My Docs → More menu → Tools → Convert to Template → choose Use As Is or Add Fields → save to Templates
+
+Templates are saved to Personal Templates (accessible to the creator only) or Team Templates (shared across all workspace members). The original template is preserved on each reuse — every completion saves as a new document, not over the template.
+
+Reuse workflow: open template → parties fill their fields → document is completed, signed, and saved or sent. Templates can also be distributed as a fill link via LinkToFill.
+
+Add Fields mode is the core of template creation: text fields, checkboxes, dropdown menus, signature fields, date fields, initials, and required-field designation.
+
+Content accuracy rules:
+- A template in pdfFiller is a fillable document structure — ""create"" means building the fillable form layer, not authoring legally reviewed document text
+- Do not imply pdfFiller provides jurisdiction-specific legal content — the template structure is the product; document text comes from the user's uploaded file or their own input
+- Personal vs. Team templates have different access scope — do not conflate them
+- LinkToFill distributes a template as a public or restricted fill link — distinct from sending a PDF attachment
+- Named competitors: DocuSign, JotForm, PandaDoc, Adobe Acrobat Sign — differentiate on pdfFiller's browser-based template builder that combines document editing + fillable fields + reuse + e-sign in one workflow","# SECTION_MENU — group_create_template cluster
+
+## DOC_DEF — Document Definition and Purpose
+What this specific document type is, when it is needed, and who the parties involved are.
+
+## KEY_ELEMENTS — Required Sections and Key Clauses
+What the document must contain — standard sections, required information, and common optional clauses for this document type.
+
+## WORKFLOW — Workflow Problem This Template Solves
+Why someone needs a reusable version of this document and the cost of recreating it manually each time.
+
+## CREATE_PATHS — How to Create the Template in pdfFiller
+Two creation paths: upload a new file and build from scratch, or convert an existing document via the More menu.
+
+## CUSTOMIZE — Editing and Structuring the Document
+How to edit text, adjust layout, and prepare the document content before adding fillable fields.
+
+## ADD_FIELDS — Adding Fillable Fields
+How to use Add Fields mode to place text fields, checkboxes, signature fields, date fields, and dropdowns — including required-field designation and field labels.
+
+## SAVE_TEMPLATE — Saving as a Reusable Template
+How to save the completed document structure as a Personal or Team template, and the difference between the two.
+
+## REUSE — Using the Template for Future Documents
+How to open and reuse a saved template: filling it yourself, sending it to others, and how completions save as separate documents without overwriting the original.
+
+## SIGN — Collecting Signatures
+How to apply e-signatures and request signatures from other parties after a template is completed.
+
+## SHARE_SEND — Distributing via LinkToFill or Direct Send
+How to distribute the template as a shareable fill link (LinkToFill) or send it directly via email to specific recipients.
+
+## LEGAL_VALIDITY — Legal Validity and Jurisdiction Considerations
+What affects this document type's enforceability, state-specific requirements, and when professional legal review is warranted.
+
+## SCENARIOS — Industry and Role-Specific Use Cases
+3–4 concrete scenarios where a reusable template for this specific document type solves a named business or personal workflow problem.
+
+## DOWNLOAD_EXPORT — Downloading the Completed Document
+How to download a completed fill as PDF or export to other formats.
+
+## BROWSERS — Browser and Device Compatibility
+No-install browser access, OS and mobile support, creating and filling templates from any device.
+
+## LIMITS — Limitations and Known Constraints
+Plan-tier restrictions on template count or team sharing, field type availability, and document complexity boundaries.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and DocuSign, JotForm, PandaDoc, and Adobe Acrobat Sign.
+
+## CLOSING — Next Steps and Full Workflow Connection
+How the saved template connects to ongoing document management: reuse, team sharing, LinkToFill distribution, and audit trail."
+group_edit,1100-1400,"PDF text editing tools in pdfFiller's browser-based editor. Accessed via the Edit button (pencil icon) in the editor toolbar, which activates Edit Mode. Covers direct modification of document content — editing, adding, and removing text — and text formatting. Distinct from group_annotate, which overlays content without altering source text; and from group_fillable_fields, which creates interactive form elements.
+Core capabilities:
+Edit existing text — click directly on text blocks in native PDFs to modify characters, words, or entire blocks
+Add text — insert new free-floating text blocks anywhere on the document
+Delete/remove text — select and delete existing text content from the document
+Whiteout — covers underlying content with a white fill rectangle for correction purposes
+Text formatting: font family, size, bold, italic, underline, text color, text alignment
+Find & Replace — locate and replace specific text strings across the document
+Native vs. scanned PDFs:
+Native (digitally created) PDFs: full text editing with best-effort font matching
+Scanned PDFs: text is image-based — direct editing unavailable without OCR; annotation tools should be used to overlay corrections
+Content accuracy rules:
+
+Edit Mode modifies document content directly; annotation tools overlay without modifying — never conflate the two
+Text editing on scanned PDFs requires OCR (group_scan_ocr) — do not promise direct text editing on scanned sources
+Whiteout ≠ Blackout — Whiteout is a correction tool; Blackout (group_annotate) is permanent redaction
+Font matching is best-effort — exact font reproduction is not guaranteed
+Named competitors: Adobe Acrobat, Foxit, Nitro, Sejda — differentiate on pdfFiller's browser-based, no-install access","# SECTION_MENU — group_edit cluster
+
+## FEAT_DEF — Feature Definition
+What Edit Mode does, which tools it contains, and how it differs from annotation overlays and fillable field creation.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The need to correct, update, or add text to an existing PDF without converting it — and the friction of not having a browser-based editor.
+
+## ACCESS_PATHS — How to Access Edit Mode
+Where the Edit button appears in the editor toolbar, what state the document must be in, and how Edit Mode relates to the broader editor interface.
+
+## EDIT_TEXT — Editing Existing Text
+How to click into a text block in a native PDF, modify content, and navigate between text elements, including font-matching behavior.
+
+## ADD_TEXT — Adding New Text Blocks
+How to insert a new text block anywhere on the document, set its initial formatting, and reposition after placement.
+
+## DELETE_TEXT — Removing Text
+How to select and delete existing text content from a document, including clearing a full text block vs. deleting individual characters.
+
+## WHITEOUT — Whiteout / Correction Tool
+How Whiteout works as a white-fill overlay for correcting visible content, and how it differs from Blackout (redaction) and Erase (annotation removal).
+
+## FORMATTING — Text Formatting Options
+Available formatting controls: font family, size, bold, italic, underline, text color, and alignment — and how they apply to both existing and new text.
+
+## FIND_REPLACE — Find and Replace
+How to use Find & Replace to locate and substitute specific text strings across the document in a single operation.
+
+## NATIVE_VS_SCANNED — Editing Native vs. Scanned PDFs
+Why direct text editing works on native PDFs but not scanned ones, and what to do instead for scanned documents (OCR, annotation overlays).
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific editing action named in the keyword (edit text, add text, delete text, whiteout, find and replace).
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths (sidebar, drag-and-drop, cloud import) and format behavior before editing.
+
+## EDIT_VS_ANNOTATE — Edit Mode vs. Annotation Tools
+Clear distinction between modifying source content (Edit Mode) and overlaying content (annotation tools) — when to use each and what each changes in the final document.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: correcting a contract clause, updating an address on a form, adding a disclaimer to a template, fixing a typo in a finalized report.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile text-editing behavior, and no-installation access from any device.
+
+## LIMITS — Limitations and Known Constraints
+What Edit Mode cannot do: editing scanned PDFs without OCR, guaranteed font matching, editing password-protected documents, plan-tier restrictions.
+
+## SECURITY — Security and Data Handling
+How pdfFiller handles documents during editing sessions, data retention, and compliance certifications.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's text editing tools and Adobe Acrobat, Foxit, Nitro, and Sejda.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to start editing and connects the text edit action to the broader pdfFiller workflow (edit → fill → sign → share)."
+group_images,900-1200,"Image manipulation tool in pdfFiller's browser-based editor. Accessed via the Image icon in the main toolbar — clicking it opens a file selection window; the selected image is placed on the active page as a movable, resizable overlay element.
+
+Supported input formats: JPEG, PNG, GIF (BMP in some environments).
+
+Operations available after placement:
+- Resize: drag corner handles; aspect ratio preserved by default
+- Reposition: drag image to any location on the page
+- Rotate: freely rotate the image element
+- Layer order: bring forward / send backward relative to other page elements
+- Opacity: adjust image transparency (plan-dependent)
+- Duplicate / Delete: copy or remove the image element
+
+Crop and cut-out operations have no dedicated dialog. They are performed by resizing the image element to expose the desired area, or by deleting the element and re-uploading a pre-cropped image. ""Merge photo"" and ""edit photo"" keyword variants map to the same Image Tool workflow: upload → place → resize/reposition. There is no standalone merge or photo editor.
+
+Content accuracy rules:
+- Do not describe a separate crop, cut-out, or replace image tool — these operations use Image Tool's resize and re-upload workflow
+- Opacity control is plan-dependent — do not imply it is universally available
+- Image Tool adds images as overlay elements; it does not embed them into the underlying PDF content layer
+- Supported formats are JPEG, PNG, GIF — do not claim support for SVG, TIFF, or WebP
+- Named competitors in this keyword space: Adobe Acrobat, PDF24, ilovepdf, Smallpdf — differentiate on pdfFiller's all-in-one edit + sign + share workflow, not on image editing depth","# SECTION_MENU — group_images cluster
+
+## FEAT_DEF — Feature Definition
+What the Image Tool does and when a user would choose it to add, edit, reposition, or replace an image in a PDF.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem image editing addresses — inserting logos, photos, diagrams, or updating outdated visuals without rebuilding the document from scratch.
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths (sidebar, drag-and-drop, cloud import) and format conversion behavior before image editing.
+
+## IMAGE_FORMATS — Supported Image Formats
+Accepted image file types (JPEG, PNG, GIF) for insertion and known unsupported formats (SVG, TIFF, WebP).
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific image operation named in the keyword (add, edit, replace, crop, cut out, merge).
+
+## RESIZE_REPOSITION — Resizing and Repositioning Images
+How to drag and resize images using corner handles after placement; aspect ratio behavior and precise positioning.
+
+## ROTATE_LAYER — Rotating and Layering Images
+How to rotate an image element and manage its layer order (bring forward / send backward) relative to other page content.
+
+## OPACITY — Opacity and Transparency Control
+How to adjust image transparency with the opacity slider; plan-tier availability and visual impact on underlying content.
+
+## CROP_CUTOUT — Cropping and Cutting Out Image Areas
+How resize handles approximate a crop, when to pre-crop before uploading, and how cut-out keyword variants map to this workflow.
+
+## REPLACE_IMAGE — Replacing an Existing Image
+How to remove a placed image element and insert a new one — the workflow behind ""change image"" and ""replace image"" keyword variants.
+
+## MERGE_OVERLAY — Merging and Overlaying Photos with PDF Content
+How multiple image elements can be stacked and positioned alongside PDF text and graphics in a merge-photo workflow.
+
+## MANAGE_AFTER — Managing Image Elements After Placement
+How to select, move, resize, duplicate, undo, or delete placed image elements.
+
+## FILE_FORMATS — Supported Document Formats and Export Options
+Accepted input PDF types and available export/download formats after image editing.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where in-browser image editing solves a named workflow problem (inserting a signature logo, updating a photo ID, adding a diagram to a contract).
+
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile/touch behavior, and no-installation access from any device or OS.
+
+## LIMITS — Limitations and Known Constraints
+What the Image Tool cannot do: no dedicated crop dialog, no SVG/TIFF/WebP support, opacity as plan-dependent, no native image compression or background removal.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's Image Tool and Adobe Acrobat, PDF24, ilovepdf, and Smallpdf for in-browser image editing.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to start and connects image editing to the broader pdfFiller workflow (edit → sign → share)."
+group_merge,1200-1500,"PDF merging tool in pdfFiller's browser-based platform. Combines multiple files into a single PDF without installing software.
+
+Access paths:
+- Dashboard: Merge quick-action card (no document open required)
+- Document context: Tools → Merge (from the More menu while viewing a document in MyDocs)
+- Dashboard: All Tools → Merge
+
+Supported input formats: PDF, Word (.doc/.docx), Excel (.xlsx), and image files — non-PDF inputs are automatically converted to PDF during the merge process.
+
+Workflow: Add files from local device or MyDocs → review and reorder pages using drag-and-drop thumbnails → click Merge (dashboard flow) or Merge Now (document context flow) → download immediately or save to MyDocs.
+
+Key capabilities:
+- Select files from local device and MyDocs in the same session
+- Reorder pages across all added files before generating the final document
+- Preview page thumbnails before committing to the merge
+- Output is always a single, consolidated PDF
+
+Content accuracy rules:
+- Input format conversion (Word, Excel, images → PDF) is automatic but fidelity depends on source document complexity — do not promise pixel-perfect or layout-perfect conversion
+- Page reordering uses file-level thumbnails in the Merge interface, before output is generated — do not describe this as the Rearrange Pages tool or as in-editor page management
+- The Merge tool generates a new combined PDF; source documents in MyDocs remain unchanged
+- Merge and Rearrange Pages are distinct tools: Merge combines separate files; Rearrange reorganizes pages within a single existing document — do not conflate them
+- Do not imply merging is unconditionally free — plan tier may affect file size limits or available features
+- Named competitors: ilovepdf, Adobe Acrobat Online, Smallpdf, PDF24 — differentiate on pdfFiller's all-in-one merge + edit + sign + share workflow, not on merge speed or file count claims","# SECTION_MENU — group_merge cluster
+
+## FEAT_DEF — Feature Definition
+What the Merge tool does and when a user would choose it over Rearrange Pages or Split.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem merging addresses — consolidating contracts, attachments, reports, or scanned pages into one deliverable file for sharing or archiving.
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for source files: local device upload, MyDocs library selection, and cloud storage integrations.
+
+## INPUT_FORMATS — Supported Input File Formats
+File types accepted for merging (PDF, Word, Excel, images) and how non-PDF inputs are converted automatically before combining.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to covering the full merge workflow from file selection through page reordering to download.
+
+## REORDER_PAGES — Reordering Pages Before Merging
+How to use drag-and-drop thumbnails to set final page order across all added files before clicking Merge.
+
+## OUTPUT — Output File and Save Options
+What the merged output looks like, download options, and the choice between saving to MyDocs and immediate download.
+
+## REARRANGE_DISTINCTION — Merge vs. Rearrange Pages
+Clarification of when to use Merge (combine separate files) vs. Rearrange Pages (reorganize pages within one existing document).
+
+## EDIT_AFTER — Editing the Merged Document After Combining
+How to open the merged PDF in the editor to annotate, fill fields, add signatures, or make changes after combining.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: combining a contract with its exhibits, merging invoices into a monthly package, compiling a multi-document bid submission.
+
+## LIMITS — Limitations and Known Constraints
+File count and size limits per merge session, conversion fidelity caveats for Word/Excel inputs, and plan-tier constraints.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which merge capabilities are available on free plans and what plan tier unlocks higher limits or additional features.
+
+## FILE_FORMATS — Supported Document Formats and Export Options
+Output format options and any post-merge export or conversion paths (e.g., merged PDF → Word, compressed download).
+
+## BROWSERS — Browser and Device Compatibility
+Browser support, no-installation access, and mobile/tablet behavior across operating systems.
+
+## SECURITY — Security and Data Handling
+File encryption in transit, how uploaded merge inputs are handled, and compliance context for sensitive documents.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's Merge tool and ilovepdf, Adobe Acrobat Online, Smallpdf, and PDF24.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to start merging and connects the workflow to broader pdfFiller capabilities (merge → edit → sign → share)."
+group_pdf_creator,1200-1500,"PDF creation capabilities in pdfFiller's browser-based platform. ""Creating a PDF"" covers multiple entry paths — there is no single monolithic creation tool; the path depends on the user's starting point.
+
+Creation paths:
+- Start blank: Add New → Blank document → opens an empty PDF in the full editor (add text, images, annotations, form fields)
+- Upload & convert: Add New → Upload document (or drag & drop on dashboard) → supports Word (.doc/.docx), Excel (.xlsx), PowerPoint (.pptx), and images; non-PDF files are automatically converted to PDF on upload
+- Cloud import: Add New → Import from cloud → connects to Google Drive, Dropbox, OneDrive, or Box; imported non-PDF files are converted automatically
+- From template: Add New → Create from template → opens a pre-built form or document for editing
+
+After any creation path, the document opens in the full editor for text placement, image insertion, annotation, and form field creation.
+
+Creating a fillable PDF: after opening any document, switch to Add Fields mode → drag and drop signature, text, date, dropdown, checkbox, and other field types onto the page → save or convert to a reusable template.
+
+Content accuracy rules:
+- pdfFiller is a browser-based PDF creator — it does not install a virtual printer driver on the user's system; do not describe it as a PDF printer or desktop application
+- The ""do pdf"" keyword variant targets users familiar with doPDF desktop software — differentiate on browser access, no installation, and the all-in-one edit + sign + share workflow
+- Upload format conversion (Word, Excel, images → PDF) is automatic but layout fidelity depends on source document complexity — do not promise pixel-perfect conversion
+- Creating a fillable PDF requires Add Fields mode — it is a distinct step from simply opening or uploading a document; do not imply any document automatically becomes fillable
+- Named competitors: Adobe Acrobat, Smallpdf, PDF24, ilovepdf, doPDF — differentiate on browser-based access with no installation and the complete create + edit + fill + sign workflow in one platform","# SECTION_MENU — group_pdf_creator cluster
+
+## FEAT_DEF — Feature Definition
+What ""creating a PDF"" means in pdfFiller and which starting path (blank, upload, import, template) fits the user's situation.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The use case this covers — generating a PDF from scratch or from an existing file without desktop software or a printer driver.
+
+## START_BLANK — Creating a PDF from a Blank Document
+How to open the editor with an empty page and add text, images, annotations, and form fields to build a PDF from scratch.
+
+## UPLOAD_CONVERT — Uploading and Converting Files to PDF
+How to upload Word, Excel, PowerPoint, and image files that are automatically converted to PDF on upload, and what format fidelity to expect.
+
+## CLOUD_IMPORT — Importing from Cloud Storage
+How to connect Google Drive, Dropbox, OneDrive, or Box and import files that are converted to PDF inside pdfFiller.
+
+## CREATE_FILLABLE — Creating Fillable and Interactive PDFs
+How to switch to Add Fields mode and place signature, text, date, dropdown, and checkbox fields to produce a fillable PDF form.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific creation path named in the keyword (blank document, upload and convert, fillable form, editable PDF).
+
+## EDIT_AFTER — Editing the PDF After Creation
+How to use the full editor to add text, images, annotations, and interactive fields on any document after it is created or uploaded.
+
+## SAVE_EXPORT — Saving and Exporting the Created PDF
+How to save the finished PDF to MyDocs, download it immediately, or export it to Word, Excel, or image format.
+
+## FILE_FORMATS — Supported Input and Output Formats
+Accepted input formats (Word, Excel, images, etc.) for PDF conversion and available export/download formats after creation.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: building a fillable intake form from scratch, converting a Word proposal to a signed PDF, creating a branded certificate.
+
+## DESKTOP_VS_ONLINE — Online PDF Creator vs. Desktop Software
+How browser-based PDF creation compares to desktop PDF printer drivers (doPDF, PDF24 Creator) — no installation, cross-platform, immediate access from any device.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which PDF creation capabilities are available on free plans and what plan tier unlocks higher limits or additional features.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, and no-plugin access — works without installing software on Windows, Mac, iOS, or Android.
+
+## SECURITY — Security and Data Handling
+How uploaded source files are handled, encryption in transit, and data handling after conversion for sensitive documents.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and Adobe Acrobat, Smallpdf, PDF24, ilovepdf, and doPDF for browser-based PDF creation.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs user to start creating and connects to pdfFiller's broader workflow (create → edit → fill → sign → share)."
+group_protect,900-1200,"The group_protect cluster covers pdfFiller's PDF password security features. The primary tool is Protect Document (Tools → Protect Document): users select a document and page scope — entire document or specific pages — enter a password, and click Apply. The protected PDF then requires that password to open, whether downloaded locally or shared via a pdfFiller link. Product documentation also describes the feature as ""add restrictions to prevent edits,"" making it the platform's mechanism for creating read-only access for external recipients.
+
+A secondary security feature is the Confidential folder in My Documents. It requires phone verification and a custom password to access, and hides documents from Recent and main document lists. This is workspace-level access control inside pdfFiller — not a PDF file-level password.
+
+Accuracy rules: 1. Protect Document adds an open-entry password to the PDF file; it does not prevent printing or screenshots by authorized openers. 2. The Confidential folder is workspace security (in-app), not file-level PDF encryption. Do not conflate the two. 3. ""Unlock PDF"" in pdfFiller means opening a file the user already knows the password for — the platform is not a password cracker or bypass tool. 4. ""Make PDF read-only"" is accomplished via Protect Document — recipients without the password cannot open or modify the file. 5. Access path is Tools → Protect Document, not a right-click menu or the Edit toolbar. 6. Top SERP competitors are ilovepdf (#1), Smallpdf (#2), pdf2go (#4), and Adobe (#7) — differentiate on pdfFiller's all-in-one workflow: protect, fill, sign, and share without switching tools.","## FEAT_DEF: Define what pdfFiller's Protect Document does: adding a password required to open a PDF, applicable to the entire document or selected pages. 
+## ACCESS: How to reach the Protect Document feature: Tools → Protect Document, available from the document action menu.
+## STEPS_LOCK: Full step-by-step walkthrough for adding a password to a PDF using Protect Document. 
+## STEPS_UNLOCK: How to open a password-protected PDF in pdfFiller by entering the known password to access the file.
+## PAGE_SCOPE: Choosing between protecting the entire document versus specific page ranges, and when each option is appropriate.
+## CONFIDENTIAL_FOLDER: How the Confidential folder provides in-app secure storage: phone verification, isolated document visibility, and management within pdfFiller.
+## READ_ONLY: How Protect Document creates a read-only state for external recipients by requiring a password to open or modify the file.
+## DOWNLOADED_VS_SHARED: How password protection applies when users download a protected PDF versus share it via a pdfFiller link.
+## USE_CASES: When to password-protect a PDF: legal contracts, HR documents, financial records, tax forms, and personal IDs. 
+## COMPARISON: pdfFiller vs. ilovepdf, Smallpdf, pdf2go, and Adobe for password protection: feature differences and workflow advantages.
+## SECURITY_STANDARDS: What encryption standard pdfFiller applies via Protect Document, and how the platform handles file privacy during processing. 
+## ONLINE_VS_DESKTOP: Advantages of browser-based password protection over desktop tools like Adobe Acrobat: no installation, any device, integrated workflow. 
+## INTEGRATION: How Protect Document fits pdfFiller's broader workflow: protect before sharing via Send to Sign, LinkToFill, or email.
+## MOBILE: How to password-protect a PDF from a mobile browser or tablet using pdfFiller's responsive interface.
+## TRUST: pdfFiller's file security and privacy practices: how uploaded documents are handled, stored, and deleted after processing.
+## CLOSING: Closing prompt to try Protect Document, framed around securing any PDF in under a minute with no software to install."
+group_rearrange,900-1200,"Page management tools in pdfFiller's browser-based editor. Covers all structural page operations — reordering, rotating, deleting, inserting, and duplicating — without creating separate files.
+
+Access paths:
+- Dashboard: Rearrange quick-action card (no document open required)
+- Document context: Tools → Rearrange pages (More menu in MyDocs)
+- Inside editor: Manage button (under page thumbnails) → Manage modal for batch/precise operations
+- Inside editor: Sidebar thumbnail controls for quick single-page actions
+
+Operations available via the Manage modal and/or sidebar:
+- Reorder: drag-and-drop grid, Move left/right, Move to (jump to specific page number), multi-select; sidebar Move Up/Down arrows for quick single shifts
+- Rotate: 90° clockwise per click (achieves 90°/180°/270°); single or multiple pages; preview before Apply
+- Delete: sidebar trash icon (single page, instant); Manage modal batch delete; confirmation dialog triggers if page contains form fields
+- Add blank page: sidebar ""+"" buttons between thumbnails (precise placement); ""Add blank page"" button at sidebar bottom (appends to end); Manage modal ""Add page"" (inserts after selected page); result is a fully editable blank page
+- Duplicate: copies all page content including text, images, annotations, and form fields; copies appear at end and can be reordered
+
+All Manage modal changes are previewed before committing — Apply saves, Cancel discards all changes.
+
+Content accuracy rules:
+- All operations modify the existing document in place — they do not create separate files (that is Split's function)
+- Rotate increments at 90° clockwise per click only — do not imply free-angle or arbitrary rotation
+- Deleting a page with form fields triggers a confirmation dialog — do not imply deletion is always instant or field-safe without warning
+- Add Blank Page inserts an empty editable page — do not imply it imports or appends pages from another document (that is Merge's function)
+- Duplicate copies full page content including form fields — do not imply it produces a clean blank copy
+- Named competitors: ilovepdf, Smallpdf, Adobe Acrobat, PDF24, Sejda — differentiate on pdfFiller's all-in-one page management + edit + sign + share workflow in one platform","# SECTION_MENU — group_rearrange cluster
+
+## FEAT_DEF — Feature Definition
+What the page management tools cover, the full list of operations (reorder, rotate, delete, insert, duplicate), and when to use the Manage modal vs. quick sidebar controls.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problems these tools address — fixing scan order, correcting page orientation, cleaning up blank pages, extending forms, or preparing documents before signing.
+
+## REORDER_PAGES — Reordering PDF Pages
+How to drag pages into a new order in the Manage modal, use Move Up/Down sidebar arrows for quick shifts, and use Move to for precise repositioning.
+
+## ROTATE_PAGES — Rotating PDF Pages
+How to rotate pages 90° per click using the Manage modal and how to correct sideways or upside-down scans across single or multiple pages.
+
+## DELETE_PAGES — Deleting Pages
+How to delete a single page from the sidebar trash icon and how to batch-delete in the Manage modal, including the confirmation dialog behavior for pages with form fields.
+
+## ADD_PAGE — Inserting a Blank Page
+How to use the three Add Blank Page entry points — sidebar ""+"" buttons, sidebar bottom button, Manage modal ""Add page"" — and what can be placed on the inserted page afterward.
+
+## DUPLICATE_PAGES — Duplicating Pages
+How to duplicate one or more pages including all content and form fields via the Manage modal, and how to reorder or rotate duplicates after creation.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific page operation named in the keyword (rotate, delete, rearrange, reorder, add/insert page).
+
+## MANAGE_MODAL — Using the Manage Modal for Batch Operations
+How to open the Manage modal, select multiple pages, and use the full toolbar (Move, Rotate, Delete, Add, Duplicate, Undo) before clicking Apply.
+
+## SIDEBAR_CONTROLS — Quick Sidebar Controls
+How to use the thumbnail sidebar for fast single-page rotate, delete, and Move Up/Down actions without entering the Manage modal.
+
+## EDIT_AFTER — Editing Pages After Structural Changes
+How to add text, images, form fields, or annotations to blank or duplicated pages after reordering, inserting, or rotating.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: fixing scanned document page order, rotating a sideways phone-photo import, deleting a cover page before sharing, inserting a blank signature page at the end of a contract.
+
+## FILE_FORMATS — Supported Document Formats
+What input formats are accepted for page management operations and the output format after changes are applied.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which page management operations are available on free plans and what plan tier unlocks additional capabilities.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, drag-and-drop behavior across browsers, mobile access, and no-installation required.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's page management tools and ilovepdf, Smallpdf, Adobe Acrobat, PDF24, and Sejda.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs user to start organizing and connects page management to pdfFiller's broader workflow (organize → edit → sign → share)."
+group_request_signature,1000-1300,"E-signature request workflow in pdfFiller. Sends a document to one or multiple named recipients for legally binding electronic signing via a secure email link — recipients do not need a pdfFiller account.
+
+Access paths:
+- Dashboard: ""Request e-signatures"" quick-action card (no document open required)
+- MyDocs: document action menu → Request e-signatures
+- Inside editor: Done dropdown → E-sign
+- Inside editor (Add fields mode): Request E-Signatures panel → Review and Send
+
+Workflow: Open document → switch to Add fields mode → add recipients by email and assign roles (Signer or Viewer) → assign signature, initials, date, and form fields to each recipient → configure signing order (sequential or parallel) → set reminders and expiration deadline (optional) → click Review and Send → each signer receives a secure email link → sender tracks progress from Sent → E-signature requests.
+
+Key capabilities: multi-signer support with per-recipient field assignment (each signer sees only their assigned fields); sequential or parallel signing order; automated reminders and expiration deadlines; real-time signing status tracking; audit trail stored with the signed document; signed PDF auto-saved to sender's MyDocs.
+
+Content accuracy rules:
+- Recipients do not need a pdfFiller account to sign — access is via a one-time secure email link
+- ""Send to sign"" and ""Request e-signatures"" refer to the same workflow — do not treat them as separate features
+- Signing order is configurable (sequential or parallel) — do not imply only one mode is available
+- Audit trail availability may be plan-dependent — do not unconditionally promise it across all tiers
+- Do not conflate Request e-signatures (routing to others) with the Sign tool (signing yourself) — these are distinct workflows
+- Do not conflate with LinkToFill — LinkToFill enables mass anonymous form collection; Request e-signatures is for named-recipient, individually routed signing
+- Named competitors: DocuSign, Adobe Acrobat Sign, PandaDoc, SignWell, Dropbox Sign — differentiate on pdfFiller's all-in-one edit + fill + request + track workflow without switching platforms","# SECTION_MENU — group_request_signature cluster
+
+## FEAT_DEF — Feature Definition
+What the Request e-signatures workflow does and when to use it versus the Sign tool (self-signing) or LinkToFill (mass form collection).
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem this addresses — routing contracts, agreements, and forms to named parties for binding signatures without printing, scanning, or switching tools.
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for the document to be signed: local device upload, MyDocs selection, cloud storage integrations.
+
+## ADD_FIELDS — Assigning Signature and Form Fields
+How to switch to Add fields mode, place signature, initials, date, and data fields, and assign each field to the correct recipient.
+
+## RECIPIENTS — Adding and Managing Recipients
+How to add signers and viewers by email, assign roles, and use Manage Recipients to set order, rename, or remove participants before sending.
+
+## SIGNING_ORDER — Sequential vs. Parallel Signing
+How to configure signing order and when to use sequential (one after another) vs. parallel (simultaneous) routing for multi-party documents.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to from document selection through Review and Send, covering both the dashboard flow and the in-editor Add fields flow.
+
+## TRACK_STATUS — Tracking Signing Progress
+How to monitor who has signed and who is pending from the Sent → E-signature requests folder, and how to resend or cancel a request.
+
+## REMINDERS_DEADLINES — Reminders and Expiration Deadlines
+How to configure automated reminder emails and expiration dates to keep signers on schedule without manual follow-up.
+
+## AUDIT_TRAIL — Audit Trail and Legal Record
+What the audit trail captures, where it is stored with the signed document, and its role in legal enforceability and dispute resolution.
+
+## LEGAL_VALIDITY — Legal Validity of E-Signatures
+How pdfFiller's e-signatures comply with ESIGN and UETA legislation and what attributes make them legally binding.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: sending a service contract for client countersignature, routing an employment agreement, collecting NDA signatures from multiple parties.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which e-signature request capabilities are available on free plans and what plan tier unlocks higher signer counts, audit trails, or advanced routing.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support for both sender and recipient, mobile signing experience, and no-installation access for signers.
+
+## SECURITY — Security and Data Handling
+Encrypted document delivery, secure signing link behavior, document access controls, and compliance context for sensitive agreements.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's signature request workflow and DocuSign, Adobe Acrobat Sign, PandaDoc, SignWell, and Dropbox Sign.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs user to start a signature request and connects to pdfFiller's broader workflow (edit → fill → request signatures → track completion)."
+group_signature,1000-1300,"Electronic signature tool in pdfFiller's browser-based editor. Accessed via the Signature button in the main editor toolbar (Edit Mode). Covers the self-sign flow — adding the user's own signature or initials — not requesting others' signatures (that is Send to Sign).
+
+Three signing methods:
+Draw — freehand using mouse, touchpad, or stylus
+Type — styled text with selectable fonts and colors
+Upload — image file of an existing handwritten signature
+
+Initials: separate option with the same three input methods.
+
+Customization:
+Draw: color and line thickness
+Type: font style and color
+All: resize and reposition after placement
+Save & Reuse: signatures saved to account for reuse; user can set a default signature.
+Placement: drag to position, resize via corner handles, removable like other placed elements.
+Legal validity: compliant with ESIGN, UETA, eIDAS, and GDPR. Signed documents receive a timestamped audit trail and Verified by pdfFiller badge.
+Content accuracy rules:
+- Self-sign flow ≠ Send to Sign — do not describe recipient requesting here
+- All three methods (Draw/Type/Upload) are equally legally binding — do not rank one as more official
+- Saved signature ≠ auto-applied — user places it manually per document
+- Signature tool ≠ Signature Field — fields for others to fill are created in Add Fields mode
+- Audit trail generated at download/finalization
+- Named competitors: DocuSign, Adobe Acrobat Sign, Dropbox Sign, signNow — differentiate on pdfFiller's all-in-one sign + fill + edit workflow no separate app required","# SECTION_MENU — group_signature cluster
+## FEAT_DEF — Feature Definition
+What the Signature tool does, the distinction between self-signing and sending for signature, and when a user would choose each signing method.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem requiring a signature — finalizing a contract, completing a form, authorizing a record — and the consequence of not having a legally valid e-signature method.
+
+## SIGN_METHODS — Three Ways to Create a Signature
+Overview of Draw, Type, and Upload as the three input methods: what each produces, when to choose each, and their legal equivalence.
+
+## DRAW_SIGN — Drawing a Signature
+How to use the Draw method with a mouse, touchpad, or stylus, including color and thickness options and how to clear and redraw before saving.
+
+## TYPE_SIGN — Typing a Signature
+How to type a name and choose a font style and color to create a styled text signature, and when this method is preferable.
+
+## UPLOAD_SIGN — Uploading a Signature Image
+How to upload an image file of an existing handwritten signature, accepted formats, and how to adjust size and position after placement.
+
+## INITIALS — Adding Initials
+How to create and place initials separately from the full signature using the same Draw/Type/Upload methods.
+
+## CUSTOMIZATION — Signature Appearance Options
+Per-method customization: font and color for typed, color and thickness for drawn, plus universal resize and reposition after placement.
+
+## SAVE_REUSE — Saving and Reusing Signatures
+How signatures and initials are saved to the account, how to select a saved signature from the list, and how to set a default.
+
+## PLACEMENT — Placing and Adjusting the Signature on the Document
+How to drag the signature to the correct location, resize using corner handles, and remove or replace a placed signature.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific signing action named in the keyword (draw, type, upload, add initials).
+
+## LEGAL — Legal Validity and Compliance
+How pdfFiller signatures comply with ESIGN, UETA, eIDAS, and GDPR, and what makes them legally binding in the US and internationally.
+
+## AUDIT_TRAIL — Audit Trail and Verified Badge
+How pdfFiller generates a timestamped audit trail (IP, identity, timestamp) and attaches the Verified by pdfFiller badge to finalized documents.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: signing a lease
+
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths (sidebar
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support
+
+## LIMITS — Limitations and Known Constraints
+What the Signature tool cannot do: requesting others' signatures
+
+## SECURITY — Security and Data Handling
+Encryption
+
+## ESIGN_CONNECT — Connecting Self-Signing to Send to Sign Workflows
+How signing your own document connects to the Send to Sign flow when additional signers are needed afterward.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's signature tool and DocuSign
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs the user to sign and connects the signature action to the broader pdfFiller workflow (fill → sign → share)."
+group_split,1000-1300,"PDF splitting and page extraction tool in pdfFiller's browser-based platform. Separates a multi-page PDF into smaller files without modifying the source document.
+
+Access paths:
+- Dashboard: Split quick-action card (no document open required)
+- Document context: Tools → Split (from the More menu in MyDocs)
+
+Three split modes:
+- Extract pages: select specific individual pages to save as a new standalone PDF
+- Split by range: define custom page ranges (e.g., pages 1–3, 4–7, 8–end), each range becoming a separate named output file
+- Split by all pages: every page of the document becomes its own individual PDF
+
+Additional capabilities: rename each output file before generating; output files are saved to MyDocs; when many pages are split individually, output files are packaged as a ZIP archive for download.
+
+The source document remains unchanged in MyDocs after any split operation — new files are created separately.
+
+Content accuracy rules:
+- ""Extract pages"" and ""Split by range"" are distinct modes within the same Split tool — do not describe them as separate tools
+- The source PDF is not modified or deleted after splitting — a new file is created for each output
+- When many pages are split individually, output is delivered as a ZIP package — do not describe each file as a separate standalone download in this case
+- Split and Delete Pages are distinct: Split creates new separate files from a source; Delete Pages removes pages from within the existing document — do not conflate them
+- Split and Rearrange Pages are distinct: Split separates a document into multiple files; Rearrange reorders pages within a single existing document
+- Named competitors: ilovepdf, Smallpdf, Adobe Acrobat Online, PDF24, Sejda — differentiate on pdfFiller's all-in-one split + edit + sign + share workflow without switching platforms","# SECTION_MENU — group_split cluster
+
+## FEAT_DEF — Feature Definition
+What the Split tool does and when to use Extract pages vs. Split by range vs. Split by all pages.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow this addresses — isolating pages for separate distribution, breaking large files into sections, or extracting a single page to share independently.
+
+## EXTRACT_PAGES — Extracting Specific Pages
+How to select individual pages to pull into a new standalone PDF file using Extract pages mode.
+
+## SPLIT_BY_RANGE — Splitting by Page Range
+How to define custom page ranges and generate multiple named output files from one source document in a single operation.
+
+## SPLIT_ALL_PAGES — Splitting Every Page into Separate Files
+How to split a document so each page becomes its own individual PDF, and how the ZIP archive output works.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific split operation named in the keyword (extract pages, split by range, separate all pages).
+
+## OUTPUT — Output Files and Download Options
+How output files are saved to MyDocs, individual download vs. ZIP package behavior, and how to rename output files before generating.
+
+## SOURCE_INTACT — Source Document After Splitting
+Clarification that the original document in MyDocs is not modified, deleted, or replaced after any split operation.
+
+## SPLIT_VS_TOOLS — Split vs. Related Tools
+How Split differs from Delete Pages (removes pages from the existing document) and Rearrange Pages (reorders pages within one document) — when to reach for each.
+
+## EDIT_AFTER — Editing Split Files After Creation
+How to open any output file in the editor to annotate, fill fields, add signatures, or make further changes after splitting.
+
+## FILE_FORMATS — Supported Formats and Output
+What input formats the Split tool accepts and the fact that all output files are always PDF.
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: extracting a single signed page from a contract packet, separating a multi-chapter report into individual sections, isolating one form page to share with a client.
+
+## LIMITS — Limitations and Known Constraints
+File size limits, page count limits per session, and any plan-tier constraints on the number of split operations or output files.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which split capabilities are available on free plans and what plan tier unlocks higher page counts or additional features.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, and no-installation access from any device.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's Split tool and ilovepdf, Smallpdf, Adobe Acrobat Online, PDF24, and Sejda.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs user to start splitting and connects to pdfFiller's broader workflow (split → edit → sign → share)."
+group_watermark,900-1200,"Watermark tool in pdfFiller's browser-based editor. Accessed via Tools → Watermark in the editor toolbar.
+
+Two watermark types:
+- Text watermark: enter any text (e.g., ""CONFIDENTIAL"", ""DRAFT"", ""COPY"", company name)
+- Image watermark: upload a logo or emblem as an image overlay
+
+Customization options: size (scaling), color, transparency/opacity, rotation (e.g., 45° diagonal or horizontal), page scope (current page, all pages, or a custom page range).
+
+Edit or remove: reopen Tools → Watermark to modify or delete a previously applied watermark.
+
+The Watermark Panel also contains three document-wide stamping tools:
+- Date Stamp: inserts today's date or a custom date on every page; configurable format (MM/DD/YYYY, etc.), placement (header/footer, left/center/right), font, and transparency
+- Page Numbering: adds sequential page numbers to all pages in formats like ""1"", ""Page 1 of 6""; placement and font configurable
+- Bates Numbering: adds uniquely incremented identifiers with custom prefix, suffix, digit padding, and start number — used for legal discovery, archival, and evidence set management
+
+Removing watermarks from existing documents: watermarks applied via pdfFiller's tool can be deleted by reopening Tools → Watermark. Visible watermark text embedded in an uploaded document can be covered using the Erase tool.
+
+Content accuracy rules:
+- The Watermark tool adds a semi-transparent overlay — do not claim pdfFiller watermarks are non-removable, security-grade, or DRM-enforced
+- pdfFiller cannot remove cryptographically embedded or DRM-protected watermarks — the Erase tool covers visible watermark text visually only; it does not extract or strip embedded data
+- Date Stamp, Page Numbering, and Bates Numbering are accessed through the Watermark Panel — clarify this connection when these features appear alongside watermark keywords
+- Bates Numbering is a legal/archival-specific feature — do not describe it as a general page stamp or watermark
+- Named competitors: ilovepdf, Smallpdf, Sejda, Adobe Acrobat, PDF24 — differentiate on pdfFiller's all-in-one watermark + edit + sign + share workflow in a single platform","# SECTION_MENU — group_watermark cluster
+
+## FEAT_DEF — Feature Definition
+What the Watermark tool does, when to use it, and the distinction between text watermarks, image watermarks, and the document-wide stamping tools in the same panel.
+
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem watermarking addresses — branding, classifying, or protecting PDFs before sharing, distributing, or archiving.
+
+## TEXT_WATERMARK — Adding a Text Watermark
+How to enter custom text (e.g., CONFIDENTIAL, DRAFT) and apply it as a semi-transparent overlay across pages.
+
+## IMAGE_WATERMARK — Adding an Image or Logo Watermark
+How to upload a logo or emblem and apply it as an image watermark across the document.
+
+## CUSTOMIZE — Customizing Watermark Appearance
+How to adjust size, color, transparency, and rotation (diagonal/horizontal) for the right visual weight and style.
+
+## PAGE_SCOPE — Applying to One Page, All Pages, or Custom Ranges
+How to control which pages receive the watermark: current page only, all pages, or a defined page range.
+
+## EDIT_REMOVE — Editing and Removing a Watermark
+How to reopen the Watermark tool to modify settings, swap the watermark, or delete it entirely from the document.
+
+## REMOVE_EXISTING — Removing Watermarks from Uploaded Documents
+How the Erase tool can be used to cover visible watermark text in uploaded PDFs, and where this approach has limits.
+
+## DATE_STAMP — Date Stamp Tool
+How to apply a document-wide date stamp via the Watermark Panel — format, placement, font, and transparency options.
+
+## PAGE_NUMBERING — Page Numbering Tool
+How to add sequential page numbers to all pages with configurable format (e.g., ""Page 1 of 6""), placement, and styling.
+
+## BATES_NUMBERING — Bates Numbering for Legal and Archival Use
+How to apply custom-prefix incremented Bates numbers across all pages for legal discovery, evidence sets, and archival records.
+
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific watermark operation named in the keyword (add text, add image, remove, edit).
+
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: marking a contract draft as CONFIDENTIAL, branding a client proposal with a logo, applying Bates numbers to a litigation document set.
+
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, and no-installation access from any device.
+
+## FREE_ACCESS — Free vs. Paid Access
+Which watermarking capabilities are available on free plans and what plan tier unlocks additional features or page-scope controls.
+
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's Watermark tool and ilovepdf, Smallpdf, Sejda, Adobe Acrobat, and PDF24.
+
+## CLOSING — Next Steps and Broader Workflow Connection
+Directs user to start and connects watermarking to pdfFiller's broader workflow (watermark → sign → share → track)."

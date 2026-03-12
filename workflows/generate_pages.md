@@ -124,8 +124,8 @@ This does not update `progress.csv` — update it manually or re-run the batch (
 
 ## Adding a New Cluster
 
-1. Add a row to `inputs/cluster_config.csv` with columns: `cluster`, `page_type`, `target_word_count`, `cluster_context`, `section_menu`
-2. Add the new cluster's pages to `inputs/page_config.csv` (or use a separate CSV)
+1. Add a row to `inputs/cluster_config.csv` with columns: `cluster`, `target_word_count`, `cluster_context`, `section_menu`
+2. Add the new cluster's pages to `inputs/page_config.csv` with columns: `cluster`, `url`, `keyword`
 3. Validate: `python tools/load_config.py --cluster {new_cluster} --test`
 4. Run: `python tools/batch_generate.py --cluster {new_cluster}`
 

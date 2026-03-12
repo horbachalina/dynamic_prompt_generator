@@ -1,11 +1,43 @@
-url,keyword
-https://www.pdffiller.com/en/functionality/adjust-note-and-arrow-in-pdf,Adjust Note and Arrow in PDF Online
-https://www.pdffiller.com/en/functionality/finish-stamp-in-the-heads-of-agreement-template,Finish Stamp in the Heads Of Agreement Template
-https://www.pdffiller.com/en/document-management/contract-hide-arrow,Hide Arrow in Contract
-https://www.pdffiller.com/en/functionality/blackout-arrow-and-note-in-pdf,Blackout Arrow and Note in PDF Online
-https://www.pdffiller.com/en/document-management/last-will-and-testament-add-text-box,Add Text Box to Last Will and Testament
-https://www.pdffiller.com/en/document-management/living-will-highlight-text,Highlight Text in Living Will
-https://www.pdffiller.com/en/document-management/assignment-delete-text-box,Delete Text Box From Assignment
-https://www.pdffiller.com/en/functionality/make-notes-on-a-pdf-on-nokia-conveniently,Make Notes On A PDF on Nokia
-https://www.pdffiller.com/en/functionality/add-bookmark-to-pdf-on-linux,Add Bookmark To PDF on Linux
-https://www.pdffiller.com/en/functionality/add-comments-in-a-pdf-document-online-smallpdf,Switch from SmallPDF to pdfFiller for a Add Comments In a PDF Document Online Solution
+cluster,url,keyword
+group_annotate,https://www.pdffiller.com/en/functionality/adjust-note-and-arrow-in-pdf,Adjust Note and Arrow in PDF Online
+group_annotate,https://www.pdffiller.com/en/functionality/blackout-arrow-and-note-in-pdf,Blackout Arrow and Note in PDF Online
+group_annotate,https://www.pdffiller.com/en/functionality/23153-search-and-redact-text-in-pdf,Search and Redact Text in PDF
+group_compress,https://www.pdffiller.com/en/functionality/compress-pdf-from-kb-to-mb,Compress PDF From kb to mb
+group_compress,https://www.pdffiller.com/en/functionality/compress-image-to-50kb-jpg,Compress Image to 50kb JPG
+group_compress,https://www.pdffiller.com/en/functionality/compress-pdf-and-download,Compress PDF and Download
+group_convert,https://www.pdffiller.com/en/functionality/convert-bin-to-pdf-online,Convert BIN to PDF online
+group_convert,https://www.pdffiller.com/en/functionality/convert-jpeg-to-word-and-download,Convert JPEG to Word and Download
+group_convert,https://www.pdffiller.com/en/functionality/convert-images-to-pdf,Convert images to PDF
+group_create_template,https://www.pdffiller.com/en/document-templates/create-business-insurance-quotation-form,Create Business Insurance Quotation Form template
+group_create_template,https://www.pdffiller.com/en/document-templates/create-child-custody-agreement,Create Child Custody Agreement template
+group_create_template,https://www.pdffiller.com/en/document-templates/create-contract,Create Contract template
+group_edit,https://www.pdffiller.com/en/functionality/119-pdf-editor-edit-modify-amend-change-forms-documents-files-applications-contracts-online-mobile-device-sign-share-collabodate-pdffiller,Online PDF Editor
+group_edit,https://www.pdffiller.com/en/functionality/193-document-editor-edit-modify-amend-change-forms-files-applications-contract-permit-license-certificate-agreement-online-mobile-device-sign-share-collabodate-pdffiller,Document Editor
+group_edit,https://www.pdffiller.com/en/functionality/word-editor-online,Online Word Editor Online
+group_images,https://www.pdffiller.com/en/functionality/edit-image-pdf,Edit Image Pdf
+group_images,https://www.pdffiller.com/en/functionality/create-image-pdf,Create Image Pdf
+group_images,https://www.pdffiller.com/en/functionality/edit-photo-pdf,Edit Photo Pdf
+group_merge,https://www.pdffiller.com/en/functionality/81-merge-combine-pdf-pages-fomrs-documents-files-applications-multiple-into-one-editor-pdffiller,Combine PDF files with our fast PDF merger
+group_merge,https://www.pdffiller.com/en/functionality/22733-combine-pdfs-into-one-online-pages-froms-documents-files-multiple-mac-windows-freeware-download,Combine PDF Files Online
+group_merge,https://www.pdffiller.com/en/functionality/merge-document,Merge Document
+group_pdf_creator,https://www.pdffiller.com/en/functionality/pdffiller-online-pdf-creator-for-collaboration,Online PDF Creator for Collaboration
+group_pdf_creator,https://www.pdffiller.com/en/functionality/pdffiller-online-pdf-creator-for-a-company,Online PDF Creator for a Company
+group_pdf_creator,https://www.pdffiller.com/en/functionality/create-docx-online,Create DOCX Online without MS Word
+group_protect,https://www.pdffiller.com/en/functionality/lock-pdf-file,Lock PDF File
+group_protect,https://www.pdffiller.com/en/functionality/unlock-pdf,Unlock PDF
+group_protect,https://www.pdffiller.com/en/functionality/make-pdf-read-only,Make PDF Read Only
+group_rearrange,https://www.pdffiller.com/en/functionality/rotate-pdf,Rotate PDF
+group_rearrange,https://www.pdffiller.com/en/functionality/224-delete-pdf-pages-online-add-remove-edit-rearrange-reorder-document-form-file-application-blank-mac-windows-website-tool-mobile-software-service,Remove pages from PDF files
+group_rearrange,https://www.pdffiller.com/en/functionality/22756-insert-page-pdf-document-form-file-online-mac-windows-tool-mobile-software-service,Insert Pages into a PDF
+group_request_signature,https://www.pdffiller.com/en/functionality/199-send-to-sign-request-get-ask-gain-digital-electronic-signatures-pdf-forms-contracts-applications-certificate-online-email-pdffiller,SendToSign Your PDF Document Online
+group_request_signature,https://www.pdffiller.com/en/document-management/contract-send-to-sign,Send to Sign Contract
+group_request_signature,https://www.pdffiller.com/en/functionality/68-request-get-ask-gain-third-party-digital-electronic-signatures-pdf-forms-contracts-applications-certificate-online-email-pdffiller,Get PDF Documents Signed
+group_signature,https://www.pdffiller.com/en/functionality/54-sign-in-out-up-pdf-documents-files-forms-applications-contracts-certificate-online-digitally-electronically-online-pdffiller,Sign PDF Online
+group_signature,https://www.pdffiller.com/en/functionality/168-pdf-signer-online-esign-form-document-file-docx-txt-application-certificate-permit-license-contract-online-electronically-digitally-website-mac-windows,Online PDF Signer
+group_signature,https://www.pdffiller.com/en/functionality/56-add-insert-create-upload-write-type-capture-digital-electronic-signatures-into-pdf-form-document-file-application-contract-certificate-online-website-mac-editor,Add Signatures into PDF
+group_split,https://www.pdffiller.com/en/functionality/24436-extract-pages-from-pdf-files,Extract Pages from a PDF
+group_split,https://www.pdffiller.com/en/functionality/split-pdf,Split Pdf
+group_split,https://www.pdffiller.com/en/functionality/split-and-extract-pages-from-pdf-online-for-free,Split and Extract Pages from PDF
+group_watermark,https://www.pdffiller.com/en/functionality/edit-watermark-pdf,Edit Watermark Pdf
+group_watermark,https://www.pdffiller.com/en/document-management/functional-resume-remove-watermark,Remove Watermark From Functional Resume
+group_watermark,https://www.pdffiller.com/en/functionality/add-watermark-to-pdf-and-compress-pdf-for-desktop,Add Watermark to PDF and Compress PDF for Desktop

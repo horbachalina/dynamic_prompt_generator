@@ -76,7 +76,7 @@ def _load_progress(progress_path: str, page_config_path: str, output_dir: str = 
 
 
 def run_batch(
-    cluster: str,
+    cluster: str = None,
     limit: int = None,
     base_dir: str = None,
     model: str = "openai/gpt-4o-mini",
@@ -101,8 +101,14 @@ def run_batch(
     else:
         progress_df = _load_progress(progress_path, page_config_path, output_dir=output_dir)
 
-    # Select pending rows
+    # Build url → cluster mapping from page_config.csv
+    page_df = pd.read_csv(page_config_path)
+    url_to_cluster = dict(zip(page_df["url"], page_df["cluster"]))
+
+    # Select pending rows, optionally filtered by cluster
     pending = progress_df[progress_df["status"] != "done"].copy()
+    if cluster is not None:
+        pending = pending[pending["url"].map(url_to_cluster) == cluster].copy()
     if limit is not None:
         pending = pending.head(limit)
 
@@ -113,7 +119,8 @@ def run_batch(
 
     done_count = (progress_df["status"] == "done").sum()
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
-    print(f"Cluster: {cluster}")
+    if cluster:
+        print(f"Cluster filter: {cluster}")
     print(f"Model: {model} | Temperature: {temperature}")
     if run_label:
         print(f"Run label: {run_label} → {output_dir}")
@@ -122,28 +129,45 @@ def run_batch(
     completed = 0
     errors = 0
 
-    # Load config and prompt templates once — only PAGE_CONFIG and url_slug change per page.
+    # Load prompt templates and per-cluster config caches.
+    # Each cluster's config is loaded once on first encounter.
     from load_config import load_config
     _dummy_url = "https://example.com/placeholder"
-    config_cache = load_config(cluster=cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
     with open(os.path.join(base_dir, "prompt_1.md"), "r", encoding="utf-8") as f:
-        config_cache["PROMPT_1_TEMPLATE"] = f.read()
+        prompt1_template = f.read()
     with open(os.path.join(base_dir, "prompt_2.md"), "r", encoding="utf-8") as f:
-        config_cache["PROMPT_2_TEMPLATE"] = f.read()
+        prompt2_template = f.read()
+
+    cluster_caches: dict = {}
 
     for i, row in enumerate(pending.itertuples(), 1):
         print(f"[{i}/{total}] {row.keyword}")
 
-        result = generate_single_page(
-            keyword=row.keyword,
-            url=row.url,
-            cluster=cluster,
-            base_dir=base_dir,
-            output_dir=output_dir,
-            model=model,
-            temperature=temperature,
-            config_cache=config_cache,
-        )
+        row_cluster = url_to_cluster.get(row.url)
+        if not row_cluster:
+            result = {
+                "status": "error",
+                "url_slug": None,
+                "error": f"No cluster found for URL: {row.url}",
+            }
+        else:
+            if row_cluster not in cluster_caches:
+                cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
+                cache["PROMPT_1_TEMPLATE"] = prompt1_template
+                cache["PROMPT_2_TEMPLATE"] = prompt2_template
+                cluster_caches[row_cluster] = cache
+            config_cache = cluster_caches[row_cluster]
+
+            result = generate_single_page(
+                keyword=row.keyword,
+                url=row.url,
+                cluster=row_cluster,
+                base_dir=base_dir,
+                output_dir=output_dir,
+                model=model,
+                temperature=temperature,
+                config_cache=config_cache,
+            )
 
         # Update progress_df in memory
         idx = progress_df[progress_df["url"] == row.url].index[0]
@@ -179,7 +203,7 @@ def run_batch(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Batch generate SEO content pages.")
-    parser.add_argument("--cluster", default="group_annotate", help="Cluster name")
+    parser.add_argument("--cluster", default=None, help="Filter by cluster name (optional — omit to process all clusters)")
     parser.add_argument(
         "--limit",
         type=int,

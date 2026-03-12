@@ -12,10 +12,10 @@ BEFORE ANALYSIS — extract and apply:
 - BRAND: `website` is the exact product name. Use it verbatim in UI paths, comparisons, and scenarios.
 - AUDIENCE: `target_audience` defines all persona framing. Use in A1, B6, and B9 — no generic role categories.
 - POSITIONING: `positioning_statement` is the strategic reference for B6 angle and B10 differentiators. Do not quote it directly.
-- PAGE TYPE: Controls B9 section selection:
-  - feature-only → prioritize FEAT_DEF, WORKFLOW, STEPS, MANAGE_AFTER, SCENARIOS, LIMITS. Add COMPARISON only if a competitor or platform modifier appears in the keyword.
-  - comparison → COMPARISON required; reduce FEAT_DEF depth.
-  - document-type → SCENARIOS must foreground the named document type; WORKFLOW addresses document-specific pain points.
+- PAGE TYPE: Infer from the keyword and url in page_config. Classify as one of:
+  - feature-only → URL contains /functionality/; no document type in keyword. Prioritize FEAT_DEF, WORKFLOW, STEPS, MANAGE_AFTER, SCENARIOS, LIMITS. Add COMPARISON only if a competitor or platform modifier appears in the keyword.
+  - comparison → keyword contains "vs", "versus", "compare", or names a competing tool. COMPARISON required; reduce FEAT_DEF depth.
+  - document-type → URL contains /document-templates/ or /document-management/, or keyword names a specific document. SCENARIOS must foreground the named document type; WORKFLOW addresses document-specific pain points.
 - CLUSTER CONTEXT: Apply in B6 (angle must avoid flagged patterns) and B9 SCENARIOS (exclude flagged industry defaults).
 - WORD COUNT: `target_word_count` is the article target. Calibrate B9 MIN_WORDS so section totals land within this range. Account for H1, TL;DR (~50 words), and list overhead.
 - SECTION POOL: B9 selections must come exclusively from section_menu, in section_menu order.
@@ -32,7 +32,7 @@ BEFORE ANALYSIS — extract and apply:
    - [Document type] — [framing implication]
    - "No specific platform — generic web browser context"
 
-3. KEYWORD FUNCTION: VERB / NOUN / MIXED — one sentence explaining why.
+3. KEYWORD FUNCTION: VERB / NOUN — one sentence explaining why.
 
 4. PRIMARY KEYWORD: Confirmed phrase. Fix any slug artifacts.
 
@@ -53,7 +53,7 @@ BEFORE ANALYSIS — extract and apply:
 
 8. TL;DR ANSWER (40–60 words): Starts with action verb. Self-contained. References platform/document context from A2 if identified.
 
-9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select 10–12 sections from section_menu, constrained by page_type rules. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
+9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select 10–12 sections from section_menu, constrained by the page type you inferred above. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
 
    HEADING: Human-readable heading for this specific keyword (≤65 characters). Question-form where it matches search intent. Never use the section code name (FEAT_DEF, WORKFLOW, STEPS, etc.).
    PURPOSE: 1 sentence — what the reader gains.
@@ -63,7 +63,7 @@ BEFORE ANALYSIS — extract and apply:
    FORMAT | MIN_WORDS: [prose|unordered_list|ordered_list] [200 / 350 (7+ steps) / 250 (3+ scenarios) / 150]
    STRUCTURE_NOTE: One structural instruction (≤12 words). Example: "Frame as problem → consequence → solution."
 
-10. COMPARISON BRIEF: 3 named competitors relevant to this keyword. For each: 1 sentence differentiator (grounded in positioning_statement) + 1 sentence honest tradeoff. Max 2 sentences per competitor.
+10. COMPARISON BRIEF: 3+ named competitors relevant to this keyword. For each: 1 sentence differentiator (grounded in positioning_statement) + 1 sentence honest tradeoff. Max 2 sentences per competitor.
     If feature-only and no competitor in keyword: write "Comparison not central — brief mention in body only." No competitor entries.
 
 ---
@@ -74,4 +74,4 @@ Verify before closing </blueprint> tags:
 - B7 H1 under 65 characters, none of the banned phrases present
 - B9 section count: 10–12
 - B9 MIN_WORDS sum ≥ lower bound of target_word_count
-- B10 names ≥2 competitors OR contains "Comparison not central"
+- B10 names ≥3 competitors OR contains "Comparison not central"
