@@ -13,9 +13,11 @@ BEFORE ANALYSIS — extract and apply:
 - AUDIENCE: `target_audience` defines all persona framing. Use in A1, B6, and B9 — no generic role categories.
 - POSITIONING: `positioning_statement` is the strategic reference for B6 angle and B10 differentiators. Do not quote it directly.
 - PAGE TYPE: Infer from the keyword and url in page_config. Classify as one of:
-  - feature-only → URL contains /functionality/; no document type in keyword. Prioritize FEAT_DEF, WORKFLOW, STEPS, MANAGE_AFTER, SCENARIOS, LIMITS. Add COMPARISON only if a competitor or platform modifier appears in the keyword.
-  - comparison → keyword contains "vs", "versus", "compare", or names a competing tool. COMPARISON required; reduce FEAT_DEF depth.
-  - document-type → URL contains /document-templates/ or /document-management/, or keyword names a specific document. SCENARIOS must foreground the named document type; WORKFLOW addresses document-specific pain points.
+  - feature-only → keyword names a single product feature or action (edit, merge, compress, convert, sign, fill, rotate, etc.) with no document type, competitor, platform, or industry modifier. Prioritize FEAT_DEF, WORKFLOW, STEPS, MANAGE_AFTER, SCENARIOS, LIMITS.
+  - comparison → keyword contains "vs", "versus", "alternative", "competitor", or names a competing tool; or keyword questions pricing, cancellation, or trial of another product. COMPARISON required and central; lead with the named tool's pain points; highlight migration path; reduce FEAT_DEF depth.
+  - document-type → keyword names a specific document, form, or template (invoice, lease agreement, W-9, resume, etc.), with or without a feature verb. SCENARIOS must foreground the named document type; WORKFLOW addresses document-specific pain points.
+  - industry-legal → keyword targets a profession, industry vertical, regulation, or compliance context (HIPAA, notary, tax filing, legal, healthcare, real estate, etc.). SCENARIOS use industry-specific roles and document types; LIMITS reference compliance or regulatory constraints where relevant.
+  - integration-platform → keyword names a third-party platform, device, OS, or environment as the context for a feature (Google Drive, Chromebook, iPhone, Linux, Chrome extension, OneDrive, API, etc.). WORKFLOW addresses platform-specific steps; STEPS name platform UI elements explicitly.
 - CLUSTER CONTEXT: Apply in B6 (angle must avoid flagged patterns) and B9 SCENARIOS (exclude flagged industry defaults).
 - WORD COUNT: `target_word_count` is the article target. Calibrate B9 MIN_WORDS so section totals land within this range. Account for H1, TL;DR (~50 words), and list overhead.
 - SECTION POOL: B9 selections must come exclusively from section_menu, in section_menu order.
@@ -53,7 +55,7 @@ BEFORE ANALYSIS — extract and apply:
 
 8. TL;DR ANSWER (40–60 words): Starts with action verb. Self-contained. References platform/document context from A2 if identified.
 
-9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select 10–12 sections from section_menu, constrained by the page type you inferred above. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
+9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select sections from section_menu, constrained by the page type you inferred above — minimum 10 sections; choose more when the page type is complex (e.g., comparison, integration-feature, competitor-feature) or the keyword targets a broad feature set. Use judgment: a narrow single-feature keyword warrants 10–11 sections; a multi-feature, document-heavy, or competitor-focused keyword warrants 12–14. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
 
    HEADING: Human-readable heading for this specific keyword (≤65 characters). Question-form where it matches search intent. Never use the section code name (FEAT_DEF, WORKFLOW, STEPS, etc.).
    PURPOSE: 1 sentence — what the reader gains.
@@ -72,6 +74,6 @@ Verify before closing </blueprint> tags:
 - A1–A5 present and non-empty
 - B6 explicitly names ≥1 structural risk from cluster_context and states how this angle avoids it
 - B7 H1 ≤65 characters, none of the banned phrases present
-- B9 section count: 10–12
+- B9 section count: ≥10; justified by page_type complexity and keyword breadth
 - B9 MIN_WORDS sum ≥ lower bound of target_word_count
 - B10 names ≥3 competitors OR contains "Comparison not central"
