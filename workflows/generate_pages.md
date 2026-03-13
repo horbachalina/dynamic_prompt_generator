@@ -181,7 +181,7 @@ Note: `progress.csv` tracks by URL. New URLs are added as `pending` on first run
 ## Known Constraints
 
 - Sequential execution — models for each page run one after another (no parallelism)
-- `max_tokens=8192` for Prompt 2; target article length is 1200–1500 words (~6000–7000 tokens of HTML output, well within limit)
+- `max_tokens=8192` for both Prompt 1 and Prompt 2; target article length is 1200–1500 words (~6000–7000 tokens of HTML output, well within limit)
 - Section menu `[VERIFY]` flags indicate unconfirmed product details — review those sections before publishing
 - `progress.csv` is re-initialized only if missing or corrupt; all completed pages are preserved across runs
 - Model names must be provider-prefixed when using the LiteLLM proxy (e.g. `openai/gpt-4o-mini`, not `gpt-4o-mini`)

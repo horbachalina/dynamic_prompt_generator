@@ -48,7 +48,7 @@ BEFORE ANALYSIS — extract and apply:
 
 6. PAGE ANGLE (2–3 sentences): Unique editorial angle grounded in the user problem. Aligned with positioning_statement. Explicitly states how this page avoids the structural risks in cluster_context.
 
-7. H1 (under 65 characters): Keyword-present, grammatically natural.
+7. H1 (≤65 characters): Keyword-present, grammatically natural.
    Banned: "For Free" | "Easily" | "Conveniently" | "Simply" | "Seamlessly" | "Stay mobile" | "Quickly"
 
 8. TL;DR ANSWER (40–60 words): Starts with action verb. Self-contained. References platform/document context from A2 if identified.
@@ -71,7 +71,7 @@ BEFORE ANALYSIS — extract and apply:
 Verify before closing </blueprint> tags:
 - A1–A5 present and non-empty
 - B6 explicitly names ≥1 structural risk from cluster_context and states how this angle avoids it
-- B7 H1 under 65 characters, none of the banned phrases present
+- B7 H1 ≤65 characters, none of the banned phrases present
 - B9 section count: 10–12
 - B9 MIN_WORDS sum ≥ lower bound of target_word_count
 - B10 names ≥3 competitors OR contains "Comparison not central"

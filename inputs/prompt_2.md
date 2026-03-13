@@ -30,7 +30,7 @@ Write sections in blueprint order. Each field is binding:
 | `STRUCTURE_NOTE` | Follow exactly, including sequence and nesting depth. |
 
 **Blueprint Section 10 (COMPARISON BRIEF):**
-- ≥2 competitors listed → dedicated `<h3>` section; one `<p>` per competitor; all names, differentiators, and tradeoffs from Section 10 only.
+- ≥3 competitors listed → dedicated `<h3>` section; one `<p>` per competitor; all names, differentiators, and tradeoffs from Section 10 only.
 - "Comparison not central" → no dedicated section; fold 1–2 sentences into CLOSING only.
 - Never scatter comparison content across unrelated sections.
 
