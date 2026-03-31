@@ -91,7 +91,35 @@ python tools/batch_generate.py --models openai/gpt-4o-mini --run-label annotate_
 # → writes to output/batch_annotate_run1.csv and inputs/progress_annotate_run1.csv
 ```
 
-### 5. Multi-model batch (for model comparison)
+### 5. Run with a fallback model
+
+If your primary model fails all 3 retries, the pipeline automatically tries the fallback before marking the page as error.
+
+**Single page:**
+```bash
+python tools/generate_page.py \
+  --keyword "Annotate Quitclaim Deed" \
+  --url "https://www.pdffiller.com/en/document-management/quitclaim-deed-annotate" \
+  --model anthropic/claude-3-5-sonnet-20241022 \
+  --fallback-models openai/gpt-4o-mini
+```
+
+**Batch:**
+```bash
+python tools/batch_generate.py \
+  --models anthropic/claude-3-5-sonnet-20241022 \
+  --fallback-models openai/gpt-4o-mini \
+  --cluster group_annotate
+```
+
+When a fallback fires, the CSV includes a `{slug}_model_used` column showing which model actually produced the output. The batch output also prints which fallback was used:
+```
+✓ claude-3-5-sonnet → ~1342 words (fallback: gpt-4o-mini)
+```
+
+> Note: `--fallback-models` and multi-model comparison (`--models A,B`) are mutually exclusive. Use one primary model with `--models` when using `--fallback-models`.
+
+### 6. Multi-model batch (for model comparison)
 
 ```bash
 python tools/batch_generate.py \
@@ -138,6 +166,7 @@ output/
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--models` | `openai/gpt-4o-mini` | Comma-separated model names (e.g. `openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022`) |
+| `--fallback-models` | None | Comma-separated fallback models tried in order if the primary exhausts all retries (e.g. `openai/gpt-4o-mini`). Cannot be combined with multi-model comparison. |
 | `--cluster` | None (all) | Filter by cluster name |
 | `--limit` | None | Max pages to process (for testing) |
 | `--temperature` | `0.3` | Sampling temperature |
@@ -149,7 +178,7 @@ output/
 ## Error Handling
 
 ### API rate limit or connection error
-Retried automatically up to 3 times (5s → 15s → 45s). If all retries fail, the cell shows `ERROR: ...` in the CSV and the page is marked `error` in `progress.csv`. Re-running the batch retries all error pages.
+Retried automatically up to 3 times (5s → 15s → 45s). If all retries fail and a `--fallback-models` chain is configured, each fallback is tried next (also with up to 3 retries). Only after all models in the chain are exhausted does the page get marked `error` in `progress.csv`. Re-running the batch retries all error pages.
 
 ### No `<blueprint>` block in Prompt 1 response
 In batch mode: the `_blueprint` CSV cell contains the raw Prompt 1 response for diagnosis.

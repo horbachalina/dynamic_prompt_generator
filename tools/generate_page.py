@@ -8,9 +8,17 @@ Usage (CLI):
     python tools/generate_page.py --keyword "Annotate Quitclaim Deed" \
         --url "https://www.pdffiller.com/en/document-management/quitclaim-deed-annotate"
 
+    # With fallback: if the primary model fails, automatically try gpt-4o-mini
+    python tools/generate_page.py --keyword "Annotate Quitclaim Deed" \
+        --url "https://www.pdffiller.com/en/document-management/quitclaim-deed-annotate" \
+        --model anthropic/claude-3-5-sonnet-20241022 \
+        --fallback-models openai/gpt-4o-mini
+
 Importable:
     from generate_page import generate_single_page
     result = generate_single_page(keyword="...", url="...")
+    result = generate_single_page(keyword="...", url="...", model="anthropic/claude-3-5-sonnet-20241022",
+                                  fallback_models=["openai/gpt-4o-mini"])
 """
 
 import argparse
@@ -112,6 +120,123 @@ def _call_llm_with_retry(
     raise last_exc
 
 
+def _run_pipeline(
+    client: OpenAI,
+    model: str,
+    prompt1: str,
+    prompt2_template: str,
+    config: dict,
+    url_slug: str,
+    slug_output_dir: str,
+    temperature: float,
+    return_raw: bool,
+) -> dict:
+    """
+    Run both LLM prompts for a single model. Returns a result dict with status done|error.
+    Called by generate_single_page() for each model in the fallback chain.
+    """
+    # --- Call LLM: Prompt 1 ---
+    print(f"  Running Prompt 1 (Strategist)...")
+    p1_response = _call_llm_with_retry(
+        client, prompt1, model=model, temperature=temperature, max_tokens=8192
+    )
+
+    # --- Extract blueprint ---
+    match = re.search(r"<blueprint>(.*?)</blueprint>", p1_response, re.DOTALL)
+    if not match:
+        if return_raw:
+            return {
+                "status": "error",
+                "url_slug": url_slug,
+                "blueprint": p1_response,
+                "content": "",
+                "blueprint_path": None,
+                "content_path": None,
+                "error": "No <blueprint> block found in Prompt 1 response",
+            }
+        os.makedirs(slug_output_dir, exist_ok=True)
+        raw_path = os.path.join(slug_output_dir, "blueprint_raw.txt")
+        with open(raw_path, "w", encoding="utf-8") as f:
+            f.write(p1_response)
+        return {
+            "status": "error",
+            "url_slug": url_slug,
+            "blueprint_path": None,
+            "content_path": None,
+            "error": f"No <blueprint> block found. Raw response saved to {raw_path}",
+        }
+
+    blueprint = match.group(1).strip()
+
+    # --- Save blueprint (skip in return_raw mode) ---
+    blueprint_path = None
+    if not return_raw:
+        blueprint_path = os.path.join(slug_output_dir, "blueprint.md")
+        with open(blueprint_path, "w", encoding="utf-8") as f:
+            f.write(blueprint)
+
+    # --- Assemble Prompt 2 ---
+    prompt2 = prompt2_template
+    prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
+    prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
+
+    # --- Call LLM: Prompt 2 ---
+    print(f"  Running Prompt 2 (Writer)...")
+    p2_response = _call_llm_with_retry(
+        client, prompt2, model=model, temperature=temperature, max_tokens=8192
+    )
+
+    # --- Strip markdown code fence if LLM wrapped output in ```html ... ``` ---
+    p2_response = p2_response.strip()
+    p2_response = re.sub(r"^```(?:html)?\s*\n?", "", p2_response)
+    p2_response = re.sub(r"\n?```\s*$", "", p2_response).strip()
+
+    # --- Validate HTML output ---
+    if "<h2>" not in p2_response:
+        if return_raw:
+            return {
+                "status": "error",
+                "url_slug": url_slug,
+                "blueprint": blueprint,
+                "content": "",
+                "blueprint_path": None,
+                "content_path": None,
+                "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
+            }
+        return {
+            "status": "error",
+            "url_slug": url_slug,
+            "blueprint_path": blueprint_path,
+            "content_path": None,
+            "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
+        }
+
+    # --- Return raw strings (skip file I/O in return_raw mode) ---
+    if return_raw:
+        return {
+            "status": "done",
+            "url_slug": url_slug,
+            "blueprint": blueprint,
+            "content": p2_response,
+            "blueprint_path": None,
+            "content_path": None,
+            "error": None,
+        }
+
+    # --- Save HTML ---
+    content_path = os.path.join(slug_output_dir, "content.html")
+    with open(content_path, "w", encoding="utf-8") as f:
+        f.write(p2_response)
+
+    return {
+        "status": "done",
+        "url_slug": url_slug,
+        "blueprint_path": blueprint_path,
+        "content_path": content_path,
+        "error": None,
+    }
+
+
 def generate_single_page(
     keyword: str,
     url: str,
@@ -119,6 +244,7 @@ def generate_single_page(
     base_dir: str = None,
     output_dir: str = None,
     model: str = "openai/gpt-4o-mini",
+    fallback_models: list = None,
     temperature: float = 0.3,
     timeout: int = None,
     config_cache: dict = None,
@@ -126,6 +252,9 @@ def generate_single_page(
 ) -> dict:
     """
     Run the full two-prompt pipeline for a single page.
+
+    If the primary model fails all retries, each model in fallback_models is tried
+    in order. fallback_models=None (default) means no fallback — existing behavior.
 
     When return_raw=False (default): saves blueprint.md and content.html to disk,
     returns paths. Used by generate_page CLI (single-page mode).
@@ -136,6 +265,7 @@ def generate_single_page(
     Returns:
         {
             "status": "done" | "error",
+            "model_used": str | None,       # which model produced the output (None on total failure)
             "url_slug": str,
             "blueprint_path": str | None,   # only set when return_raw=False
             "content_path": str | None,     # only set when return_raw=False
@@ -197,117 +327,63 @@ def generate_single_page(
             with open(prompt2_path, "r", encoding="utf-8") as f:
                 prompt2_template = f.read()
 
-        # --- Assemble Prompt 1 ---
+        # --- Assemble Prompt 1 (model-agnostic — done once for all fallbacks) ---
         prompt1 = prompt1_template
         prompt1 = prompt1.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
         prompt1 = prompt1.replace("{{CLUSTER_CONFIG}}", config["CLUSTER_CONFIG"])
         prompt1 = prompt1.replace("{{PAGE_CONFIG}}", config["PAGE_CONFIG"])
         prompt1 = prompt1.replace("{{SECTION_MENU}}", config["SECTION_MENU"])
 
-        # --- Call LLM: Prompt 1 ---
-        print(f"  Running Prompt 1 (Strategist)...")
-        p1_response = _call_llm_with_retry(
-            client, prompt1, model=model, temperature=temperature, max_tokens=8192
-        )
+        # --- Fallback loop: try primary model, then each fallback in order ---
+        models_to_try = [model] + (fallback_models or [])
+        last_result = None
 
-        # --- Extract blueprint ---
-        match = re.search(r"<blueprint>(.*?)</blueprint>", p1_response, re.DOTALL)
-        if not match:
-            if return_raw:
-                return {
+        for active_model in models_to_try:
+            if active_model != model:
+                print(f"  Falling back to {active_model}...")
+
+            try:
+                result = _run_pipeline(
+                    client=client,
+                    model=active_model,
+                    prompt1=prompt1,
+                    prompt2_template=prompt2_template,
+                    config=config,
+                    url_slug=url_slug,
+                    slug_output_dir=slug_output_dir,
+                    temperature=temperature,
+                    return_raw=return_raw,
+                )
+            except Exception as e:
+                result = {
                     "status": "error",
                     "url_slug": url_slug,
-                    "blueprint": p1_response,
-                    "content": "",
                     "blueprint_path": None,
                     "content_path": None,
-                    "error": "No <blueprint> block found in Prompt 1 response",
+                    "error": str(e),
                 }
-            os.makedirs(slug_output_dir, exist_ok=True)
-            raw_path = os.path.join(slug_output_dir, "blueprint_raw.txt")
-            with open(raw_path, "w", encoding="utf-8") as f:
-                f.write(p1_response)
-            return {
-                "status": "error",
-                "url_slug": url_slug,
-                "blueprint_path": None,
-                "content_path": None,
-                "error": f"No <blueprint> block found. Raw response saved to {raw_path}",
-            }
+                if return_raw:
+                    result["blueprint"] = ""
+                    result["content"] = ""
 
-        blueprint = match.group(1).strip()
+            last_result = result
 
-        # --- Save blueprint (skip in return_raw mode) ---
-        blueprint_path = None
-        if not return_raw:
-            blueprint_path = os.path.join(slug_output_dir, "blueprint.md")
-            with open(blueprint_path, "w", encoding="utf-8") as f:
-                f.write(blueprint)
+            if result["status"] == "done":
+                result["model_used"] = active_model
+                return result
 
-        # --- Assemble Prompt 2 ---
-        prompt2 = prompt2_template
-        prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
-        prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
+            # Model failed — report and try next if available
+            if active_model != models_to_try[-1]:
+                print(f"  ✗ {active_model.split('/')[-1]} failed: {result.get('error', 'unknown error')}")
 
-        # --- Call LLM: Prompt 2 ---
-        print(f"  Running Prompt 2 (Writer)...")
-        p2_response = _call_llm_with_retry(
-            client, prompt2, model=model, temperature=temperature, max_tokens=8192
-        )
-
-        # --- Strip markdown code fence if LLM wrapped output in ```html ... ``` ---
-        p2_response = p2_response.strip()
-        p2_response = re.sub(r"^```(?:html)?\s*\n?", "", p2_response)
-        p2_response = re.sub(r"\n?```\s*$", "", p2_response).strip()
-
-        # --- Validate HTML output ---
-        if "<h2>" not in p2_response:
-            if return_raw:
-                return {
-                    "status": "error",
-                    "url_slug": url_slug,
-                    "blueprint": blueprint,
-                    "content": "",
-                    "blueprint_path": None,
-                    "content_path": None,
-                    "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
-                }
-            return {
-                "status": "error",
-                "url_slug": url_slug,
-                "blueprint_path": blueprint_path,
-                "content_path": None,
-                "error": "Prompt 2 response contains no <h2> tag — likely malformed output",
-            }
-
-        # --- Return raw strings (skip file I/O in return_raw mode) ---
-        if return_raw:
-            return {
-                "status": "done",
-                "url_slug": url_slug,
-                "blueprint": blueprint,
-                "content": p2_response,
-                "blueprint_path": None,
-                "content_path": None,
-                "error": None,
-            }
-
-        # --- Save HTML ---
-        content_path = os.path.join(slug_output_dir, "content.html")
-        with open(content_path, "w", encoding="utf-8") as f:
-            f.write(p2_response)
-
-        return {
-            "status": "done",
-            "url_slug": url_slug,
-            "blueprint_path": blueprint_path,
-            "content_path": content_path,
-            "error": None,
-        }
+        # All models exhausted
+        last_result["model_used"] = None
+        return last_result
 
     except Exception as e:
         result = {
             "status": "error",
+            "model_used": None,
             "url_slug": url_slug,
             "blueprint_path": None,
             "content_path": None,
@@ -324,24 +400,35 @@ if __name__ == "__main__":
     parser.add_argument("--keyword", required=True, help="Target keyword")
     parser.add_argument("--url", required=True, help="Target page URL")
     parser.add_argument("--cluster", default="group_annotate", help="Cluster name")
-    parser.add_argument("--model", default="openai/gpt-4o-mini", help="Model name (e.g. openai/gpt-4o-mini, anthropic/claude-3-5-sonnet-20241022, gemini/gemini-1.5-pro)")
+    parser.add_argument("--model", default="openai/gpt-4o-mini", help="Primary model name (e.g. openai/gpt-4o-mini, anthropic/claude-3-5-sonnet-20241022)")
+    parser.add_argument(
+        "--fallback-models",
+        nargs="+",
+        default=None,
+        metavar="MODEL",
+        help="Fallback models tried in order if the primary fails (space-separated, e.g. openai/gpt-4o-mini gemini/gemini-1.5-flash)",
+    )
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
     parser.add_argument("--output-dir", default=None, help="Override output directory")
     args = parser.parse_args()
 
+    fallback_info = f" → fallback: {', '.join(args.fallback_models)}" if args.fallback_models else ""
     print(f"Generating page for: {args.keyword}")
-    print(f"  Model: {args.model} | Temperature: {args.temperature}")
+    print(f"  Model: {args.model}{fallback_info} | Temperature: {args.temperature}")
     result = generate_single_page(
         args.keyword,
         args.url,
         args.cluster,
         output_dir=args.output_dir,
         model=args.model,
+        fallback_models=args.fallback_models,
         temperature=args.temperature,
     )
 
     if result["status"] == "done":
-        print(f"Done.")
+        used = result.get("model_used", args.model)
+        fallback_note = f" (fallback: {used})" if used != args.model else ""
+        print(f"Done{fallback_note}.")
         print(f"  Blueprint: {result['blueprint_path']}")
         print(f"  Content:   {result['content_path']}")
     else:

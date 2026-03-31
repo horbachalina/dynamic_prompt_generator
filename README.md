@@ -35,6 +35,9 @@ python tools/batch_generate.py --models openai/gpt-4o-mini --cluster group_annot
 # Multi-model comparison
 python tools/batch_generate.py --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022 --cluster group_annotate
 
+# With fallback: if primary model fails all retries, automatically try gpt-4o-mini
+python tools/batch_generate.py --models anthropic/claude-3-5-sonnet-20241022 --fallback-models openai/gpt-4o-mini
+
 # Resumable run (stable filename + progress file)
 python tools/batch_generate.py --models openai/gpt-4o-mini --run-label my_run
 ```
@@ -46,6 +49,7 @@ Safe to interrupt (Ctrl+C). Completed pages are marked `done` and skipped on res
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--models` | `openai/gpt-4o-mini` | Comma-separated provider-prefixed model names |
+| `--fallback-models` | *(none)* | Comma-separated fallback models tried if the primary exhausts all retries |
 | `--cluster` | *(all)* | Filter to a single cluster |
 | `--limit` | *(all)* | Cap number of pages (useful for testing) |
 | `--temperature` | `0.3` | LLM sampling temperature |
@@ -58,6 +62,13 @@ Safe to interrupt (Ctrl+C). Completed pages are marked `done` and skipped on res
 python tools/generate_page.py \
   --keyword "Annotate PDF Online" \
   --url "https://www.pdffiller.com/en/functionality/annotate-pdf"
+
+# With fallback model
+python tools/generate_page.py \
+  --keyword "Annotate PDF Online" \
+  --url "https://www.pdffiller.com/en/functionality/annotate-pdf" \
+  --model anthropic/claude-3-5-sonnet-20241022 \
+  --fallback-models openai/gpt-4o-mini
 ```
 
 Output saved to `output/{url-slug}/blueprint.md` and `output/{url-slug}/content.html`.
@@ -104,4 +115,4 @@ workflows/
 3. Prompt 2 (Writer) uses the blueprint to produce semantic HTML (no classes, IDs, divs, or inline styles)
 4. Results are written to a CSV after each page; progress is tracked for resumable runs
 
-Errors are logged per-cell in the output CSV and retried automatically on the next run.
+Errors are logged per-cell in the output CSV and retried automatically on the next run. If a fallback chain is configured (`--fallback-models`), each fallback is tried before the page is marked as failed.

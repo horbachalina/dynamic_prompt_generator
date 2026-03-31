@@ -36,11 +36,26 @@ def sanitize_model_name(model: str) -> str:
 
 
 def write_batch_csv(rows: list, models: list, output_path: str) -> None:
-    """Write batch results to CSV — one row per URL, two columns per model."""
+    """Write batch results to CSV — one row per URL, two columns per model.
+
+    When a fallback fired for a model slot, an extra {slug}_model_used column is
+    written so it's clear which model actually produced the output.
+    """
     model_slugs = [sanitize_model_name(m) for m in models]
+
+    # Detect if any row recorded a model_used override (i.e. fallback fired)
+    has_model_used = any(
+        "model_used" in row["model_results"].get(slug, {})
+        for row in rows
+        for slug in model_slugs
+    )
+
     columns = ["url", "keyword", "url_slug", "cluster"]
     for slug in model_slugs:
         columns += [f"{slug}_blueprint", f"{slug}_content"]
+        if has_model_used:
+            columns.append(f"{slug}_model_used")
+
     records = []
     for row in rows:
         record = {
@@ -53,6 +68,8 @@ def write_batch_csv(rows: list, models: list, output_path: str) -> None:
             result_data = row["model_results"].get(slug, {})
             record[f"{slug}_blueprint"] = result_data.get("blueprint", "")
             record[f"{slug}_content"] = result_data.get("content", "")
+            if has_model_used:
+                record[f"{slug}_model_used"] = result_data.get("model_used", "")
         records.append(record)
     df = pd.DataFrame(records, columns=columns)
     df.to_csv(output_path, index=False, encoding="utf-8")
@@ -96,6 +113,7 @@ def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
 
 def run_batch(
     models: list,
+    fallback_models: list = None,
     cluster: str = None,
     limit: int = None,
     base_dir: str = None,
@@ -148,7 +166,11 @@ def run_batch(
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
     if cluster:
         print(f"Cluster filter: {cluster}")
-    print(f"Models: {model_names}")
+    if fallback_models:
+        fallback_names = ", ".join(m.split("/")[-1] for m in fallback_models)
+        print(f"Models: {model_names} (fallback: {fallback_names})")
+    else:
+        print(f"Models: {model_names}")
     print(f"Temperature: {temperature}")
     if timeout:
         print(f"Timeout: {timeout}s per model")
@@ -231,6 +253,7 @@ def run_batch(
                 cluster=row_cluster,
                 base_dir=base_dir,
                 model=model,
+                fallback_models=fallback_models,
                 temperature=temperature,
                 timeout=timeout,
                 config_cache=config_cache,
@@ -238,19 +261,29 @@ def run_batch(
             )
 
             if last_result["status"] == "done":
-                page_row["model_results"][model_slug] = {
+                used_model = last_result.get("model_used", model)
+                result_entry = {
                     "blueprint": last_result["blueprint"],
                     "content": last_result["content"],
                 }
+                if fallback_models:
+                    result_entry["model_used"] = used_model
+                page_row["model_results"][model_slug] = result_entry
                 word_count = len(last_result["content"].split())
-                print(f"  ✓ {model_short} → ~{word_count} words")
+                if used_model != model:
+                    print(f"  ✓ {model_short} → ~{word_count} words (fallback: {used_model.split('/')[-1]})")
+                else:
+                    print(f"  ✓ {model_short} → ~{word_count} words")
             else:
                 error_msg = last_result.get("error") or "unknown error"
                 blueprint_val = last_result.get("blueprint") or f"ERROR: {error_msg}"
-                page_row["model_results"][model_slug] = {
+                result_entry = {
                     "blueprint": blueprint_val,
                     "content": f"ERROR: {error_msg}",
                 }
+                if fallback_models:
+                    result_entry["model_used"] = ""
+                page_row["model_results"][model_slug] = result_entry
                 page_ok = False
                 print(f"  ✗ {model_short}: {error_msg}")
 
@@ -292,6 +325,11 @@ if __name__ == "__main__":
         default="openai/gpt-4o-mini",
         help="Comma-separated model names (provider-prefixed, e.g. openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022)",
     )
+    parser.add_argument(
+        "--fallback-models",
+        default=None,
+        help="Comma-separated fallback models tried in order if the primary fails (e.g. openai/gpt-4o-mini). Cannot be combined with multi-model comparison.",
+    )
     parser.add_argument("--cluster", default=None, help="Filter by cluster name (optional — omit to process all clusters)")
     parser.add_argument(
         "--limit",
@@ -313,8 +351,17 @@ if __name__ == "__main__":
         print("Error: --models must specify at least one model.")
         sys.exit(1)
 
+    fallback_models = None
+    if args.fallback_models:
+        fallback_models = [m.strip() for m in args.fallback_models.split(",") if m.strip()]
+        if len(models) > 1:
+            print("Error: --fallback-models cannot be combined with multi-model comparison (--models A,B).")
+            print("  Use a single primary model with --models, then list fallbacks with --fallback-models.")
+            sys.exit(1)
+
     run_batch(
         models=models,
+        fallback_models=fallback_models,
         cluster=args.cluster,
         limit=args.limit,
         temperature=args.temperature,
