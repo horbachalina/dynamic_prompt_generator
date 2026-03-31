@@ -338,7 +338,7 @@ if __name__ == "__main__":
         help="Max pages to process in this run (for testing)",
     )
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
-    parser.add_argument("--timeout", type=int, default=None, help="Timeout in seconds per model (default: none)")
+    parser.add_argument("--timeout", type=int, default=180, help="Timeout in seconds per model call (default: 180)")
     parser.add_argument(
         "--run-label",
         default=None,

@@ -90,6 +90,12 @@ def _call_llm_with_retry(
                 break
             print(f"  Connection error (attempt {attempt + 1}/3): retrying in {delay}s...")
             time.sleep(delay)
+        except openai.APITimeoutError as e:
+            last_exc = e
+            if delay is None:
+                break
+            print(f"  Timeout (attempt {attempt + 1}/3): retrying in {delay}s...")
+            time.sleep(delay)
         except openai.BadRequestError as e:
             err_str = str(e)
             # Some models don't support temperature — retry once without it
@@ -138,7 +144,7 @@ def _run_pipeline(
     # --- Call LLM: Prompt 1 ---
     print(f"  Running Prompt 1 (Strategist)...")
     p1_response = _call_llm_with_retry(
-        client, prompt1, model=model, temperature=temperature, max_tokens=8192
+        client, prompt1, model=model, temperature=temperature, max_tokens=4096
     )
 
     # --- Extract blueprint ---
@@ -183,7 +189,7 @@ def _run_pipeline(
     # --- Call LLM: Prompt 2 ---
     print(f"  Running Prompt 2 (Writer)...")
     p2_response = _call_llm_with_retry(
-        client, prompt2, model=model, temperature=temperature, max_tokens=8192
+        client, prompt2, model=model, temperature=temperature, max_tokens=4096
     )
 
     # --- Strip markdown code fence if LLM wrapped output in ```html ... ``` ---
