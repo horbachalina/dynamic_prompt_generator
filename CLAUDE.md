@@ -60,8 +60,8 @@ This loop is how the framework improves over time.
 
 **Directory layout:**
 ```
-inputs/         # Permanent inputs — prompt templates, config CSVs, progress.csv
-output/         # Disposable runtime outputs — generated content, comparison CSVs (regenerated as needed)
+inputs/         # Permanent inputs — prompt templates, config CSVs
+output/         # Disposable runtime outputs — generated content, comparison CSVs, progress.csv (regenerated as needed)
 tools/          # Python scripts for deterministic execution
 workflows/      # Markdown SOPs defining what to do and how
 .env            # API keys and environment variables (NEVER store secrets anywhere else)

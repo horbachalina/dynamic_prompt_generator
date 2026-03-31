@@ -2,7 +2,7 @@
 batch_generate.py — Batch runner for the two-prompt SEO content pipeline.
 
 Reads page_config.csv, skips already-completed pages, tracks progress in
-inputs/progress.csv. Output saved to output/batch_{timestamp}.csv.
+output/progress.csv. Output saved to output/batch_{timestamp}.csv.
 Safe to interrupt and resume at any time.
 
 Usage:
@@ -107,14 +107,15 @@ def run_batch(
         base_dir = _default_base_dir()
 
     page_config_path = os.path.join(base_dir, "page_config.csv")
-    progress_path = (
-        os.path.join(base_dir, f"progress_{run_label}.csv")
-        if run_label
-        else os.path.join(base_dir, "progress.csv")
-    )
 
     output_root = os.path.join(os.path.dirname(base_dir), "output")
     os.makedirs(output_root, exist_ok=True)
+
+    progress_path = (
+        os.path.join(output_root, f"progress_{run_label}.csv")
+        if run_label
+        else os.path.join(output_root, "progress.csv")
+    )
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     csv_name = f"batch_{run_label}.csv" if run_label else f"batch_{timestamp}.csv"
     csv_path = os.path.join(output_root, csv_name)

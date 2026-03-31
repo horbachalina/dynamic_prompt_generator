@@ -1,6 +1,4 @@
 .env
-inputs/progress.csv
-inputs/progress_*.csv
 credentials.json
 token.json
 __pycache__/

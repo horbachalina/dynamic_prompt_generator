@@ -72,7 +72,7 @@ Open `output/batch_{timestamp}.csv`. Verify the `_content` cells:
 python tools/batch_generate.py --models openai/gpt-4o-mini --cluster group_annotate
 ```
 
-Progress is tracked in `inputs/progress.csv`. The script prints `[i/total] keyword` for each page and `✓ model_name` or `✗ model_name` per result. The CSV is written after every model result.
+Progress is tracked in `output/progress.csv`. The script prints `[i/total] keyword` for each page and `✓ model_name` or `✗ model_name` per result. The CSV is written after every model result.
 
 **It is safe to interrupt at any time** (Ctrl+C). Completed pages are marked `done` in `progress.csv` and skipped on resume.
 
@@ -118,10 +118,8 @@ Output goes to `output/{url-slug}/blueprint.md` and `output/{url-slug}/content.h
 
 **Batch mode:**
 ```
-inputs/
-└── progress.csv                      # status: pending | done | error
-
 output/
+├── progress.csv                      # status: pending | done | error
 └── batch_{timestamp}.csv             # url, keyword, url_slug, cluster, {model}_blueprint, {model}_content, ...
 ```
 
