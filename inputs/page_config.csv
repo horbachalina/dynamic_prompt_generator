@@ -1,21 +1,8 @@
 locale,cluster,url,keyword
-en,group_annotate,https://www.pdffiller.com/en/functionality/adjust-note-and-arrow-in-pdf,Adjust Note and Arrow in PDF Online
-en,group_compress,https://www.pdffiller.com/en/functionality/compress-pdf-from-kb-to-mb,Compress PDF From kb to mb
-en,group_convert,https://www.pdffiller.com/en/functionality/convert-bin-to-pdf-online,Convert BIN to PDF online
-en,group_create_template,https://www.pdffiller.com/en/document-templates/create-business-insurance-quotation-form,Create Business Insurance Quotation Form template
-en,group_edit,https://www.pdffiller.com/en/functionality/119-pdf-editor-edit-modify-amend-change-forms-documents-files-applications-contracts-online-mobile-device-sign-share-collabodate-pdffiller,Online PDF Editor
-en,group_images,https://www.pdffiller.com/en/functionality/edit-image-pdf,Edit Image Pdf
-en,group_merge,https://www.pdffiller.com/en/functionality/81-merge-combine-pdf-pages-fomrs-documents-files-applications-multiple-into-one-editor-pdffiller,Combine PDF files with our fast PDF merger
-en,group_pdf_creator,https://www.pdffiller.com/en/functionality/pdffiller-online-pdf-creator-for-collaboration,Online PDF Creator for Collaboration
-en,group_protect,https://www.pdffiller.com/en/functionality/lock-pdf-file,Lock PDF File
-en,group_rearrange,https://www.pdffiller.com/en/functionality/rotate-pdf,Rotate PDF
-en,group_request_signature,https://www.pdffiller.com/en/functionality/199-send-to-sign-request-get-ask-gain-digital-electronic-signatures-pdf-forms-contracts-applications-certificate-online-email-pdffiller,SendToSign Your PDF Document Online
-en,group_signature,https://www.pdffiller.com/en/functionality/54-sign-in-out-up-pdf-documents-files-forms-applications-contracts-certificate-online-digitally-electronically-online-pdffiller,Sign PDF Online
-en,group_split,https://www.pdffiller.com/en/functionality/24436-extract-pages-from-pdf-files,Extract Pages from a PDF
-en,group_watermark,https://www.pdffiller.com/en/functionality/edit-watermark-pdf,Edit Watermark Pdf
+en,group_compress,https://compress-pdf.pdffiller.com/,Compress PDF with our PDF compressor feature
 de,group_compress,https://www.pdffiller.com/de/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
 es,group_compress,https://www.pdffiller.com/es/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-fr,group_compress,http://pdffiller.com/fr/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
+fr,group_compress,https://www.pdffiller.com/fr/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
 it,group_compress,https://www.pdffiller.com/it/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
 nl,group_compress,https://www.pdffiller.com/nl/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-pt,group_compress,https://www.pdffiller.com/pt/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
+pt-BR,group_compress,https://www.pdffiller.com/pt/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature

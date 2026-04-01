@@ -185,7 +185,7 @@ def _run_pipeline(
     prompt2 = prompt2_template
     prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
     prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
-    prompt2 = prompt2.replace("{{TONE_OF_VOICE}}", config.get("TONE_OF_VOICE", ""))
+    prompt2 = prompt2.replace("{{LOCALE_CONFIG}}", config.get("LOCALE_CONFIG", ""))
 
     # --- Call LLM: Prompt 2 ---
     print(f"  Running Prompt 2 (Writer)...")
@@ -338,7 +338,7 @@ def generate_single_page(
         # --- Assemble Prompt 1 (model-agnostic — done once for all fallbacks) ---
         prompt1 = prompt1_template
         prompt1 = prompt1.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
-        prompt1 = prompt1.replace("{{TONE_OF_VOICE}}", config.get("TONE_OF_VOICE", ""))
+        prompt1 = prompt1.replace("{{LOCALE_CONFIG}}", config.get("LOCALE_CONFIG", ""))
         prompt1 = prompt1.replace("{{CLUSTER_CONFIG}}", config["CLUSTER_CONFIG"])
         prompt1 = prompt1.replace("{{PAGE_CONFIG}}", config["PAGE_CONFIG"])
         prompt1 = prompt1.replace("{{SECTION_MENU}}", config["SECTION_MENU"])
@@ -420,6 +420,7 @@ if __name__ == "__main__":
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
     parser.add_argument("--output-dir", default=None, help="Override output directory")
     parser.add_argument("--locale", default="en", help="Locale code (e.g. en, fr, de, es, pt-BR, nl, it)")
+    parser.add_argument("--timeout", type=int, default=None, help="Timeout in seconds per model call (default: no timeout)")
     args = parser.parse_args()
 
     fallback_info = f" → fallback: {', '.join(args.fallback_models)}" if args.fallback_models else ""
@@ -433,6 +434,7 @@ if __name__ == "__main__":
         model=args.model,
         fallback_models=args.fallback_models,
         temperature=args.temperature,
+        timeout=args.timeout,
         locale=args.locale,
     )
 

@@ -111,6 +111,71 @@ def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
         return _init_progress(page_config_path, progress_path)
 
 
+def _sync_new_pages(progress_df: pd.DataFrame, page_config_path: str, progress_path: str) -> pd.DataFrame:
+    """Append rows to progress.csv for any page_config URLs not already tracked."""
+    from urllib.parse import urlparse
+
+    all_pages = pd.read_csv(page_config_path)
+    existing_urls = set(progress_df["url"])
+    new_pages = all_pages[~all_pages["url"].isin(existing_urls)]
+
+    if new_pages.empty:
+        return progress_df
+
+    url_slugs = [urlparse(u).path.rstrip("/").split("/")[-1] for u in new_pages["url"]]
+    new_rows = pd.DataFrame({
+        "url": new_pages["url"].values,
+        "keyword": new_pages["keyword"].values,
+        "url_slug": url_slugs,
+        "status": "pending",
+        "error": "",
+        "timestamp": "",
+    })
+    result = pd.concat([progress_df, new_rows], ignore_index=True)
+    result.to_csv(progress_path, index=False)
+    print(f"  Added {len(new_rows)} new page(s) from page_config.csv to progress tracking.")
+    return result
+
+
+def _load_existing_batch_rows(csv_path: str, models: list) -> list:
+    """Load completed rows from an existing batch CSV into the rows dict format.
+
+    Used to pre-populate the rows list when resuming a run_label run, so the
+    final CSV contains all pages (previously completed + newly processed).
+    Only called when --run-label is set and the CSV already exists.
+    """
+    if not os.path.exists(csv_path):
+        return []
+    try:
+        df = pd.read_csv(csv_path)
+        model_slugs = [sanitize_model_name(m) for m in models]
+        rows = []
+        for _, r in df.iterrows():
+            model_results = {}
+            for slug in model_slugs:
+                bp_col = f"{slug}_blueprint"
+                ct_col = f"{slug}_content"
+                mu_col = f"{slug}_model_used"
+                if bp_col in df.columns and ct_col in df.columns:
+                    entry = {
+                        "blueprint": r.get(bp_col, ""),
+                        "content": r.get(ct_col, ""),
+                    }
+                    if mu_col in df.columns:
+                        entry["model_used"] = r.get(mu_col, "")
+                    model_results[slug] = entry
+            rows.append({
+                "url": r["url"],
+                "keyword": r["keyword"],
+                "url_slug": r.get("url_slug", ""),
+                "cluster": r.get("cluster", ""),
+                "model_results": model_results,
+            })
+        return rows
+    except Exception:
+        return []
+
+
 def run_batch(
     models: list,
     fallback_models: list = None,
@@ -139,18 +204,21 @@ def run_batch(
     csv_name = f"batch_{run_label}.csv" if run_label else f"batch_{timestamp}.csv"
     csv_path = os.path.join(output_root, csv_name)
 
-    # Initialize or load progress
+    # Initialize or load progress, then sync any new pages added to page_config.csv
     if not os.path.exists(progress_path):
         print("No progress.csv found — initializing from page_config.csv")
         progress_df = _init_progress(page_config_path, progress_path)
     else:
         progress_df = _load_progress(progress_path, page_config_path)
+        progress_df = _sync_new_pages(progress_df, page_config_path, progress_path)
 
     # Build url → cluster mapping from page_config.csv (filtered by locale)
     page_df = pd.read_csv(page_config_path)
-    if "locale" in page_df.columns:
+    all_locales = locale == "all"
+    if "locale" in page_df.columns and not all_locales:
         page_df = page_df[page_df["locale"] == locale].copy()
     url_to_cluster = dict(zip(page_df["url"], page_df["cluster"]))
+    url_to_locale = dict(zip(page_df["url"], page_df["locale"])) if "locale" in page_df.columns else {}
 
     # Select pending rows, optionally filtered by cluster
     pending = progress_df[progress_df["status"] != "done"].copy()
@@ -169,7 +237,7 @@ def run_batch(
     done_count = (progress_df["status"] == "done").sum()
     model_names = ", ".join(m.split("/")[-1] for m in models)
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
-    print(f"Locale: {locale}")
+    print(f"Locale: {'all' if all_locales else locale}")
     if cluster:
         print(f"Cluster filter: {cluster}")
     if fallback_models:
@@ -188,6 +256,13 @@ def run_batch(
     completed = 0
     errors = 0
 
+    # When resuming a labeled run, pre-load previously completed rows so the final
+    # CSV contains all pages, not just those processed in this invocation.
+    rows = _load_existing_batch_rows(csv_path, models) if run_label else []
+    # Remove any URLs we're about to process (they'll be re-added with fresh results)
+    pending_urls = set(pending["url"])
+    rows = [r for r in rows if r["url"] not in pending_urls]
+
     # Load prompt templates and per-cluster config caches.
     # Each cluster's config is loaded once on first encounter.
     from load_config import load_config
@@ -198,7 +273,6 @@ def run_batch(
         prompt2_template = f.read()
 
     cluster_caches: dict = {}
-    rows = []  # accumulated result rows for CSV
 
     for i, row in enumerate(pending.itertuples(), 1):
         print(f"[{i}/{total}] {row.keyword}")
@@ -230,12 +304,15 @@ def run_batch(
             print(f"  ✗ Error: No cluster found for URL")
             continue
 
-        if row_cluster not in cluster_caches:
-            cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir, locale=locale)
+        row_locale = url_to_locale.get(row.url, locale) if all_locales else locale
+
+        cache_key = (row_cluster, row_locale)
+        if cache_key not in cluster_caches:
+            cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir, locale=row_locale)
             cache["PROMPT_1_TEMPLATE"] = prompt1_template
             cache["PROMPT_2_TEMPLATE"] = prompt2_template
-            cluster_caches[row_cluster] = cache
-        config_cache = cluster_caches[row_cluster]
+            cluster_caches[cache_key] = cache
+        config_cache = cluster_caches[cache_key]
 
         page_row = {
             "url": row.url,
@@ -264,7 +341,7 @@ def run_batch(
                 timeout=timeout,
                 config_cache=config_cache,
                 return_raw=True,
-                locale=locale,
+                locale=row_locale,
             )
 
             if last_result["status"] == "done":
@@ -351,7 +428,7 @@ if __name__ == "__main__":
         default=None,
         help="Label for this run (creates separate progress file and fixed CSV name for resume)",
     )
-    parser.add_argument("--locale", default="en", help="Locale code (e.g. en, fr, de, es, pt-BR, nl, it)")
+    parser.add_argument("--locale", default="en", help="Locale code (e.g. en, fr, de, es, pt-BR, nl, it) or 'all' to process every locale in one run")
     args = parser.parse_args()
 
     models = [m.strip() for m in args.models.split(",") if m.strip()]
