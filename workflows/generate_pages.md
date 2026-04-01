@@ -16,7 +16,7 @@ Run the two-prompt LLM pipeline to generate blueprint and HTML content for pages
 
 - `LITELLM_API_KEY` and `LITELLM_PROXY_URL` are set in `.env`
 - Python dependencies installed: `pip install -r requirements.txt`
-- `inputs/` contains: `prompt_1.md`, `prompt_2.md`, `global_config.csv`, `cluster_config.csv`, `page_config.csv`
+- `inputs/` contains: `prompt_1.md`, `prompt_2.md`, `global_config.csv`, `cluster_config.csv`, `page_config.csv`, `locale_config.csv`
 
 ---
 
@@ -39,8 +39,9 @@ Parameter quirks (`max_completion_tokens` vs `max_tokens`, no-temperature models
 | Scope | Changes when | Source file |
 |---|---|---|
 | Global | Switching to a different website | `global_config.csv` |
+| Locale | Switching language/market | `locale_config.csv` (match by `locale` column) — sets `language` and `tone_of_voice` in prompts |
 | Cluster | Switching to a different content cluster | `cluster_config.csv` (match by `cluster` column) |
-| Page | Every page | `page_config.csv` (`cluster`, `url`, `keyword` columns) |
+| Page | Every page | `page_config.csv` (`locale`, `cluster`, `url`, `keyword` columns) |
 
 ---
 
@@ -52,7 +53,7 @@ Parameter quirks (`max_completion_tokens` vs `max_tokens`, no-temperature models
 python tools/load_config.py --cluster group_annotate --test
 ```
 
-Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION_MENU should show the full section definitions block from cluster_config.csv.
+Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION_MENU shows the first 300 chars of the section definitions block from cluster_config.csv.
 
 ### 2. Run a test batch (recommended before full run)
 
@@ -88,8 +89,10 @@ Use `--run-label` to keep a stable CSV filename across resume runs:
 
 ```bash
 python tools/batch_generate.py --models openai/gpt-4o-mini --run-label annotate_run1
-# → writes to output/batch_annotate_run1.csv and inputs/progress_annotate_run1.csv
+# → writes to output/batch_annotate_run1.csv and output/progress_annotate_run1.csv
 ```
+
+> Note: Without `--run-label`, progress is tracked in `output/progress.csv`. With `--run-label`, a separate `output/progress_{run_label}.csv` is used — useful when running multiple clusters or locales in parallel without cross-contaminating progress state.
 
 ### 5. Run with a fallback model
 
@@ -130,7 +133,7 @@ python tools/batch_generate.py \
 
 The CSV will have two columns per model: `{slug}_blueprint` and `{slug}_content`.
 
-### 6. Single page (saves to folder)
+### 7. Single page (saves to folder)
 
 ```bash
 python tools/generate_page.py \
@@ -167,10 +170,11 @@ output/
 |------|---------|-------------|
 | `--models` | `openai/gpt-4o-mini` | Comma-separated model names (e.g. `openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022`) |
 | `--fallback-models` | None | Comma-separated fallback models tried in order if the primary exhausts all retries (e.g. `openai/gpt-4o-mini`). Cannot be combined with multi-model comparison. |
+| `--locale` | `en` | Language/market for this run. Filters `page_config.csv` by `locale` column and injects tone of voice. See `inputs/locale_config.csv` for available codes. |
 | `--cluster` | None (all) | Filter by cluster name |
 | `--limit` | None | Max pages to process (for testing) |
 | `--temperature` | `0.3` | Sampling temperature |
-| `--timeout` | None | Timeout in seconds per model (shows `ERROR: timed out` in CSV on timeout) |
+| `--timeout` | `180` | Timeout in seconds per model call |
 | `--run-label` | None | Stable label for CSV filename and progress file (enables deterministic resume) |
 
 ---
@@ -197,7 +201,7 @@ This does not update `progress.csv` — update it manually or re-run the batch (
 ## Adding a New Cluster
 
 1. Add a row to `inputs/cluster_config.csv` with columns: `cluster`, `target_word_count`, `cluster_context`, `section_menu`
-2. Add the new cluster's pages to `inputs/page_config.csv` with columns: `cluster`, `url`, `keyword`
+2. Add the new cluster's pages to `inputs/page_config.csv` with columns: `locale`, `cluster`, `url`, `keyword`
 3. Validate: `python tools/load_config.py --cluster {new_cluster} --test`
 4. Run: `python tools/batch_generate.py --models openai/gpt-4o-mini --cluster {new_cluster}`
 

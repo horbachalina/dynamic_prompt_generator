@@ -120,6 +120,7 @@ def run_batch(
     temperature: float = 0.3,
     timeout: int = None,
     run_label: str = None,
+    locale: str = "en",
 ):
     if base_dir is None:
         base_dir = _default_base_dir()
@@ -145,12 +146,16 @@ def run_batch(
     else:
         progress_df = _load_progress(progress_path, page_config_path)
 
-    # Build url → cluster mapping from page_config.csv
+    # Build url → cluster mapping from page_config.csv (filtered by locale)
     page_df = pd.read_csv(page_config_path)
+    if "locale" in page_df.columns:
+        page_df = page_df[page_df["locale"] == locale].copy()
     url_to_cluster = dict(zip(page_df["url"], page_df["cluster"]))
 
     # Select pending rows, optionally filtered by cluster
     pending = progress_df[progress_df["status"] != "done"].copy()
+    # Filter to URLs that belong to this locale
+    pending = pending[pending["url"].isin(url_to_cluster)].copy()
     if cluster is not None:
         pending = pending[pending["url"].map(url_to_cluster) == cluster].copy()
     if limit is not None:
@@ -164,6 +169,7 @@ def run_batch(
     done_count = (progress_df["status"] == "done").sum()
     model_names = ", ".join(m.split("/")[-1] for m in models)
     print(f"Batch starting: {total} pages to process ({done_count} already done).")
+    print(f"Locale: {locale}")
     if cluster:
         print(f"Cluster filter: {cluster}")
     if fallback_models:
@@ -225,7 +231,7 @@ def run_batch(
             continue
 
         if row_cluster not in cluster_caches:
-            cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir)
+            cache = load_config(cluster=row_cluster, keyword="__cache__", url=_dummy_url, base_dir=base_dir, locale=locale)
             cache["PROMPT_1_TEMPLATE"] = prompt1_template
             cache["PROMPT_2_TEMPLATE"] = prompt2_template
             cluster_caches[row_cluster] = cache
@@ -258,6 +264,7 @@ def run_batch(
                 timeout=timeout,
                 config_cache=config_cache,
                 return_raw=True,
+                locale=locale,
             )
 
             if last_result["status"] == "done":
@@ -344,6 +351,7 @@ if __name__ == "__main__":
         default=None,
         help="Label for this run (creates separate progress file and fixed CSV name for resume)",
     )
+    parser.add_argument("--locale", default="en", help="Locale code (e.g. en, fr, de, es, pt-BR, nl, it)")
     args = parser.parse_args()
 
     models = [m.strip() for m in args.models.split(",") if m.strip()]
@@ -367,4 +375,5 @@ if __name__ == "__main__":
         temperature=args.temperature,
         timeout=args.timeout,
         run_label=args.run_label,
+        locale=args.locale,
     )

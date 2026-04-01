@@ -26,6 +26,20 @@ python tools/batch_generate.py \
     --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022,gemini/gemini-1.5-pro
 ```
 
+### 3. Localized comparison (add `--locale`)
+
+To compare models for a specific market, add `--locale`:
+
+```bash
+python tools/batch_generate.py \
+    --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022 \
+    --locale fr \
+    --cluster group_annotate \
+    --limit 3
+```
+
+See `inputs/locale_config.csv` for available locale codes (`en`, `fr`, `de`, `es`, `pt-BR`, `nl`, `it`).
+
 ---
 
 ## Output
@@ -48,6 +62,20 @@ Open the CSV in a spreadsheet app. For each URL row, compare across models:
 - Word count and depth
 - Tone consistency with prompt_2 writing rules
 - Brand mention density (target: 5–6 per article)
+
+---
+
+## Known Constraints
+
+- **`--fallback-models` is incompatible with multi-model comparison.** Use a single `--models` value when using fallbacks. Multi-model runs (`--models A,B`) do not support fallback chains.
+- **Comparison runs mark pages `done` in `progress.csv`.** This means a subsequent production run with the same `progress.csv` will skip pages that were only run for comparison. To avoid this, use `--run-label` to isolate the comparison into its own progress file:
+  ```bash
+  python tools/batch_generate.py \
+      --models openai/gpt-4o-mini,anthropic/claude-3-5-sonnet-20241022 \
+      --run-label model_comparison_apr
+  ```
+- **If one model fails mid-batch**, the page is marked `error` in `progress.csv` but the CSV still contains whatever that model produced (partial output or error message). Other models' output for the same page is preserved. Re-run to retry failed pages.
+- Model names must be provider-prefixed (e.g. `openai/gpt-4o-mini`, not `gpt-4o-mini`).
 
 ---
 

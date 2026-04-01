@@ -185,6 +185,7 @@ def _run_pipeline(
     prompt2 = prompt2_template
     prompt2 = prompt2.replace("{{BLUEPRINT}}", blueprint)
     prompt2 = prompt2.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
+    prompt2 = prompt2.replace("{{TONE_OF_VOICE}}", config.get("TONE_OF_VOICE", ""))
 
     # --- Call LLM: Prompt 2 ---
     print(f"  Running Prompt 2 (Writer)...")
@@ -255,6 +256,7 @@ def generate_single_page(
     timeout: int = None,
     config_cache: dict = None,
     return_raw: bool = False,
+    locale: str = "en",
 ) -> dict:
     """
     Run the full two-prompt pipeline for a single page.
@@ -315,7 +317,7 @@ def generate_single_page(
             config["url_slug"] = url_slug
             config["PAGE_CONFIG"] = json.dumps({"keyword": keyword, "url": url}, ensure_ascii=False)
         else:
-            config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir)
+            config = load_config(cluster=cluster, keyword=keyword, url=url, base_dir=base_dir, locale=locale)
         url_slug = config["url_slug"]
         slug_output_dir = os.path.join(output_dir, url_slug)
         if not return_raw:
@@ -336,6 +338,7 @@ def generate_single_page(
         # --- Assemble Prompt 1 (model-agnostic — done once for all fallbacks) ---
         prompt1 = prompt1_template
         prompt1 = prompt1.replace("{{GLOBAL_CONFIG}}", config["GLOBAL_CONFIG"])
+        prompt1 = prompt1.replace("{{TONE_OF_VOICE}}", config.get("TONE_OF_VOICE", ""))
         prompt1 = prompt1.replace("{{CLUSTER_CONFIG}}", config["CLUSTER_CONFIG"])
         prompt1 = prompt1.replace("{{PAGE_CONFIG}}", config["PAGE_CONFIG"])
         prompt1 = prompt1.replace("{{SECTION_MENU}}", config["SECTION_MENU"])
@@ -416,11 +419,12 @@ if __name__ == "__main__":
     )
     parser.add_argument("--temperature", type=float, default=0.3, help="Sampling temperature")
     parser.add_argument("--output-dir", default=None, help="Override output directory")
+    parser.add_argument("--locale", default="en", help="Locale code (e.g. en, fr, de, es, pt-BR, nl, it)")
     args = parser.parse_args()
 
     fallback_info = f" → fallback: {', '.join(args.fallback_models)}" if args.fallback_models else ""
     print(f"Generating page for: {args.keyword}")
-    print(f"  Model: {args.model}{fallback_info} | Temperature: {args.temperature}")
+    print(f"  Model: {args.model}{fallback_info} | Temperature: {args.temperature} | Locale: {args.locale}")
     result = generate_single_page(
         args.keyword,
         args.url,
@@ -429,6 +433,7 @@ if __name__ == "__main__":
         model=args.model,
         fallback_models=args.fallback_models,
         temperature=args.temperature,
+        locale=args.locale,
     )
 
     if result["status"] == "done":
