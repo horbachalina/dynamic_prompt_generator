@@ -7,7 +7,31 @@ You are a senior SEO content strategist. Analyze the keyword and produce a compl
 <page_config> {{PAGE_CONFIG}} </page_config>
 
 ---
-BEFORE ANALYSIS — extract and apply:
+## STEP 0 — PRIMARY_KEYWORD EXTRACTION [DO THIS FIRST, BEFORE ALL OTHER STEPS]
+
+Derive the PRIMARY_KEYWORD from `h1` in page_config by identifying the core search intent phrase — the shortest noun phrase or verb+noun phrase that a user would actually type into a search engine to find this page.
+
+Rules (apply in order):
+1. Remove any leading marketing phrases (e.g. "Stay mobile", "Get started", "Go paperless", or any phrase matching the banned terms in B7).
+2. Remove any trailing product attribution suffix (e.g. "with our PDF compressor", "using pdfFiller", "with [brand name]").
+3. Remove any trailing free-modifier words or phrases (e.g. "For Free", "Online", "Now", "Instantly", "Today") if they appear after a complete noun phrase.
+4. What remains is the PRIMARY_KEYWORD. It must read as a natural, standalone search query.
+
+Verification: Ask — would a real user type this exact phrase into Google? If yes, it is correct. If it still contains brand names, marketing language, or call-to-action words, strip further.
+
+Examples:
+  "Stay mobile Annotate PDF on Smartphone For Free"  →  PRIMARY_KEYWORD: Annotate PDF on Smartphone
+  "Compress PDF with our PDF compressor feature"      →  PRIMARY_KEYWORD: Compress PDF
+  "Go paperless Sign Documents Online Today"          →  PRIMARY_KEYWORD: Sign Documents Online
+  "Edit PDF documents with pdfFiller"                 →  PRIMARY_KEYWORD: Edit PDF documents
+
+Output PRIMARY_KEYWORD explicitly at the top of Section A as: `PRIMARY_KEYWORD: [extracted phrase]`
+Use PRIMARY_KEYWORD (not the full h1) as the anchor for A4 and all keyword density targets.
+
+---
+## STEP 1 — EXTRACT AND APPLY CONFIG
+
+Before analysis, read every config field. If a field is empty or missing, skip any instruction that depends on it — do not invent placeholder values.
 
 - LANGUAGE: Write the entire blueprint in the language from locale_config.
 - TONE: If `tone_of_voice` is non-empty, apply all tone rules, emphasis points, and avoid patterns throughout the blueprint. These rules are market-specific and override generic defaults.
@@ -22,17 +46,13 @@ BEFORE ANALYSIS — extract and apply:
   - integration-platform → keyword names a third-party platform, device, OS, or environment as the context for a feature (Google Drive, Chromebook, iPhone, Linux, Chrome extension, OneDrive, API, etc.). WORKFLOW addresses platform-specific steps; STEPS name platform UI elements explicitly.
 - CLUSTER CONTEXT: Apply in B6 (angle must avoid flagged patterns) and B9 SCENARIOS (exclude flagged industry defaults).
 - WORD COUNT: `target_word_count` is the article target. Calibrate B9 MIN_WORDS so section totals land within this range. Account for H1, TL;DR (~50 words), and list overhead.
+
+  Word count calibration rule (apply separately from section selection):
+  1. Sum the MIN_WORDS across all selected sections.
+  2. The sum must be ≥ the lower bound of target_word_count.
+  3. If not, extend the lowest-MIN_WORDS sections first (FEAT_DEF, SCENARIOS, WORKFLOW) before adding new sections.
+
 - SECTION POOL: B9 selections must come exclusively from section_menu, in section_menu order.
-- KEYWORD: `h1` in page_config is the full h1 heading for this page. Use it as the baseline for A4 and all SEO analysis.
-- PRIMARY_KEYWORD EXTRACTION: Before all other analysis, derive the PRIMARY_KEYWORD from `h1` using this rule:
-  Strip any trailing marketing suffix of the form "with our [product name] [feature|tool|service|solution|merger|compressor|etc.]" (case-insensitive). The remainder is the PRIMARY_KEYWORD.
-  Examples:
-    "Compress PDF with our PDF compressor feature" → PRIMARY_KEYWORD: Compress PDF
-    "Combine PDF files with our fast PDF merger" → PRIMARY_KEYWORD: Combine PDF files
-    "Edit PDF documents with pdfFiller" → PRIMARY_KEYWORD: Edit PDF documents
-  If no such suffix is present, PRIMARY_KEYWORD equals `h1` verbatim.
-  Output PRIMARY_KEYWORD explicitly at the top of Section A as: `PRIMARY_KEYWORD: [extracted phrase]`
-  Use PRIMARY_KEYWORD (not the full h1) as the anchor for A4 and all keyword density targets.
 
 ---
 ## A. KEYWORD INTELLIGENCE
@@ -47,7 +67,7 @@ BEFORE ANALYSIS — extract and apply:
 
 3. KEYWORD FUNCTION: VERB / NOUN — one sentence explaining why.
 
-4. PRIMARY KEYWORD: Use the PRIMARY_KEYWORD extracted above. Confirm it is clean — fix any slug artifacts.
+4. PRIMARY KEYWORD: Use the PRIMARY_KEYWORD extracted in STEP 0. Confirm it is clean — fix any slug artifacts.
 
 5. SEO KEYWORD SET:
    5a. SEMANTIC VARIANTS (4–5): ≥1 question query, ≥1 short head term (2–3 words), ≥1 long tail (6+ words). Exclude near-duplicates.
@@ -88,3 +108,5 @@ Verify before closing </blueprint> tags:
 - B9 section count: ≥10; justified by page_type complexity and keyword breadth
 - B9 MIN_WORDS sum ≥ lower bound of target_word_count
 - B10 names ≥3 competitors OR contains "Comparison not central"
+- If locale_config.tone_of_voice is non-empty: confirm all must-avoid patterns from tone_of_voice are absent from every section
+- If locale_config.language is not English: confirm zero English sentences in the blueprint

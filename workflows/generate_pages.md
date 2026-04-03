@@ -45,15 +45,49 @@ Parameter quirks (`max_completion_tokens` vs `max_tokens`, no-temperature models
 
 ---
 
+## Supported Locales
+
+| Locale code | Language | Key tone rules |
+|---|---|---|
+| `en` | English | "you", active voice, outcome-led, no jargon, social proof anchors |
+| `fr` | French | "vous", no exclamation marks, RGPD mention, logic-driven |
+| `es` | Spanish | "tú", warm, practical outcomes, social proof prominent |
+| `pt-BR` | Portuguese (Brazil) | "você", energetic, anti-bureaucracy angle, mobile-friendly |
+| `nl` | Dutch | Direct, "jij/je", ZZP'ers segment, AVG compliance |
+| `de` | German | "Sie", DSGVO mandatory, facts not emotions, no hype |
+| `it` | Italian | "Lei/voi", warm, eIDAS compliance, PMI focus |
+
+Full tone rules per locale are in `inputs/locale_config.csv`. Edit that file to update or extend market guidance without touching any code or prompts.
+
+---
+
+## Adding Localized Pages
+
+Add rows to `inputs/page_config.csv` with the localized URL and English keyword:
+
+```csv
+locale,cluster,url,keyword
+fr,group_annotate,https://www.pdffiller.com/fr/functionality/pdf-annotate,Annotate PDF Online
+de,group_compress,https://www.pdffiller.com/de/functionality/pdf-compress,Compress PDF Online
+```
+
+Keywords stay in **English** — the LLM generates content in the target language but uses the English keyword as its SEO anchor. Do not translate keywords in `page_config.csv`.
+
+---
+
 ## Steps
 
 ### 1. Validate config loads correctly
 
 ```bash
+# English (default)
 python tools/load_config.py --cluster group_annotate --test
+
+# Any other locale
+python tools/load_config.py --cluster group_annotate --locale fr --test
 ```
 
-Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. SECTION_MENU shows the first 300 chars of the section definitions block from cluster_config.csv.
+Check the output: GLOBAL_CONFIG and CLUSTER_CONFIG should be valid JSON. LOCALE_CONFIG should show the language and tone block for the target locale. SECTION_MENU shows the first 300 chars of the section definitions block from cluster_config.csv.
 
 ### 2. Run a test batch (recommended before full run)
 
@@ -198,6 +232,84 @@ This does not update `progress.csv` — update it manually or re-run the batch (
 
 ---
 
+## Localized Runs
+
+Run a single locale batch by adding `--locale`:
+
+```bash
+python tools/batch_generate.py --models openai/gpt-4o-mini --locale fr --cluster group_annotate --limit 2  # test first
+python tools/batch_generate.py --models openai/gpt-4o-mini --locale fr --cluster group_annotate            # full run
+```
+
+Single page with locale:
+
+```bash
+python tools/generate_page.py \
+  --keyword "Annotate PDF Online" \
+  --url "https://www.pdffiller.com/fr/functionality/pdf-annotate" \
+  --cluster group_annotate \
+  --locale fr
+```
+
+Run all locales sequentially with isolated progress files:
+
+```bash
+for locale in en fr de es pt-BR nl it; do
+  python tools/batch_generate.py --models openai/gpt-4o-mini --locale $locale --run-label ${locale}_run1
+done
+```
+
+Each locale writes to `output/progress_${locale}_run1.csv`. Safe to interrupt and resume any locale independently.
+
+---
+
+## Tone Validation Checklist
+
+After generating, verify content against these per-market rules:
+
+**English (en)**
+- [ ] "you" throughout — no "one" or passive constructions
+- [ ] Active voice dominant
+- [ ] Lead with concrete outcomes ("Sign documents in seconds", "Work from anywhere")
+- [ ] "Trusted by 68M+ users" and/or "1M+ ready-to-use templates" present
+- [ ] No jargon or enterprise-speak ("robust solution", "leverage", "seamlessly")
+
+**French (fr)**
+- [ ] "vous" throughout — no "tu"
+- [ ] No exclamation marks in headings
+- [ ] RGPD mentioned at least once
+- [ ] No American-style hype ("la meilleure solution", etc.)
+
+**German (de)**
+- [ ] "Sie" throughout
+- [ ] No exclamation marks in headings
+- [ ] DSGVO mentioned at least once
+- [ ] Claims backed by specific numbers (68M users, 1M+ templates)
+- [ ] No hype words ("revolutionär", "erstaunlich")
+
+**Spanish (es)**
+- [ ] "tú" throughout
+- [ ] "68M+ usuarios confían" or equivalent social proof present
+- [ ] Practical outcomes emphasized ("firmar en segundos", "sin imprimir")
+
+**Portuguese Brazil (pt-BR)**
+- [ ] "você" throughout
+- [ ] Anti-bureaucracy angle present
+- [ ] Mobile-friendly angle included
+
+**Dutch (nl)**
+- [ ] Short, direct sentences
+- [ ] ZZP'ers or freelancer segment addressed
+- [ ] AVG-conform mentioned
+- [ ] No marketing fluff
+
+**Italian (it)**
+- [ ] "Lei" or "voi" for B2B
+- [ ] eIDAS or EU compliance mentioned
+- [ ] PMI segment addressed
+
+---
+
 ## Adding a New Cluster
 
 1. Add a row to `inputs/cluster_config.csv` with columns: `cluster`, `target_word_count`, `cluster_context`, `section_menu`
@@ -212,7 +324,14 @@ Note: `progress.csv` tracks by URL. New URLs are added as `pending` on first run
 ## Known Constraints
 
 - Sequential execution — models for each page run one after another (no parallelism)
-- `max_tokens=8192` for both Prompt 1 and Prompt 2; target article length is 1200–1500 words (~6000–7000 tokens of HTML output, well within limit)
+- `max_tokens=4096` for both Prompt 1 and Prompt 2; target article length is 1200–1500 words (~6000–7000 tokens of HTML output, well within limit)
 - Section menu `[VERIFY]` flags indicate unconfirmed product details — review those sections before publishing
 - `progress.csv` is re-initialized only if missing or corrupt; all completed pages are preserved across runs
 - Model names must be provider-prefixed when using the LiteLLM proxy (e.g. `openai/gpt-4o-mini`, not `gpt-4o-mini`)
+- The `--locale` flag filters `page_config.csv` by the `locale` column — pages with a different locale value are skipped entirely in that run
+- Localized URLs (e.g. `/fr/...`) are tracked separately in `progress.csv` from English URLs (e.g. `/en/...`)
+- **Progress file collision risk:** Running multiple locales without `--run-label` shares `output/progress.csv`. Use `--run-label` per locale to keep progress files isolated:
+  ```bash
+  python tools/batch_generate.py --models openai/gpt-4o-mini --locale fr --run-label fr_annotate
+  python tools/batch_generate.py --models openai/gpt-4o-mini --locale de --run-label de_annotate
+  ```
