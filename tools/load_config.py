@@ -33,9 +33,9 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None, loca
             "GLOBAL_CONFIG": str,    # JSON: website, language, target_audience, positioning_statement
             "CLUSTER_CONFIG": str,   # JSON: cluster_context, target_word_count
             "SECTION_MENU": str,     # raw long-form text block (from cluster_config.csv)
-            "PAGE_CONFIG": str,      # JSON: {"keyword": "...", "url": "..."}
-            "TONE_OF_VOICE": str,    # tone instructions for the locale (empty for "en")
-            "url_slug": str          # last path segment of URL
+            "PAGE_CONFIG": str,      # JSON: {"h1": "...", "url": "..."}
+            "LOCALE_CONFIG": str,    # JSON: {"language": "...", "tone_of_voice": "..."}
+            "url_slug": str          # last path segment of URL, or subdomain if path is empty
         }
     """
     if base_dir is None:
@@ -61,6 +61,10 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None, loca
     locale_row = locale_matches.iloc[0]
     language = str(locale_row["language"])
     tone_of_voice = "" if pd.isna(locale_row["tone_of_voice"]) else str(locale_row["tone_of_voice"])
+    locale_config = json.dumps(
+        {"language": language, "tone_of_voice": tone_of_voice},
+        ensure_ascii=False,
+    )
 
     # --- GLOBAL_CONFIG (full — for prompt_1) ---
     row = global_df.iloc[0]
@@ -95,10 +99,15 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None, loca
     section_menu = str(cluster_row["section_menu"])
 
     # --- PAGE_CONFIG ---
-    page_config = json.dumps({"keyword": keyword, "url": url}, ensure_ascii=False)
+    page_config = json.dumps({"h1": keyword, "url": url}, ensure_ascii=False)
 
     # --- URL slug ---
-    url_slug = urlparse(url).path.rstrip("/").split("/")[-1]
+    parsed = urlparse(url)
+    url_slug = parsed.path.rstrip("/").split("/")[-1]
+    if not url_slug:
+        # Fallback: use the first subdomain label (e.g. "compress-pdf" from compress-pdf.pdffiller.com)
+        hostname = parsed.hostname or ""
+        url_slug = hostname.split(".")[0] if hostname else ""
     if not url_slug:
         raise ValueError(f"Could not derive a url_slug from URL: {url!r}")
 
@@ -107,7 +116,7 @@ def load_config(cluster: str, keyword: str, url: str, base_dir: str = None, loca
         "CLUSTER_CONFIG": cluster_config,
         "SECTION_MENU": section_menu,
         "PAGE_CONFIG": page_config,
-        "TONE_OF_VOICE": tone_of_voice,
+        "LOCALE_CONFIG": locale_config,
         "url_slug": url_slug,
     }
 
@@ -143,8 +152,8 @@ if __name__ == "__main__":
         print("PAGE_CONFIG:")
         print(config["PAGE_CONFIG"])
         print()
-        print("TONE_OF_VOICE (first 200 chars):")
-        print(config["TONE_OF_VOICE"][:200] if config["TONE_OF_VOICE"] else "(empty — English default)")
+        print("LOCALE_CONFIG (first 200 chars):")
+        print(config["LOCALE_CONFIG"][:200] if config["LOCALE_CONFIG"] else "(empty)")
         print()
         print("url_slug:", config["url_slug"])
         print("=" * 60)

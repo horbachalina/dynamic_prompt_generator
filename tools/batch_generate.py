@@ -50,7 +50,7 @@ def write_batch_csv(rows: list, models: list, output_path: str) -> None:
         for slug in model_slugs
     )
 
-    columns = ["url", "keyword", "url_slug", "cluster"]
+    columns = ["url", "h1", "url_slug", "cluster"]
     for slug in model_slugs:
         columns += [f"{slug}_blueprint", f"{slug}_content"]
         if has_model_used:
@@ -60,7 +60,7 @@ def write_batch_csv(rows: list, models: list, output_path: str) -> None:
     for row in rows:
         record = {
             "url": row["url"],
-            "keyword": row["keyword"],
+            "h1": row["h1"],
             "url_slug": row["url_slug"],
             "cluster": row["cluster"],
         }
@@ -75,17 +75,26 @@ def write_batch_csv(rows: list, models: list, output_path: str) -> None:
     df.to_csv(output_path, index=False, encoding="utf-8")
 
 
+def _url_to_slug(url: str) -> str:
+    """Extract a url_slug from a URL, falling back to subdomain for subdomain-only URLs."""
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    slug = parsed.path.rstrip("/").split("/")[-1]
+    if not slug:
+        hostname = parsed.hostname or ""
+        slug = hostname.split(".")[0] if hostname else ""
+    return slug
+
+
 def _init_progress(page_config_path: str, progress_path: str) -> pd.DataFrame:
     """Create progress.csv from page_config.csv with all pages as pending."""
-    from urllib.parse import urlparse
-
     pages = pd.read_csv(page_config_path)
-    url_slugs = [urlparse(u).path.rstrip("/").split("/")[-1] for u in pages["url"]]
+    url_slugs = [_url_to_slug(u) for u in pages["url"]]
 
     progress = pd.DataFrame(
         {
             "url": pages["url"],
-            "keyword": pages["keyword"],
+            "h1": pages["h1"],
             "url_slug": url_slugs,
             "status": "pending",
             "error": "",
@@ -100,7 +109,7 @@ def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
     """Load existing progress.csv, falling back to re-init if corrupt."""
     try:
         df = pd.read_csv(progress_path)
-        required = {"url", "keyword", "url_slug", "status", "error", "timestamp"}
+        required = {"url", "h1", "url_slug", "status", "error", "timestamp"}
         if not required.issubset(df.columns):
             raise ValueError("Missing columns")
         for col in ("url_slug", "status", "error", "timestamp"):
@@ -113,8 +122,6 @@ def _load_progress(progress_path: str, page_config_path: str) -> pd.DataFrame:
 
 def _sync_new_pages(progress_df: pd.DataFrame, page_config_path: str, progress_path: str) -> pd.DataFrame:
     """Append rows to progress.csv for any page_config URLs not already tracked."""
-    from urllib.parse import urlparse
-
     all_pages = pd.read_csv(page_config_path)
     existing_urls = set(progress_df["url"])
     new_pages = all_pages[~all_pages["url"].isin(existing_urls)]
@@ -122,10 +129,10 @@ def _sync_new_pages(progress_df: pd.DataFrame, page_config_path: str, progress_p
     if new_pages.empty:
         return progress_df
 
-    url_slugs = [urlparse(u).path.rstrip("/").split("/")[-1] for u in new_pages["url"]]
+    url_slugs = [_url_to_slug(u) for u in new_pages["url"]]
     new_rows = pd.DataFrame({
         "url": new_pages["url"].values,
-        "keyword": new_pages["keyword"].values,
+        "h1": new_pages["h1"].values,
         "url_slug": url_slugs,
         "status": "pending",
         "error": "",
@@ -166,7 +173,7 @@ def _load_existing_batch_rows(csv_path: str, models: list) -> list:
                     model_results[slug] = entry
             rows.append({
                 "url": r["url"],
-                "keyword": r["keyword"],
+                "h1": r["h1"],
                 "url_slug": r.get("url_slug", ""),
                 "cluster": r.get("cluster", ""),
                 "model_results": model_results,
@@ -275,13 +282,13 @@ def run_batch(
     cluster_caches: dict = {}
 
     for i, row in enumerate(pending.itertuples(), 1):
-        print(f"[{i}/{total}] {row.keyword}")
+        print(f"[{i}/{total}] {row.h1}")
 
         row_cluster = url_to_cluster.get(row.url)
         if not row_cluster:
             page_row = {
                 "url": row.url,
-                "keyword": row.keyword,
+                "h1": row.h1,
                 "url_slug": row.url_slug or "",
                 "cluster": "",
                 "model_results": {
@@ -316,7 +323,7 @@ def run_batch(
 
         page_row = {
             "url": row.url,
-            "keyword": row.keyword,
+            "h1": row.h1,
             "url_slug": row.url_slug or "",
             "cluster": row_cluster,
             "model_results": {},
@@ -331,7 +338,7 @@ def run_batch(
             model_short = model.split("/")[-1]
 
             last_result = generate_single_page(
-                keyword=row.keyword,
+                keyword=row.h1,
                 url=row.url,
                 cluster=row_cluster,
                 base_dir=base_dir,
