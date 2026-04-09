@@ -1,6 +1,6 @@
 # Dynamic Prompt Generator
 
-A two-prompt SEO content generation pipeline built on the **WAT framework** (Workflows, Agents, Tools). Given a keyword and URL, it runs a strategist prompt to produce a structured page blueprint, then a writer prompt to produce a semantic HTML article — all via a LiteLLM proxy.
+A two-prompt SEO content generation pipeline built on the **WAT framework** (Workflows, Agents, Tools). Given an H1 and URL, it runs a strategist prompt to produce a structured page blueprint, then a writer prompt to produce a semantic HTML article — all via a LiteLLM proxy. Supports multiple locales (en, fr, de, es, pt-BR, nl, it) with per-market tone rules.
 
 ---
 
@@ -17,7 +17,7 @@ The system is organized into three layers:
 **Pipeline overview:**
 
 ```
-keyword + URL
+h1 + URL + locale
     │
     ▼
 [Prompt 1 — Strategist]
@@ -84,6 +84,7 @@ Safe to interrupt with Ctrl+C. Completed pages are marked `done` in `progress.cs
 |------|---------|-------------|
 | `--models` | `openai/gpt-4o-mini` | Comma-separated provider-prefixed model names |
 | `--fallback-models` | *(none)* | Fallback models tried in order if the primary exhausts all retries. Cannot be combined with multi-model `--models A,B`. |
+| `--locale` | `en` | Language/market for this run. Filters `page_config.csv` by `locale` column and injects tone-of-voice rules. |
 | `--cluster` | *(all)* | Filter to a single cluster |
 | `--limit` | *(all)* | Cap number of pages processed in this run |
 | `--temperature` | `0.3` | LLM sampling temperature |
@@ -144,8 +145,9 @@ python tools/load_config.py --cluster group_annotate --test
 ```
 inputs/
 ├── global_config.csv       # Website name, language, target audience, positioning statement
+├── locale_config.csv       # Per-locale: language and tone-of-voice rules
 ├── cluster_config.csv      # Per-cluster: context, word count target, section menu
-├── page_config.csv         # Pages to generate: cluster, URL, keyword
+├── page_config.csv         # Pages to generate: locale, cluster, URL, h1
 ├── prompt_1.md             # Strategist prompt template (produces <blueprint>)
 └── prompt_2.md             # Writer prompt template (produces HTML article)
 
@@ -180,23 +182,25 @@ Template variables are resolved from three CSVs:
 | Scope | File | Changes when |
 |-------|------|--------------|
 | **Global** | `global_config.csv` | Switching to a different website |
+| **Locale** | `locale_config.csv` | Switching language/market |
 | **Cluster** | `cluster_config.csv` | Switching to a different content cluster |
 | **Page** | `page_config.csv` | Every page |
 
-`load_config.py` merges these into four template variables injected into the prompts:
+`load_config.py` merges these into template variables injected into the prompts:
 
 | Variable | Source | Contains |
 |----------|--------|---------|
 | `{{GLOBAL_CONFIG}}` | `global_config.csv` | JSON: website, language, audience, positioning |
+| `{{LOCALE_CONFIG}}` | `locale_config.csv` | Language name and tone-of-voice rules for the target locale |
 | `{{CLUSTER_CONFIG}}` | `cluster_config.csv` | JSON: cluster context, target word count |
 | `{{SECTION_MENU}}` | `cluster_config.csv` | Full section definitions block |
-| `{{PAGE_CONFIG}}` | `page_config.csv` | JSON: keyword and URL |
+| `{{PAGE_CONFIG}}` | `page_config.csv` | JSON: h1 and URL |
 | `{{BLUEPRINT}}` | Prompt 1 output | Extracted from `<blueprint>...</blueprint>` |
 
 ### Adding a new cluster
 
 1. Add a row to `inputs/cluster_config.csv`: `cluster`, `target_word_count`, `cluster_context`, `section_menu`
-2. Add the cluster's pages to `inputs/page_config.csv`: `cluster`, `url`, `keyword`
+2. Add the cluster's pages to `inputs/page_config.csv`: `locale`, `cluster`, `url`, `h1`
 3. Validate: `python tools/load_config.py --cluster {new_cluster} --test`
 4. Run: `python tools/batch_generate.py --models openai/gpt-4o-mini --cluster {new_cluster}`
 
@@ -250,6 +254,95 @@ The batch runner caches config and prompt templates per cluster to avoid redunda
 
 ---
 
+## Localization
+
+The pipeline supports multiple locales. Each locale maps to a language and tone-of-voice rules stored in `inputs/locale_config.csv`.
+
+| Locale | Language |
+|--------|----------|
+| `en` | English |
+| `fr` | French |
+| `de` | German |
+| `es` | Spanish |
+| `pt-BR` | Portuguese (Brazil) |
+| `nl` | Dutch |
+| `it` | Italian |
+
+**Adding localized pages:** Add rows to `inputs/page_config.csv` with the `locale` column set and the localized URL. H1s stay in **English** — the LLM generates content in the target language but uses the English H1 as its SEO anchor.
+
+```csv
+locale,cluster,url,h1
+fr,group_annotate,https://www.pdffiller.com/fr/functionality/pdf-annotate,Annotate PDF Online
+de,group_compress,https://www.pdffiller.com/de/functionality/pdf-compress,Compress PDF Online
+```
+
+**Running a single locale:**
+
+```bash
+python tools/batch_generate.py --models openai/gpt-4o-mini --locale fr --cluster group_annotate
+```
+
+**Running all locales sequentially:**
+
+```bash
+for locale in en fr de es pt-BR nl it; do
+  python tools/batch_generate.py --models openai/gpt-4o-mini --locale $locale --run-label ${locale}_run1
+done
+```
+
+Each locale writes to `output/progress_${locale}_run1.csv`. Safe to interrupt and resume any locale independently.
+
+> **Note:** Running multiple locales without `--run-label` shares `output/progress.csv` and can cause progress collisions. Always use `--run-label` per locale when running them in parallel or in sequence.
+
+---
+
+## Tone Validation Checklist
+
+After generating, verify content against these per-market rules:
+
+**English (en)**
+- [ ] "you" throughout — no "one" or passive constructions
+- [ ] Active voice dominant
+- [ ] Lead with concrete outcomes ("Sign documents in seconds", "Work from anywhere")
+- [ ] "Trusted by 68M+ users" and/or "1M+ ready-to-use templates" present
+- [ ] No jargon or enterprise-speak ("robust solution", "leverage", "seamlessly")
+
+**French (fr)**
+- [ ] "vous" throughout — no "tu"
+- [ ] No exclamation marks in headings
+- [ ] RGPD mentioned at least once
+- [ ] No American-style hype ("la meilleure solution", etc.)
+
+**German (de)**
+- [ ] "Sie" throughout
+- [ ] No exclamation marks in headings
+- [ ] DSGVO mentioned at least once
+- [ ] Claims backed by specific numbers (68M users, 1M+ templates)
+- [ ] No hype words ("revolutionär", "erstaunlich")
+
+**Spanish (es)**
+- [ ] "tú" throughout
+- [ ] "68M+ usuarios confían" or equivalent social proof present
+- [ ] Practical outcomes emphasized ("firmar en segundos", "sin imprimir")
+
+**Portuguese Brazil (pt-BR)**
+- [ ] "você" throughout
+- [ ] Anti-bureaucracy angle present
+- [ ] Mobile-friendly angle included
+
+**Dutch (nl)**
+- [ ] Short, direct sentences
+- [ ] ZZP'ers or freelancer segment addressed
+- [ ] AVG-conform mentioned
+- [ ] No marketing fluff
+
+**Italian (it)**
+- [ ] "Lei" or "voi" for B2B
+- [ ] eIDAS or EU compliance mentioned
+- [ ] PMI segment addressed
+
+---
+
 ## Known Constraints
 
 - Execution is sequential — pages and models run one at a time (no parallelism)
@@ -257,3 +350,6 @@ The batch runner caches config and prompt templates per cluster to avoid redunda
 - Section menu `[VERIFY]` flags indicate unconfirmed product details — review before publishing
 - `--fallback-models` and multi-model comparison (`--models A,B`) are mutually exclusive
 - Model names must be provider-prefixed when using the LiteLLM proxy (e.g. `openai/gpt-4o-mini`, not `gpt-4o-mini`)
+- The `--locale` flag filters `page_config.csv` by the `locale` column — pages with a different locale value are skipped entirely in that run
+- Localized URLs (e.g. `/fr/...`) are tracked separately in `progress.csv` from English URLs (e.g. `/en/...`)
+- **Progress file collision risk:** Running multiple locales without `--run-label` shares `output/progress.csv`. Use `--run-label` per locale to keep progress files isolated
