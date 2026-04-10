@@ -29,52 +29,56 @@ Accuracy rules:
 - Named competitors: Adobe Acrobat AI Assistant, Smallpdf AI, 
   DocuSign AI, Foxit AI — differentiate on pdfFiller's browser-based 
   AI covering editing + signing + converting + form filling in one workflow","## FEAT_DEF — Feature Definition
-What the specific AI-enhanced action does and how it differs from 
+What the specific AI-enhanced action does and how it differs from
 performing the same task without AI assistance.
 ## WORKFLOW — Workflow Problem This Feature Solves
-The document workflow friction this AI-enhanced tool addresses and 
+The document workflow friction this AI-enhanced tool addresses and
 why AI assistance speeds up or simplifies the task.
 ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
-Upload paths and supported input formats for the specific AI action 
+Upload paths and supported input formats for the specific AI action
 named in the keyword.
 ## FILE_FORMATS — Supported Formats and Export Options
-Accepted input file types and available output formats for the specific 
+Accepted input file types and available output formats for the specific
 AI-enhanced operation.
 ## STEPS — Step-by-Step Instructions
-Numbered how-to for the specific AI action named in the keyword: edit, 
+Numbered how-to for the specific AI action named in the keyword: edit,
 sign, fill, convert, rewrite, analyze, or extract.
 ## AI_EDIT — AI-Powered Editing and Formatting
-How pdfFiller's AI-enhanced editor handles text edits, formatting, 
+How pdfFiller's AI-enhanced editor handles text edits, formatting,
 replacements, and modifications across document formats.
 ## AI_SIGN — AI-Assisted Signature Actions
-How to add, insert, create, draw, type, or write a signature, 
+How to add, insert, create, draw, type, or write a signature,
 e-signature, or digital signature using an AI-powered tool.
 ## AI_FILL — AI-Powered Form Filling
-How the AI-powered form filler assists with completing fields and 
+How the AI-powered form filler assists with completing fields and
 how it differs from manual field entry.
 ## AI_REWRITE — Rewriting and Transforming Document Content
-How the AI rewriter modifies or regenerates document text and when 
+How the AI rewriter modifies or regenerates document text and when
 to use rewrite vs. standard edit.
 ## AI_CONVERT — AI-Enhanced File Conversion
-Converting between file formats using AI-assisted tools — quality 
+Converting between file formats using AI-assisted tools — quality
 expectations and format-specific behavior.
 ## REVIEW_ACCURACY — Reviewing AI Output Before Use
-Why AI-processed content requires user review, what the accuracy 
+Why AI-processed content requires user review, what the accuracy
 disclaimer means, and how to correct output after AI processing.
 ## SCENARIOS — Industry and Role-Specific Scenarios
-3–4 concrete professional scenarios where the specific AI-enhanced 
+3–4 concrete professional scenarios where the specific AI-enhanced
 action solves a named workflow problem.
 ## BROWSERS — Browser and Device Compatibility
-Browser support, mobile behavior, and no-installation access from 
+Browser support, mobile behavior, and no-installation access from
 any device.
 ## LIMITS — Limitations and Known Constraints
-Plan-tier availability, file type constraints, accuracy limitations, 
+Plan-tier availability, file type constraints, accuracy limitations,
 and what the AI tool does not do autonomously.
+## SECURITY — Security and Data Handling During AI Processing
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
 ## COMPARISON — Comparison with Named Alternatives
-Factual differentiators between pdfFiller's AI-enhanced tools and 
+Factual differentiators between pdfFiller's AI-enhanced tools and
 Adobe Acrobat AI, Smallpdf AI, DocuSign AI, and Foxit AI.
+## FREE_ACCESS — Free vs. Paid Access for AI Features
+Which AI-enhanced actions (edit, sign, fill, convert, rewrite) are available on the free plan, which require a paid subscription, and how to activate a trial. Do not state specific prices — reference plan tiers only.
 ## CLOSING — Next Steps and Broader Workflow Connection
-Connects the AI action to the broader pdfFiller workflow: upload → 
+Connects the AI action to the broader pdfFiller workflow: upload →
 AI-process → review → sign → share."
 group_annotate,900-1200,"PDF annotation and markup tools in pdfFiller's browser-based editor, activated via the Edit Mode toggle.
  
@@ -101,45 +105,47 @@ group_annotate,900-1200,"PDF annotation and markup tools in pdfFiller's browser-
  - Sticky Note does not print by default
  - Blackout is permanent and unrecoverable after download
  - Named competitors: Adobe Acrobat, Smallpdf, PDF Expert, Foxit","## FEAT_DEF — Feature Definition
- What the specific annotation tool does and when to choose it over similar tools.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The document workflow problem this annotation addresses.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and format conversion behavior.
- ## FILE_FORMATS — Supported Formats and Export Options
- Accepted input types and available export formats.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific annotation action named in the keyword.
- ## CUSTOMIZATION — Appearance and Formatting Options
- Per-tool color, size, thickness, and style options.
- ## ANNOTATABLE — What Can Be Annotated
- Which content types the tool applies to across native vs. scanned PDFs.
- ## MANAGE_AFTER — Managing Annotations After Placement
- How to select, move, resize, recolor, undo, or delete placed annotations.
- ## FORMS_FILL — Filling Forms vs. Annotating Documents
- Distinction between form-fill tools and annotation/markup tools.
- ## WATERMARK_STAMP — Watermarks, Date Stamps, and Page Numbering
- Document-wide stamping tools: Watermark, Date Stamp, Page Numbering, Bates Numbering.
- ## REDACTION — Permanent Redaction with Blackout
- How Blackout permanently hides content and how it differs from Erase and Highlight.
- ## COLLAB — Collaboration and Review Use Cases
- How annotation integrates with sharing and multi-user review.
- ## ESIGN_CONNECT — Connecting Annotation to E-Signature Workflows
- How annotation precedes field placement and signature collection.
- ## MANAGE_DOCS — Document Management in My Documents
- Relevant My Documents actions for annotation workflows.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete professional scenarios where this annotation solves a workflow problem.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, mobile behavior, and no-installation access.
- ## LIMITS — Limitations and Known Constraints
- What the tool cannot do, plan-tier restrictions, and scanned PDF caveats.
- ## SECURITY — Security, Redaction, and Compliance
- Document protection features and compliance certifications.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and competitor tools.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects the annotation action to the broader pdfFiller workflow."
+What the specific annotation tool does and when to choose it over similar tools.
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem this annotation addresses.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and format conversion behavior.
+## FILE_FORMATS — Supported Formats and Export Options
+Accepted input types and available export formats.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific annotation action named in the keyword.
+## CUSTOMIZATION — Appearance and Formatting Options
+Per-tool color, size, thickness, and style options.
+## ANNOTATABLE — What Can Be Annotated
+Which content types the tool applies to across native vs. scanned PDFs.
+## MANAGE_AFTER — Managing Annotations After Placement
+How to select, move, resize, recolor, undo, or delete placed annotations.
+## FORMS_FILL — Filling Forms vs. Annotating Documents
+Distinction between form-fill tools and annotation/markup tools.
+## WATERMARK_STAMP — Watermarks, Date Stamps, and Page Numbering
+Document-wide stamping tools: Watermark, Date Stamp, Page Numbering, Bates Numbering.
+## REDACTION — Permanent Redaction with Blackout
+How Blackout permanently hides content and how it differs from Erase and Highlight.
+## COLLAB — Collaboration and Review Use Cases
+How annotation integrates with sharing and multi-user review.
+## ESIGN_CONNECT — Connecting Annotation to E-Signature Workflows
+How annotation precedes field placement and signature collection.
+## MANAGE_DOCS — Document Management in My Documents
+Relevant My Documents actions for annotation workflows.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where this annotation solves a workflow problem.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile behavior, and no-installation access.
+## LIMITS — Limitations and Known Constraints
+What the tool cannot do, plan-tier restrictions, and scanned PDF caveats.
+## SECURITY — Security, Redaction, and Compliance
+Document protection features and compliance certifications.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and competitor tools.
+## FREE_ACCESS — Free vs. Paid Access for Annotation Tools
+Which annotation tools are available on the free plan (highlight, draw, text box) and which require a subscription (Bates Numbering, advanced redaction). Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects the annotation action to the broader pdfFiller workflow."
 group_branding,1000-1300,"Branding tools in pdfFiller let users embed visual brand marks into documents and configure account-level email branding. Two distinct layers are covered:
  
 
@@ -161,29 +167,41 @@ group_branding,1000-1300,"Branding tools in pdfFiller let users embed visual bra
  - Custom email branding (signature, footer) is workspace-level configuration, not per-document
  - Do not conflate with password protection (Protect) or text editing (Edit)
  - Named competitors are not applicable for this cluster","## FEAT_DEF — What Branding Tools Do in pdfFiller
- Explains the two-layer branding system: document-level mark placement (logo via Image Tool, watermark via Watermark Tool) and workspace-level email branding (custom signature, custom footer).
- ## ADD_LOGO — Adding a Logo to a PDF
- Covers the Image Tool workflow for placing a logo onto a PDF page.
- ## ADD_LOGO_DOC_TYPES — Adding a Logo to Other Document Types
- How the Image Tool workflow applies when the source file is a JPG, PNG, PPT, or Excel file.
- ## ADD_TRADEMARK — Adding a Trademark Mark to a Document
- Placing a brand mark (logo image) onto document types using the Image Tool.
- ## WATERMARK — Applying a Watermark with the Watermark Tool
- Covers the Watermark Tool flow: text vs. image watermark, size, transparency, rotation, page scope.
- ## REMOVE_LOGO — Removing a Logo or Watermark from a Document
- How to select and delete a placed logo element or remove an applied watermark.
- ## EDIT_REPLACE_LOGO — Editing and Replacing an Existing Logo
- How to select a previously placed logo image, replace it, and adjust position or size.
- ## BRANDING_TEMPLATE — Applying Branding to a Document Template
- Combining logo placement and watermark application on a reusable document template.
- ## CUSTOM_LOGO — Creating and Adding a Custom Logo at the Account Level
- The account-level ""Create and add your custom logo"" feature under Custom Branding settings.
- ## EMAIL_SIGNATURE — Creating a Custom Email Signature
- Account Settings → Custom Branding → email signature configuration.
- ## EMAIL_FOOTER — Creating a Custom Email Footer
- Custom email footer configuration under Custom Branding.
- ## CLOSING — Summary and Next Steps
- Recaps the two branding layers and links to related features (Edit, Protect)."
+Explains the two-layer branding system: document-level mark placement (logo via Image Tool, watermark via Watermark Tool) and workspace-level email branding (custom signature, custom footer).
+## ADD_LOGO — Adding a Logo to a PDF
+Covers the Image Tool workflow for placing a logo onto a PDF page.
+## ADD_LOGO_DOC_TYPES — Adding a Logo to Other Document Types
+How the Image Tool workflow applies when the source file is a JPG, PNG, PPT, or Excel file.
+## ADD_TRADEMARK — Adding a Trademark Mark to a Document
+Placing a brand mark (logo image) onto document types using the Image Tool.
+## WATERMARK — Applying a Watermark with the Watermark Tool
+Covers the Watermark Tool flow: text vs. image watermark, size, transparency, rotation, page scope.
+## REMOVE_LOGO — Removing a Logo or Watermark from a Document
+How to select and delete a placed logo element or remove an applied watermark.
+## EDIT_REPLACE_LOGO — Editing and Replacing an Existing Logo
+How to select a previously placed logo image, replace it, and adjust position or size.
+## BRANDING_TEMPLATE — Applying Branding to a Document Template
+Combining logo placement and watermark application on a reusable document template.
+## CUSTOM_LOGO — Creating and Adding a Custom Logo at the Account Level
+The account-level ""Create and add your custom logo"" feature under Custom Branding settings.
+## EMAIL_SIGNATURE — Creating a Custom Email Signature
+Account Settings → Custom Branding → email signature configuration.
+## EMAIL_FOOTER — Creating a Custom Email Footer
+Custom email footer configuration under Custom Branding.
+## SCENARIOS — Branding Scenarios by Role and Document Type
+3–4 professional scenarios where a branding action — adding a logo, applying a watermark, setting a custom email signature — resolves a specific document presentation problem. Each scenario names a role from target_audience, a document type, and the branding friction removed.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile device compatibility, and no-installation access for pdfFiller's branding tools.
+## LIMITS — Limitations and Known Constraints
+Supported image formats and size limits for logo and watermark uploads, plan-tier restrictions on custom branding features (email footer, account-level logo), and which branding settings apply account-wide vs. per-document only.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's branding tools and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names exclusively from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Branding Features
+Which branding features are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the two branding layers and links to related features (Edit, Protect)."
 group_compress,1200-1400,"PDF file size optimization tool in pdfFiller's browser-based editor.
  
 
@@ -210,41 +228,43 @@ group_compress,1200-1400,"PDF file size optimization tool in pdfFiller's browser
  - Compress, Delete Pages, Split, and Save As solve different problems
  - Quality level selection is plan-tier dependent
  - Named competitors: Smallpdf, ilovepdf, Adobe Acrobat, Foxit","## FEAT_DEF — Feature Definition
- What the Compress tool does and when to use it over Delete Pages, Split, or Save As.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The file size problem that triggers compression and consequences of skipping it.
- ## ACCESS_PATHS — How to Access the Compress Tool
- Where Compress appears: editor header button vs. All Tools dashboard.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and format conversion behavior before compression.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for compressing a PDF using the Compress tool.
- ## QUALITY_LEVELS — Choosing a Compression Quality Level
- What High, Medium, and Low quality settings do to file size and image fidelity.
- ## CONTENT_BEHAVIOR — What Changes and What Stays Intact
- Which content types are affected (images) vs. preserved (text, structure, form fields).
- ## SIZE_EXPECTATIONS — Expected File Size Reduction
- How yield varies by document content type and why optimized files see minimal reduction.
- ## POST_COMPRESS — After Compression: Download and Next Steps
- How to download the compressed file and what to do if still too large.
- ## COMPARE_TOOLS — Compress vs. Related Size-Reduction Methods
- How Compress differs from Delete Pages, Split, and Save As.
- ## SHARE_CONNECT — Connecting Compression to Sharing Workflows
- How compression integrates with pdfFiller's email and share workflows.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios where file size limits create a workflow problem solved by Compress.
- ## FILE_FORMATS — Supported Formats and Export Options
- Accepted input types and export formats after compression.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, OS and mobile behavior, and no-installation access.
- ## LIMITS — Limitations and Known Constraints
- What Compress cannot do: plan-tier restrictions and content types with minimal yield.
- ## SECURITY — Security and Compliance
- Encryption behavior through compression and compliance certifications.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Compress and Smallpdf, ilovepdf, Adobe Acrobat, Foxit.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects compression to the broader pdfFiller document management workflow."
+What the Compress tool does and when to use it over Delete Pages, Split, or Save As.
+## WORKFLOW — Workflow Problem This Feature Solves
+The file size problem that triggers compression and consequences of skipping it.
+## ACCESS_PATHS — How to Access the Compress Tool
+Where Compress appears: editor header button vs. All Tools dashboard.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and format conversion behavior before compression.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for compressing a PDF using the Compress tool.
+## QUALITY_LEVELS — Choosing a Compression Quality Level
+What High, Medium, and Low quality settings do to file size and image fidelity.
+## CONTENT_BEHAVIOR — What Changes and What Stays Intact
+Which content types are affected (images) vs. preserved (text, structure, form fields).
+## SIZE_EXPECTATIONS — Expected File Size Reduction
+How yield varies by document content type and why optimized files see minimal reduction.
+## POST_COMPRESS — After Compression: Download and Next Steps
+How to download the compressed file and what to do if still too large.
+## COMPARE_TOOLS — Compress vs. Related Size-Reduction Methods
+How Compress differs from Delete Pages, Split, and Save As.
+## SHARE_CONNECT — Connecting Compression to Sharing Workflows
+How compression integrates with pdfFiller's email and share workflows.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios where file size limits create a workflow problem solved by Compress.
+## FILE_FORMATS — Supported Formats and Export Options
+Accepted input types and export formats after compression.
+## BROWSERS — Browser and Device Compatibility
+Browser support, OS and mobile behavior, and no-installation access.
+## LIMITS — Limitations and Known Constraints
+What Compress cannot do: plan-tier restrictions and content types with minimal yield.
+## SECURITY — Security and Compliance
+Encryption behavior through compression and compliance certifications.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Compress and Smallpdf, ilovepdf, Adobe Acrobat, Foxit.
+## FREE_ACCESS — Free vs. Paid Access for PDF Compression
+Whether PDF compression is available on the free plan, any limits on file size or number of compressions per period, and how to start a paid trial. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects compression to the broader pdfFiller document management workflow."
 group_convert,1000-1300,"PDF format conversion tool in pdfFiller.
  
 
@@ -268,37 +288,39 @@ group_convert,1000-1300,"PDF format conversion tool in pdfFiller.
  - Image conversion produces one .jpg/.png per page, not a single image for multi-page documents
  - Plan-tier restrictions may apply
  - Named competitors: Adobe Acrobat, ilovepdf, Smallpdf, Nitro, Foxit","## FEAT_DEF — Feature Definition
- What the conversion tool does and when to use it over Download, Compress, or Save As PDF.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Why format matters: editing in Word, extracting tables to Excel, embedding images.
- ## ACCESS_PATHS — How to Access the Convert Tool
- Three access paths: Done dropdown, All Tools card, and document row More menu.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and inbound conversion behavior for non-PDF files.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific conversion direction named in the keyword.
- ## OUTPUT_FORMATS — Supported Output Formats
- All available output formats with file extension and plan-tier availability.
- ## INPUT_FORMATS — Accepted Input File Types
- File types pdfFiller accepts for inbound conversion to PDF.
- ## CONVERSION_QUALITY — What to Expect from the Converted File
- Layout fidelity, text editability, and OCR limitations across native vs. scanned PDFs.
- ## COMPARE_TOOLS — Convert vs. Related Export Methods
- How Save As differs from Download, Compress, and Print.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios where converting to a specific format solves a workflow problem.
- ## BROWSERS — Browser, Device, and OS Compatibility
- Browser support, Mac vs. Windows, mobile access, no-installation.
- ## FILE_SPECS — File Format Specifications
- Technical details: .docx vs. .doc, file size expectations, multi-page image behavior.
- ## LIMITS — Limitations and Known Constraints
- Plan-tier restrictions, page count limits, OCR availability, complex layout fidelity.
- ## SECURITY — Security and Data Handling
- How pdfFiller handles documents during server-side conversion.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and Adobe Acrobat, ilovepdf, Smallpdf, Nitro, Foxit.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects conversion to pdfFiller's edit, sign, and share workflow."
+What the conversion tool does and when to use it over Download, Compress, or Save As PDF.
+## WORKFLOW — Workflow Problem This Feature Solves
+Why format matters: editing in Word, extracting tables to Excel, embedding images.
+## ACCESS_PATHS — How to Access the Convert Tool
+Three access paths: Done dropdown, All Tools card, and document row More menu.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and inbound conversion behavior for non-PDF files.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific conversion direction named in the keyword.
+## OUTPUT_FORMATS — Supported Output Formats
+All available output formats with file extension and plan-tier availability.
+## INPUT_FORMATS — Accepted Input File Types
+File types pdfFiller accepts for inbound conversion to PDF.
+## CONVERSION_QUALITY — What to Expect from the Converted File
+Layout fidelity, text editability, and OCR limitations across native vs. scanned PDFs.
+## COMPARE_TOOLS — Convert vs. Related Export Methods
+How Save As differs from Download, Compress, and Print.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios where converting to a specific format solves a workflow problem.
+## BROWSERS — Browser, Device, and OS Compatibility
+Browser support, Mac vs. Windows, mobile access, no-installation.
+## FILE_SPECS — File Format Specifications
+Technical details: .docx vs. .doc, file size expectations, multi-page image behavior.
+## LIMITS — Limitations and Known Constraints
+Plan-tier restrictions, page count limits, OCR availability, complex layout fidelity.
+## SECURITY — Security and Data Handling
+How pdfFiller handles documents during server-side conversion.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and Adobe Acrobat, ilovepdf, Smallpdf, Nitro, Foxit.
+## FREE_ACCESS — Free vs. Paid Access for File Conversion
+Which conversion directions are available on the free plan and which require a subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects conversion to pdfFiller's edit, sign, and share workflow."
 group_create_template,1200-1500,"Document template creation in pdfFiller — building a reusable fillable document structure and saving it for repeated use.
  
 
@@ -321,39 +343,43 @@ group_create_template,1200-1500,"Document template creation in pdfFiller — bui
  - Personal vs. Team templates have different access scope
  - LinkToFill distributes a template as a fill link — distinct from sending a PDF attachment
  - Named competitors: DocuSign, JotForm, PandaDoc, Adobe Acrobat Sign","## DOC_DEF — Document Definition and Purpose
- What this specific document type is, when it is needed, and the parties involved.
- ## KEY_ELEMENTS — Required Sections and Key Clauses
- What the document must contain — standard sections, required information, common optional clauses.
- ## WORKFLOW — Workflow Problem This Template Solves
- Why a reusable version is needed and the cost of recreating it manually each time.
- ## CREATE_PATHS — How to Create the Template in pdfFiller
- Two creation paths: upload new file and build from scratch, or convert via the More menu.
- ## CUSTOMIZE — Editing and Structuring the Document
- How to edit text, adjust layout, and prepare content before adding fillable fields.
- ## ADD_FIELDS — Adding Fillable Fields
- How to use Add Fields mode to place text fields, checkboxes, signature fields, date fields, and dropdowns.
- ## SAVE_TEMPLATE — Saving as a Reusable Template
- How to save as a Personal or Team template and the difference between the two.
- ## REUSE — Using the Template for Future Documents
- How to open and reuse a saved template, and how completions save as separate documents.
- ## SIGN — Collecting Signatures
- How to apply e-signatures and request signatures from other parties.
- ## SHARE_SEND — Distributing via LinkToFill or Direct Send
- How to distribute as a shareable fill link or send directly via email.
- ## LEGAL_VALIDITY — Legal Validity and Jurisdiction Considerations
- What affects enforceability, state-specific requirements, and when legal review is warranted.
- ## SCENARIOS — Industry and Role-Specific Use Cases
- 3–4 concrete scenarios where a reusable template solves a named workflow problem.
- ## DOWNLOAD_EXPORT — Downloading the Completed Document
- How to download a completed fill as PDF or export to other formats.
- ## BROWSERS — Browser and Device Compatibility
- No-install browser access, OS and mobile support.
- ## LIMITS — Limitations and Known Constraints
- Plan-tier restrictions on template count or team sharing.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and DocuSign, JotForm, PandaDoc, Adobe Acrobat Sign.
- ## CLOSING — Next Steps and Full Workflow Connection
- Connects the saved template to reuse, team sharing, and LinkToFill distribution."
+What this specific document type is, when it is needed, and the parties involved.
+## KEY_ELEMENTS — Required Sections and Key Clauses
+What the document must contain — standard sections, required information, common optional clauses.
+## WORKFLOW — Workflow Problem This Template Solves
+Why a reusable version is needed and the cost of recreating it manually each time.
+## CREATE_PATHS — How to Create the Template in pdfFiller
+Two creation paths: upload new file and build from scratch, or convert via the More menu.
+## CUSTOMIZE — Editing and Structuring the Document
+How to edit text, adjust layout, and prepare content before adding fillable fields.
+## ADD_FIELDS — Adding Fillable Fields
+How to use Add Fields mode to place text fields, checkboxes, signature fields, date fields, and dropdowns.
+## SAVE_TEMPLATE — Saving as a Reusable Template
+How to save as a Personal or Team template and the difference between the two.
+## REUSE — Using the Template for Future Documents
+How to open and reuse a saved template, and how completions save as separate documents.
+## SIGN — Collecting Signatures
+How to apply e-signatures and request signatures from other parties.
+## SHARE_SEND — Distributing via LinkToFill or Direct Send
+How to distribute as a shareable fill link or send directly via email.
+## LEGAL_VALIDITY — Legal Validity and Jurisdiction Considerations
+What affects enforceability, state-specific requirements, and when legal review is warranted.
+## SCENARIOS — Industry and Role-Specific Use Cases
+3–4 concrete scenarios where a reusable template solves a named workflow problem.
+## DOWNLOAD_EXPORT — Downloading the Completed Document
+How to download a completed fill as PDF or export to other formats.
+## BROWSERS — Browser and Device Compatibility
+No-install browser access, OS and mobile support.
+## LIMITS — Limitations and Known Constraints
+Plan-tier restrictions on template count or team sharing.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and DocuSign, JotForm, PandaDoc, Adobe Acrobat Sign.
+## FREE_ACCESS — Free vs. Paid Access for Template Creation
+Which template creation and reuse features are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Full Workflow Connection
+Connects the saved template to reuse, team sharing, and LinkToFill distribution."
 group_crop,900-1200,"Crop and resize tools in pdfFiller's web editor let users change the dimensions or visible area of PDF pages. Two distinct operations:
  
 
@@ -377,27 +403,39 @@ group_crop,900-1200,"Crop and resize tools in pdfFiller's web editor let users c
  - Make Pages Same Size is page-normalization, not compression or conversion
  - Page reordering, rotation, and deletion belong to Rearrange Pages, not this cluster
  - Named competitors: Adobe Acrobat, Smallpdf, iLovePDF","## FEAT_DEF — What Crop and Resize Tools Do in pdfFiller
- Explains Crop (adjusts visible content area), Resize (changes page canvas size), and Make Pages Same Size — and clarifies these are distinct operations.
- ## CROP_PDF — Cropping a PDF Page
- Full Crop workflow: selecting the Crop tool, adjusting the crop box, and applying.
- ## CROP_BOX — Cropping a PDF Using the Crop Box
- What the crop box is, how to position and size it precisely.
- ## RESIZE_PDF — Resizing a PDF Page
- The Resize tool workflow: selecting a preset or entering custom dimensions and applying.
- ## RESIZE_A4 — Resizing a PDF to A4 Size
- Selecting A4 as the target page size and use cases for standardizing documents.
- ## CHANGE_PAGE_SIZE — Changing PDF Page Size
- Selecting any standard preset or entering custom dimensions; when to use Resize vs. Make Pages Same Size.
- ## SAME_SIZE — Making All PDF Pages the Same Size
- The Make Pages Same Size feature: normalizing mixed-size pages to uniform dimensions.
- ## CROP_EDIT — Cropping and Editing a PDF Together
- Using the Crop tool and then continuing to edit in the same session.
- ## DEVICE_BROWSER — Cropping and Resizing on Specific Devices and Browsers
- Device- and browser-specific guidance: Chrome, Edge, Firefox, Windows, Chromebook, mobile, tablet.
- ## UBUNTU_LINUX — Cropping and Resizing PDFs on Ubuntu and Linux
- Ubuntu-specific crop and resize workflows.
- ## CLOSING — Summary and Next Steps
- Recaps the three page-dimension tools and links to Compress (file size), Rearrange Pages, and Convert."
+Explains Crop (adjusts visible content area), Resize (changes page canvas size), and Make Pages Same Size — and clarifies these are distinct operations.
+## CROP_PDF — Cropping a PDF Page
+Full Crop workflow: selecting the Crop tool, adjusting the crop box, and applying.
+## CROP_BOX — Cropping a PDF Using the Crop Box
+What the crop box is, how to position and size it precisely.
+## RESIZE_PDF — Resizing a PDF Page
+The Resize tool workflow: selecting a preset or entering custom dimensions and applying.
+## RESIZE_A4 — Resizing a PDF to A4 Size
+Selecting A4 as the target page size and use cases for standardizing documents.
+## CHANGE_PAGE_SIZE — Changing PDF Page Size
+Selecting any standard preset or entering custom dimensions; when to use Resize vs. Make Pages Same Size.
+## SAME_SIZE — Making All PDF Pages the Same Size
+The Make Pages Same Size feature: normalizing mixed-size pages to uniform dimensions.
+## CROP_EDIT — Cropping and Editing a PDF Together
+Using the Crop tool and then continuing to edit in the same session.
+## DEVICE_BROWSER — Cropping and Resizing on Specific Devices and Browsers
+Device- and browser-specific guidance: Chrome, Edge, Firefox, Windows, Chromebook, mobile, tablet.
+## UBUNTU_LINUX — Cropping and Resizing PDFs on Ubuntu and Linux
+Ubuntu-specific crop and resize workflows.
+## SCENARIOS — Crop and Resize Scenarios by Role and Document Type
+3–4 professional scenarios where cropping, resizing, or adjusting a PDF page resolves a specific document preparation or formatting problem. Each scenario names a role from target_audience, a document type, and the specific page-size or crop need addressed.
+## FILE_FORMATS — Supported Formats for Crop and Resize Operations
+File types accepted for crop and resize operations and the output format available after processing. Note any format-specific behavior (e.g., scanned PDF vs. native PDF page dimension handling).
+## LIMITS — Limitations and Known Constraints
+Supported file types for crop and resize, maximum file size, page size range constraints, behavior differences between native and scanned PDFs, and plan-tier restrictions.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's crop and resize tools and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Crop and Resize
+Whether crop and resize operations are available on the free plan and any limits that apply. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the three page-dimension tools and links to Compress (file size), Rearrange Pages, and Convert."
 group_edit,1100-1400,"PDF text editing tools in pdfFiller's browser-based editor. Accessed via the Edit button (pencil icon) in the editor toolbar, which activates Edit Mode. Covers direct modification of document content — editing, adding, and removing text — and text formatting.
  
 
@@ -421,43 +459,45 @@ group_edit,1100-1400,"PDF text editing tools in pdfFiller's browser-based editor
  - Whiteout ≠ Blackout — Whiteout is a correction tool; Blackout is permanent redaction
  - Font matching is best-effort, not guaranteed
  - Named competitors: Adobe Acrobat, Foxit, Nitro, Sejda","## FEAT_DEF — Feature Definition
- What Edit Mode does, which tools it contains, and how it differs from annotation overlays and fillable field creation.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The need to correct, update, or add text to an existing PDF without converting it.
- ## ACCESS_PATHS — How to Access Edit Mode
- Where the Edit button appears in the editor toolbar and what state the document must be in.
- ## EDIT_TEXT — Editing Existing Text
- How to click into a text block, modify content, and navigate between text elements.
- ## ADD_TEXT — Adding New Text Blocks
- How to insert a new text block and set its initial formatting.
- ## DELETE_TEXT — Removing Text
- How to select and delete existing text content from a document.
- ## WHITEOUT — Whiteout / Correction Tool
- How Whiteout works and how it differs from Blackout and Erase.
- ## FORMATTING — Text Formatting Options
- Available formatting controls: font family, size, bold, italic, underline, text color, alignment.
- ## FIND_REPLACE — Find and Replace
- How to use Find & Replace to locate and substitute text strings.
- ## NATIVE_VS_SCANNED — Editing Native vs. Scanned PDFs
- Why direct text editing works on native PDFs but not scanned ones.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific editing action named in the keyword.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and format behavior before editing.
- ## EDIT_VS_ANNOTATE — Edit Mode vs. Annotation Tools
- Distinction between modifying source content and overlaying content.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete professional scenarios for text editing.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support and no-installation access.
- ## LIMITS — Limitations and Known Constraints
- What Edit Mode cannot do: scanned PDFs without OCR, guaranteed font matching, password-protected documents.
- ## SECURITY — Security and Data Handling
- How pdfFiller handles documents during editing sessions.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and Adobe Acrobat, Foxit, Nitro, Sejda.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects the text edit action to the broader pdfFiller workflow."
+What Edit Mode does, which tools it contains, and how it differs from annotation overlays and fillable field creation.
+## WORKFLOW — Workflow Problem This Feature Solves
+The need to correct, update, or add text to an existing PDF without converting it.
+## ACCESS_PATHS — How to Access Edit Mode
+Where the Edit button appears in the editor toolbar and what state the document must be in.
+## EDIT_TEXT — Editing Existing Text
+How to click into a text block, modify content, and navigate between text elements.
+## ADD_TEXT — Adding New Text Blocks
+How to insert a new text block and set its initial formatting.
+## DELETE_TEXT — Removing Text
+How to select and delete existing text content from a document.
+## WHITEOUT — Whiteout / Correction Tool
+How Whiteout works and how it differs from Blackout and Erase.
+## FORMATTING — Text Formatting Options
+Available formatting controls: font family, size, bold, italic, underline, text color, alignment.
+## FIND_REPLACE — Find and Replace
+How to use Find & Replace to locate and substitute text strings.
+## NATIVE_VS_SCANNED — Editing Native vs. Scanned PDFs
+Why direct text editing works on native PDFs but not scanned ones.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific editing action named in the keyword.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and format behavior before editing.
+## EDIT_VS_ANNOTATE — Edit Mode vs. Annotation Tools
+Distinction between modifying source content and overlaying content.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios for text editing.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support and no-installation access.
+## LIMITS — Limitations and Known Constraints
+What Edit Mode cannot do: scanned PDFs without OCR, guaranteed font matching, password-protected documents.
+## SECURITY — Security and Data Handling
+How pdfFiller handles documents during editing sessions.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and Adobe Acrobat, Foxit, Nitro, Sejda.
+## FREE_ACCESS — Free vs. Paid Access for PDF Editing
+Which editing actions (text edit, add text, find and replace) are available on the free plan and which require a subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects the text edit action to the broader pdfFiller workflow."
 group_embed,900-1100,"pdfFiller's embed cluster covers three distinct embedding concepts:
  
 
@@ -483,27 +523,39 @@ group_embed,900-1100,"pdfFiller's embed cluster covers three distinct embedding 
  - ""Embedded editor"" pages refer to the developer SDK at embed.pdffiller.com
  - Embed video is a native editor feature; distinct from embedding a PDF on a website
  - Named competitors: Adobe Acrobat, DocHub","## FEAT_DEF — What Embedding Tools Do in pdfFiller
- Explains the three distinct embedding concepts: in-PDF content embedding, PDF-in-environment embedding, and the embedded editor SDK.
- ## EMBED_FILE — Embedding a File or Document Inside a PDF
- The native in-PDF file attachment workflow using Embed File or Attach from the toolbar.
- ## EMBED_VIDEO — Embedding a Video in a PDF
- The Add Video editor feature: uploading a video file or pasting a URL, configuring autoplay and loop.
- ## EMBED_HTML — Embedding a PDF in HTML or on a Website
- The iframe embed code workflow: generating and pasting the code into an HTML page.
- ## INSERT_GOOGLE_DOCS — Inserting a PDF into Google Docs
- How pdfFiller facilitates getting a PDF into Google Docs via the add-on or PDF conversion.
- ## EMBED_WORD — Embedding a PDF in a Word Document
- pdfFiller's role in preparing the PDF, then using Word's native Insert → Object path.
- ## ATTACH_EXCEL — Attaching a PDF in Excel
- Preparing the PDF in pdfFiller, then using Excel's native Insert → Object feature.
- ## EDIT_EMBED — Editing and Embedding a PDF Together
- Using pdfFiller to edit or complete a PDF and then embedding the result.
- ## EMBEDDED_SDK — pdfFiller's Embedded Editor SDK for Developers
- The developer-facing product at embed.pdffiller.com and how it differs from end-user features.
- ## DEVICE_BROWSER — Embedding PDFs on Specific Devices and Browsers
- Device- and browser-specific guidance for embed operations.
- ## CLOSING — Summary and Next Steps
- Recaps the three embedding layers and links to group_share, group_extensions, and group_convert."
+Explains the three distinct embedding concepts: in-PDF content embedding, PDF-in-environment embedding, and the embedded editor SDK.
+## EMBED_FILE — Embedding a File or Document Inside a PDF
+The native in-PDF file attachment workflow using Embed File or Attach from the toolbar.
+## EMBED_VIDEO — Embedding a Video in a PDF
+The Add Video editor feature: uploading a video file or pasting a URL, configuring autoplay and loop.
+## EMBED_HTML — Embedding a PDF in HTML or on a Website
+The iframe embed code workflow: generating and pasting the code into an HTML page.
+## INSERT_GOOGLE_DOCS — Inserting a PDF into Google Docs
+How pdfFiller facilitates getting a PDF into Google Docs via the add-on or PDF conversion.
+## EMBED_WORD — Embedding a PDF in a Word Document
+pdfFiller's role in preparing the PDF, then using Word's native Insert → Object path.
+## ATTACH_EXCEL — Attaching a PDF in Excel
+Preparing the PDF in pdfFiller, then using Excel's native Insert → Object feature.
+## EDIT_EMBED — Editing and Embedding a PDF Together
+Using pdfFiller to edit or complete a PDF and then embedding the result.
+## EMBEDDED_SDK — pdfFiller's Embedded Editor SDK for Developers
+The developer-facing product at embed.pdffiller.com and how it differs from end-user features.
+## DEVICE_BROWSER — Embedding PDFs on Specific Devices and Browsers
+Device- and browser-specific guidance for embed operations.
+## SCENARIOS — Embedding Scenarios by Role and Document Type
+3–4 professional scenarios where embedding a file, video, or HTML element in a PDF resolves a specific document delivery or presentation problem. Each scenario names a role from target_audience, a document type, and the embedding method used (file, video, HTML, SDK).
+## FILE_FORMATS — Supported File Types for Embedding
+File types supported for embedding within a PDF, and the formats available when exporting or downloading the document after embedding. Note SDK-specific format requirements separately.
+## LIMITS — Limitations and Known Constraints
+File types and sizes supported for embedding, browser compatibility constraints for embedded PDFs (iframe restrictions, browser PDF viewer differences), which embed features require specific plan tiers, and SDK licensing requirements.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's embedding capabilities and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Embedding Features
+Which embedding features are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the three embedding layers and links to group_share, group_extensions, and group_convert."
 group_extensions,900-1100,"pdfFiller's browser extension and workspace add-ons let users access PDF tools directly from Google Chrome or Google Workspace apps without visiting pdffiller.com first.
  
 
@@ -530,25 +582,37 @@ group_extensions,900-1100,"pdfFiller's browser extension and workspace add-ons l
  - Framing emphasis is always on the extension/add-on access path
  - Chrome extension and Google Workspace add-ons are distinct products
  - Named competitors: Adobe Acrobat Chrome extension, Smallpdf Chrome extension, DocHub","## FEAT_DEF — What the pdfFiller Chrome Extension and Add-ons Do
- Explains browser-level access via Chrome extension and Google Workspace add-ons, and the difference between extension, plugin, and add-on terminology.
- ## INSTALL_EXTENSION — Installing the pdfFiller Chrome Extension
- Installation workflow: Chrome Web Store → Add to Chrome → sign in → extension in Chrome toolbar.
- ## HOW_EXTENSION_WORKS — How the Chrome Extension Works in the Browser
- How the ""Fill"" button surfaces on PDFs in the browser and opens them in the pdfFiller editor.
- ## EDIT_FILL_SIGN — Editing, Filling, and Signing PDFs via the Extension
- Core editing operations available through the Chrome extension.
- ## CONVERT_EXTENSION — Converting PDFs via the Extension
- PDF conversion operations available in the Chrome extension.
- ## CREATE_MANAGE — Creating, Merging, Splitting, and Managing PDFs via the Extension
- Document management operations through the extension: create, merge, split, compress, unlock, save.
- ## GOOGLE_DOCS_ADDON — Using the pdfFiller Add-on for Google Docs
- Installing and using the Google Docs add-on from Google Workspace Marketplace.
- ## GOOGLE_DRIVE_ADDON — Using the pdfFiller Add-on for Google Drive
- Installation and use of the Google Drive add-on.
- ## PDF_VIEWER_READER — Using the Extension as a PDF Viewer and Reader
- Opening and reading PDFs in the browser via the extension.
- ## CLOSING — Summary and Next Steps
- Recaps the three access points and links to relevant feature clusters."
+Explains browser-level access via Chrome extension and Google Workspace add-ons, and the difference between extension, plugin, and add-on terminology.
+## INSTALL_EXTENSION — Installing the pdfFiller Chrome Extension
+Installation workflow: Chrome Web Store → Add to Chrome → sign in → extension in Chrome toolbar.
+## HOW_EXTENSION_WORKS — How the Chrome Extension Works in the Browser
+How the ""Fill"" button surfaces on PDFs in the browser and opens them in the pdfFiller editor.
+## EDIT_FILL_SIGN — Editing, Filling, and Signing PDFs via the Extension
+Core editing operations available through the Chrome extension.
+## CONVERT_EXTENSION — Converting PDFs via the Extension
+PDF conversion operations available in the Chrome extension.
+## CREATE_MANAGE — Creating, Merging, Splitting, and Managing PDFs via the Extension
+Document management operations through the extension: create, merge, split, compress, unlock, save.
+## GOOGLE_DOCS_ADDON — Using the pdfFiller Add-on for Google Docs
+Installing and using the Google Docs add-on from Google Workspace Marketplace.
+## GOOGLE_DRIVE_ADDON — Using the pdfFiller Add-on for Google Drive
+Installation and use of the Google Drive add-on.
+## PDF_VIEWER_READER — Using the Extension as a PDF Viewer and Reader
+Opening and reading PDFs in the browser via the extension.
+## SCENARIOS — Extension and Add-on Scenarios by Role and Document Type
+3–4 professional scenarios where the Chrome extension or Google add-on resolves a specific in-browser document workflow problem. Each scenario names a role from target_audience, a document type, and the specific browser-based action performed.
+## FILE_FORMATS — Supported File Types via the Extension
+File types the Chrome extension and Google add-ons can open, edit, convert, sign, and download directly from the browser. Note any formats that require uploading to the full editor.
+## LIMITS — Limitations and Known Constraints
+Chrome and browser version requirements, which features are online-only vs. available offline, extension permission requirements, plan-tier restrictions, and Google Workspace edition compatibility.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's Chrome extension and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access via the Extension
+Which extension and add-on features are available without a paid account and which require a subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the three access points and links to relevant feature clusters."
 group_fax,1100-1400,"pdfFiller's online fax service lets users send and receive faxes directly from their account without a physical fax machine. Users can fax any document in their library to a recipient's fax number, optionally selecting specific pages and adding a cover page. Incoming faxes are received at a personal pdfFiller fax number (Received → Faxes). Outgoing faxes are tracked in Sent → Faxes with delivery confirmation.
  
 
@@ -567,29 +631,37 @@ group_fax,1100-1400,"pdfFiller's online fax service lets users send and receive 
  - ""Send fax via email"" means routing to a fax number via email-to-fax — not simply emailing a document
  - Receiving faxes requires obtaining a personal pdfFiller fax number
  - Named competitors: HelloFax, eFax, MyFax, Smallpdf, RingCentral Fax","## FEAT_DEF — What pdfFiller's Online Fax Service Does
- Explains pdfFiller's full online fax service — sending and receiving faxes without a physical machine.
- ## SEND_FAX — Sending a Fax Online
- Core send-fax workflow: accessing Fax from the document row or Done menu, entering fax number, sending.
- ## FAX_VIA_EMAIL — Sending a Fax via Email or Gmail
- The email-to-fax and Gmail-to-fax workflows and how this differs from simply emailing a document.
- ## FAX_PDF — Faxing a PDF Document
- PDF-specific fax workflow: selecting a PDF from My Docs and faxing directly without printing.
- ## ONE_TIME_FAX — Sending a One-Time Fax Without a Subscription
- How users can send a single fax via the free trial or one-time fax option.
- ## RECEIVE_FAX — Receiving Faxes Online
- How to receive faxes: obtaining a personal fax number and where incoming faxes appear.
- ## SEND_RECEIVE — Sending and Receiving Faxes in One Service
- Managing both outgoing (Sent → Faxes) and incoming (Received → Faxes) from one account.
- ## SECURE_FAX — Secure and Encrypted Online Faxing
- HIPAA-compliant faxing for medical, legal, and government document transmission.
- ## FAX_TEAMS — Faxing for Organizations, Teams, and Business
- Team and business fax workflows.
- ## FAX_SERVICE_COMPARE — pdfFiller as an Online Fax Service
- How pdfFiller compares to HelloFax, eFax, MyFax — covering pricing, features, and use cases.
- ## FAX_DEVICE — Faxing PDFs on Specific Devices
- Device-specific fax workflows: iPhone, mobile, Android, macOS, and via website.
- ## CLOSING — Summary and Next Steps
- Recaps pdfFiller's fax service and links to related clusters: group_share, group_sign, group_protect."
+Explains pdfFiller's full online fax service — sending and receiving faxes without a physical machine.
+## SEND_FAX — Sending a Fax Online
+Core send-fax workflow: accessing Fax from the document row or Done menu, entering fax number, sending.
+## FAX_VIA_EMAIL — Sending a Fax via Email or Gmail
+The email-to-fax and Gmail-to-fax workflows and how this differs from simply emailing a document.
+## FAX_PDF — Faxing a PDF Document
+PDF-specific fax workflow: selecting a PDF from My Docs and faxing directly without printing.
+## ONE_TIME_FAX — Sending a One-Time Fax Without a Subscription
+How users can send a single fax via the free trial or one-time fax option.
+## RECEIVE_FAX — Receiving Faxes Online
+How to receive faxes: obtaining a personal fax number and where incoming faxes appear.
+## SEND_RECEIVE — Sending and Receiving Faxes in One Service
+Managing both outgoing (Sent → Faxes) and incoming (Received → Faxes) from one account.
+## SECURE_FAX — Secure and Encrypted Online Faxing
+HIPAA-compliant faxing for medical, legal, and government document transmission.
+## FAX_TEAMS — Faxing for Organizations, Teams, and Business
+Team and business fax workflows.
+## FAX_SERVICE_COMPARE — pdfFiller as an Online Fax Service
+How pdfFiller compares to HelloFax, eFax, MyFax — covering pricing, features, and use cases.
+## FAX_DEVICE — Faxing PDFs on Specific Devices
+Device-specific fax workflows: iPhone, mobile, Android, macOS, and via website.
+## SCENARIOS — Fax Scenarios by Role and Document Type
+3–4 professional scenarios where online faxing resolves a specific document transmission problem. Each scenario names a role (healthcare provider, legal assistant, HR manager), a document type, and why fax transmission is required over email for that use case.
+## FILE_FORMATS — Supported File Types for Faxing
+File types accepted for outbound faxing and the format in which received faxes are delivered to the recipient's account.
+## LIMITS — Limitations and Known Constraints
+Maximum pages per fax, supported input file types, international fax availability and country coverage, plan-tier restrictions on fax volume, and known transmission delays.
+## FREE_ACCESS — Free vs. Paid Access for Online Fax
+Whether sending or receiving faxes requires a paid plan, any free-trial fax allowance, and which fax features (receiving, one-time fax, team fax) are plan-restricted. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps pdfFiller's fax service and links to related clusters: group_share, group_sign, group_protect."
 group_file_management,1100-1400,"Document and file management capabilities in pdfFiller's My Documents workspace — tools that govern how documents are stored, organized, located, tracked, and maintained within a user's account, independently of document editing.
  
 
@@ -613,35 +685,41 @@ group_file_management,1100-1400,"Document and file management capabilities in pd
  - Confidential folder requires phone verification AND a password — not password-only
  - Save as creates a new copy — does not overwrite the original
  - Named competitors: Dropbox, Google Drive, Foxit Reader, PandaDoc, Smallpdf","## FEAT_DEF — Feature Definition
- What My Documents is and what document management covers — the tools governing how files are stored, organized, located, tracked, and maintained.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Managing documents across workflows — locating files quickly, keeping versions traceable, and accessing from any device.
- ## UPLOAD_OPTIONS — Uploading and Getting Documents Into pdfFiller
- All upload paths: device upload, drag-and-drop, cloud import (Google Drive, Dropbox, OneDrive, Box).
- ## SAVE_DOWNLOAD — Saving and Downloading Documents
- How documents auto-save during editing, how Save as creates a copy, and how to download locally.
- ## ORGANIZE_FOLDERS — Folders, Tags, and Smart Folders
- How to create custom folders, move documents, assign tags, and set up Smart folders.
- ## SEARCH_FIND — Searching and Finding Documents
- How the search bar works across My Docs, PDF Library, and USLegal Forms.
- ## RENAME_DUPLICATE — Renaming and Duplicating Documents
- How to rename via More menu → Rename and create an exact copy via Duplicate.
- ## TRACK_VERSIONS — Tracking Edits and Version History
- What Track All Edits & Versions does and how it differs from the Audit Trail.
- ## AUDIT_TRAIL — Audit Trail: Account-Level Activity Log
- What the Audit Trail records, how to access it, date-range filtering, and PDF export.
- ## CONFIDENTIAL — Confidential Folder: Secure Document Storage
- How the Confidential folder provides phone-verification + password-protected storage.
- ## CLOUD_ACCESS — Cloud Storage and Cross-Device Access
- How pdfFiller stores documents in the cloud and provides access from any device.
- ## SCENARIOS — Role-Specific and Industry Scenarios
- 3–4 scenarios: a paralegal organizing contracts, HR manager tracking document versions.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, mobile behavior, and no-installation cloud access.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller document management and Dropbox, Google Drive, Foxit, PandaDoc.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects document management to the broader workflow: upload → edit/fill/sign → organize → track → share."
+What My Documents is and what document management covers — the tools governing how files are stored, organized, located, tracked, and maintained.
+## WORKFLOW — Workflow Problem This Feature Solves
+Managing documents across workflows — locating files quickly, keeping versions traceable, and accessing from any device.
+## UPLOAD_OPTIONS — Uploading and Getting Documents Into pdfFiller
+All upload paths: device upload, drag-and-drop, cloud import (Google Drive, Dropbox, OneDrive, Box).
+## SAVE_DOWNLOAD — Saving and Downloading Documents
+How documents auto-save during editing, how Save as creates a copy, and how to download locally.
+## ORGANIZE_FOLDERS — Folders, Tags, and Smart Folders
+How to create custom folders, move documents, assign tags, and set up Smart folders.
+## SEARCH_FIND — Searching and Finding Documents
+How the search bar works across My Docs, PDF Library, and USLegal Forms.
+## RENAME_DUPLICATE — Renaming and Duplicating Documents
+How to rename via More menu → Rename and create an exact copy via Duplicate.
+## TRACK_VERSIONS — Tracking Edits and Version History
+What Track All Edits & Versions does and how it differs from the Audit Trail.
+## AUDIT_TRAIL — Audit Trail: Account-Level Activity Log
+What the Audit Trail records, how to access it, date-range filtering, and PDF export.
+## CONFIDENTIAL — Confidential Folder: Secure Document Storage
+How the Confidential folder provides phone-verification + password-protected storage.
+## CLOUD_ACCESS — Cloud Storage and Cross-Device Access
+How pdfFiller stores documents in the cloud and provides access from any device.
+## SCENARIOS — Role-Specific and Industry Scenarios
+3–4 scenarios: a paralegal organizing contracts, HR manager tracking document versions.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile behavior, and no-installation cloud access.
+## LIMITS — Limitations and Known Constraints
+Storage limits by plan tier, maximum file size for upload, folder nesting depth, version history retention window, and document count limits per account.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller document management and Dropbox, Google Drive, Foxit, PandaDoc.
+## FREE_ACCESS — Free vs. Paid Access for Document Management
+Which file management features (folders, smart folders, version history, confidential folder) are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects document management to the broader workflow: upload → edit/fill/sign → organize → track → share."
 group_fillable_fields,1100-1400,"Fillable field creation and management in pdfFiller's browser-based editor, accessed via the Add Fields toggle in the editor top bar. The Add Fillable Fields panel (left side) contains all field types as draggable items; the properties panel (right side) handles per-field configuration.
  
 
@@ -667,35 +745,43 @@ group_fillable_fields,1100-1400,"Fillable field creation and management in pdfFi
  - Radio buttons are mutually exclusive; checkboxes are independent
  - Add Fields works on scanned PDFs without OCR
  - Named competitors: Adobe Acrobat, JotForm, DocuSign, Foxit, PDF Expert","## FEAT_DEF — Feature Definition
- What Add Fields mode does, which field types the library contains, and how it differs from Edit Mode and annotation overlays.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Why interactive fields are needed instead of printed blanks or annotation overlays.
- ## ACCESS_PATHS — How to Access Add Fields Mode
- Where the Add Fields button appears and how it differs from the Edit Mode pencil icon.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and how non-PDF formats are handled before field placement.
- ## FIELD_TYPES — Full Field Library and When to Use Each
- All field types with primary use case for each.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific field action in the keyword.
- ## FIELD_PROPERTIES — Configuring Field Properties
- Right-panel settings: label, placeholder, font size, required toggle, field format, default value, validation.
- ## CHECKBOX_RADIO — Checkboxes vs. Radio Button Groups
- Independent checkboxes vs. mutually exclusive radio groups — configuration and distinction from annotation checkmarks.
- ## FORMULA_FIELDS — Calculated and Formula Fields
- How formula fields reference other fields in the same document and scope limits.
- ## MULTI_SIGNER — Assigning Fields to Recipients
- How fields are tagged to the active recipient and using Manage Recipients for signing order.
- ## SCANNED_PDF — Adding Fields to Scanned PDFs
- How Add Fields mode overlays interactive fields on scanned PDFs without OCR.
- ## FORMS_ANNOT — Fillable Fields vs. Annotation Tools
- Checkbox ≠ Checkmark; Text Field ≠ Text Box; Date Field ≠ Date Stamp.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios where a specific field type solves a named workflow problem.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Add Fields mode and Adobe Acrobat, JotForm, DocuSign, Foxit, PDF Expert.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects Add Fields to the full workflow: upload → add fields → assign recipients → save as template → collect completions."
+What Add Fields mode does, which field types the library contains, and how it differs from Edit Mode and annotation overlays.
+## WORKFLOW — Workflow Problem This Feature Solves
+Why interactive fields are needed instead of printed blanks or annotation overlays.
+## ACCESS_PATHS — How to Access Add Fields Mode
+Where the Add Fields button appears and how it differs from the Edit Mode pencil icon.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and how non-PDF formats are handled before field placement.
+## FIELD_TYPES — Full Field Library and When to Use Each
+All field types with primary use case for each.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific field action in the keyword.
+## FIELD_PROPERTIES — Configuring Field Properties
+Right-panel settings: label, placeholder, font size, required toggle, field format, default value, validation.
+## CHECKBOX_RADIO — Checkboxes vs. Radio Button Groups
+Independent checkboxes vs. mutually exclusive radio groups — configuration and distinction from annotation checkmarks.
+## FORMULA_FIELDS — Calculated and Formula Fields
+How formula fields reference other fields in the same document and scope limits.
+## MULTI_SIGNER — Assigning Fields to Recipients
+How fields are tagged to the active recipient and using Manage Recipients for signing order.
+## SCANNED_PDF — Adding Fields to Scanned PDFs
+How Add Fields mode overlays interactive fields on scanned PDFs without OCR.
+## FORMS_ANNOT — Fillable Fields vs. Annotation Tools
+Checkbox ≠ Checkmark; Text Field ≠ Text Box; Date Field ≠ Date Stamp.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios where a specific field type solves a named workflow problem.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile device compatibility, and field behavior differences when filling or editing fields on mobile vs. desktop browsers.
+## LIMITS — Limitations and Known Constraints
+Maximum number of fields per document, field types restricted by plan tier, formula field syntax constraints, and scanned PDF detection limitations when placing fields on non-native documents.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Add Fields mode and Adobe Acrobat, JotForm, DocuSign, Foxit, PDF Expert.
+## FREE_ACCESS — Free vs. Paid Access for Fillable Fields
+Which field types and configuration options are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects Add Fields to the full workflow: upload → add fields → assign recipients → save as template → collect completions."
 group_form_creator,1200-1500,"Form creation tools in pdfFiller that let users build interactive, fillable PDF forms or HTML-based web forms — accessed from the editor via the Add Fields mode toggle or from the Online Form Builder at /en/web-form.
  
 
@@ -720,37 +806,43 @@ group_form_creator,1200-1500,"Form creation tools in pdfFiller that let users bu
  - Web Form (/en/web-form) is a separate HTML-native builder
  - Field Marker is a visual aid only — does not add or remove fields
  - Named competitors: JotForm, Typeform, Google Forms, Adobe Acrobat","## FEAT_DEF — Feature Definition
- What the form creation capability does, which entry point applies, and when to use pdfFiller's form tools.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Replacing paper, collecting data digitally, and preparing documents others must complete.
- ## ACCESS_PATHS — How to Access Form Creation Tools
- Three access paths: Add Fields mode toggle, Online Form Builder, and Convert to Template path.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and how non-PDF formats convert to PDF before field placement.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific form creation action named in the keyword.
- ## FIELD_TYPES — Available Field Types and Their Uses
- All field types in Add Fields mode with the appropriate use case for each.
- ## FIELD_CONFIG — Configuring and Customizing Fields
- How to resize, reposition, rename, mark fields required, and style them; Field Marker and Wizard mode.
- ## MULTI_RECIPIENT — Assigning Fields to Multiple Recipients
- How the Recipients Panel assigns color-coded field sets to distinct signers or participants.
- ## WEB_FORM — Online Form Builder (Web Form)
- What the /en/web-form Online Form Builder is and when to use it vs. PDF-based Add Fields mode.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: HR onboarding, client intake PDF, patient consent form, rental application.
- ## CREATE_VS_FILL — Creating Forms vs. Filling Forms
- Disambiguation: creating a form (this cluster) vs. filling out an existing form.
- ## FORM_VS_ANNOT — Form Fields vs. Annotations
- Text Box (annotation) creates static overlays, while Add Fields creates interactive elements.
- ## DISTRIBUTE — Distributing the Form After Creation
- How a created form connects to LinkToFill, SendToSign, and Fill in Bulk.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, no-installation access, OS and mobile behavior.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and JotForm, Typeform, Google Forms, Adobe Acrobat.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects form creation to the broader workflow: build → collect signatures → distribute → manage."
+What the form creation capability does, which entry point applies, and when to use pdfFiller's form tools.
+## WORKFLOW — Workflow Problem This Feature Solves
+Replacing paper, collecting data digitally, and preparing documents others must complete.
+## ACCESS_PATHS — How to Access Form Creation Tools
+Three access paths: Add Fields mode toggle, Online Form Builder, and Convert to Template path.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and how non-PDF formats convert to PDF before field placement.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific form creation action named in the keyword.
+## FIELD_TYPES — Available Field Types and Their Uses
+All field types in Add Fields mode with the appropriate use case for each.
+## FIELD_CONFIG — Configuring and Customizing Fields
+How to resize, reposition, rename, mark fields required, and style them; Field Marker and Wizard mode.
+## MULTI_RECIPIENT — Assigning Fields to Multiple Recipients
+How the Recipients Panel assigns color-coded field sets to distinct signers or participants.
+## WEB_FORM — Online Form Builder (Web Form)
+What the /en/web-form Online Form Builder is and when to use it vs. PDF-based Add Fields mode.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: HR onboarding, client intake PDF, patient consent form, rental application.
+## CREATE_VS_FILL — Creating Forms vs. Filling Forms
+Disambiguation: creating a form (this cluster) vs. filling out an existing form.
+## FORM_VS_ANNOT — Form Fields vs. Annotations
+Text Box (annotation) creates static overlays, while Add Fields creates interactive elements.
+## DISTRIBUTE — Distributing the Form After Creation
+How a created form connects to LinkToFill, SendToSign, and Fill in Bulk.
+## BROWSERS — Browser and Device Compatibility
+Browser support, no-installation access, OS and mobile behavior.
+## LIMITS — Limitations and Known Constraints
+Plan-tier restrictions on field count and form complexity, multi-recipient field assignment limits, web form submission caps, and which field types (formula fields, signature fields) require a paid plan.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and JotForm, Typeform, Google Forms, Adobe Acrobat.
+## FREE_ACCESS — Free vs. Paid Access for Form Creation
+Which form creation features are available on the free plan and which require a subscription (multi-recipient assignment, web form hosting, bulk distribute). Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects form creation to the broader workflow: build → collect signatures → distribute → manage."
 group_form_filler,1300-1600,"Form filling and interactive PDF completion tools in pdfFiller's browser-based editor — covering entering data into existing fillable fields, typing onto non-interactive PDFs, converting static PDFs to fillable, and batch-filling from spreadsheet data.
  
 
@@ -776,37 +868,43 @@ group_form_filler,1300-1600,"Form filling and interactive PDF completion tools i
  - Fill in Bulk requires an already-fillable PDF with named fields and a matching spreadsheet
  - DOCX form filling is supported — do not restrict fill claims to PDF only
  - Named competitors: Adobe Acrobat, JotForm, SodaPDF, Nitro, Smallpdf","## FEAT_DEF — Feature Definition
- What pdfFiller's form filling covers: interactive field completion, typed text on non-interactive PDFs, converting static PDFs to fillable, and bulk pre-filling.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Completing and returning filled documents digitally, eliminating the print-sign-scan cycle.
- ## ACCESS_PATHS — How to Access Form Filling Tools
- Entry points: clicking into fillable fields, activating PDF Typer, navigating to Fill in Bulk.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and how Word and other non-PDF formats are handled.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific fill action named in the keyword.
- ## PDF_TYPER — PDF Typer: Typing on Non-Interactive Documents
- What PDF Typer is and how it differs from interactive field completion and annotation Text Box.
- ## CONVERT_TO_FILLABLE — Converting a Static PDF to a Fillable Form
- How to open a static PDF in Add Fields mode to place fields, then fill.
- ## FILL_IN_BULK — Fill in Bulk: Batch-Filling from a Spreadsheet
- How Fill in Bulk generates pre-filled documents from CSV or XLSX by mapping columns to PDF field names.
- ## AUTOFILL_EXCEL — Autofill from Excel
- How to populate PDF form fields from Excel data using Fill in Bulk's spreadsheet upload.
- ## WIZARD_FIELDMARKER — Wizard Mode and Field Marker
- How Wizard mode guides completion and how Field Marker visually outlines all fillable areas.
- ## DOCX_FILL — Filling DOCX and Word-Based Forms
- How to fill Word document forms in pdfFiller directly without Microsoft Word.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: government application, lease agreement, batch onboarding documents.
- ## FILL_VS_CREATE — Filling Forms vs. Creating Forms
- Disambiguation: filling an existing form vs. building an interactive form with Add Fields mode.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, device-specific behavior, and no-installation access.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller form filling and Adobe Acrobat, SodaPDF, Nitro, Smallpdf.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects form completion to the broader workflow: fill → sign → send or download → manage."
+What pdfFiller's form filling covers: interactive field completion, typed text on non-interactive PDFs, converting static PDFs to fillable, and bulk pre-filling.
+## WORKFLOW — Workflow Problem This Feature Solves
+Completing and returning filled documents digitally, eliminating the print-sign-scan cycle.
+## ACCESS_PATHS — How to Access Form Filling Tools
+Entry points: clicking into fillable fields, activating PDF Typer, navigating to Fill in Bulk.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and how Word and other non-PDF formats are handled.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific fill action named in the keyword.
+## PDF_TYPER — PDF Typer: Typing on Non-Interactive Documents
+What PDF Typer is and how it differs from interactive field completion and annotation Text Box.
+## CONVERT_TO_FILLABLE — Converting a Static PDF to a Fillable Form
+How to open a static PDF in Add Fields mode to place fields, then fill.
+## FILL_IN_BULK — Fill in Bulk: Batch-Filling from a Spreadsheet
+How Fill in Bulk generates pre-filled documents from CSV or XLSX by mapping columns to PDF field names.
+## AUTOFILL_EXCEL — Autofill from Excel
+How to populate PDF form fields from Excel data using Fill in Bulk's spreadsheet upload.
+## WIZARD_FIELDMARKER — Wizard Mode and Field Marker
+How Wizard mode guides completion and how Field Marker visually outlines all fillable areas.
+## DOCX_FILL — Filling DOCX and Word-Based Forms
+How to fill Word document forms in pdfFiller directly without Microsoft Word.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: government application, lease agreement, batch onboarding documents.
+## FILL_VS_CREATE — Filling Forms vs. Creating Forms
+Disambiguation: filling an existing form vs. building an interactive form with Add Fields mode.
+## BROWSERS — Browser and Device Compatibility
+Browser support, device-specific behavior, and no-installation access.
+## LIMITS — Limitations and Known Constraints
+File types supported for form filling, autofill column mapping constraints for Excel imports, bulk fill row limits per operation, and which fill operations (bulk fill, autofill from Excel) require a paid plan.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller form filling and Adobe Acrobat, SodaPDF, Nitro, Smallpdf.
+## FREE_ACCESS — Free vs. Paid Access for Form Filling
+Which form filling actions are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects form completion to the broader workflow: fill → sign → send or download → manage."
 group_google_drive,900-1100,"pdfFiller's platform integrations connect pdfFiller's PDF editing, filling, and signing tools to external cloud storage and business platforms, allowing users to open, fill, edit, sign, and save documents without leaving the connected service.
  
 
@@ -824,27 +922,37 @@ group_google_drive,900-1100,"pdfFiller's platform integrations connect pdfFiller
  - ""Google Drive docs"" and ""Google Docs"" are distinct: Google Drive is storage; Google Docs is the document-creation app
  - Do not conflate the Office 365 add-in with the OneDrive integration
  - Named competitors are not explicitly present in this cluster's corpus","## FEAT_DEF — What pdfFiller's Platform Integrations Do
- Explains that pdfFiller integrates with major cloud storage and business platforms and describes the general connection workflow: connect account → open file → use pdfFiller editor → save back to source.
- ## GOOGLE_DRIVE — Filling, Editing, and Signing Google Drive Documents
- The Google Drive integration: installing the add-on, authorizing, opening Drive files in pdfFiller.
- ## DROPBOX — Filling, Editing, and Signing Dropbox Documents
- The Dropbox integration: connecting Dropbox and opening files via ""Open with pdfFiller.""
- ## ONEDRIVE — Filling, Editing, and Signing OneDrive Documents
- The OneDrive integration and how it differs from the Office 365 add-in path.
- ## BOX — Filling, Editing, and Signing Box Documents
- The Box integration: connecting a Box account and opening files in pdfFiller's editor.
- ## XERO — Editing and Signing Xero Documents
- The Xero accounting platform integration: editing invoices, payrolls, and reports with pdfFiller tools.
- ## SALESFORCE — pdfFiller and Salesforce Workflow Automation
- How pdfFiller connects to Salesforce via airSlate's workflow automation: editing PDFs, pre-filling documents with Salesforce data, collecting e-signatures, and automating document workflows within Salesforce.
- ## SHAREPOINT — Editing and Signing SharePoint Documents
- The SharePoint integration via Microsoft AppSource: opening and editing documents from SharePoint in pdfFiller.
- ## SLACK — Sending and Signing Documents via Slack
- The Slack integration via Zapier or Make: sending documents for signing and receiving completion notifications.
- ## OFFICE365 — pdfFiller for Office 365 / Microsoft 365
- The Office 365 Add-in: opening OneDrive documents as fillable PDFs in pdfFiller's editor.
- ## CLOSING — Summary and Next Steps
- Recaps pdfFiller's integration ecosystem and links to group_form_filler, group_sign, group_share, group_extensions."
+Explains that pdfFiller integrates with major cloud storage and business platforms and describes the general connection workflow: connect account → open file → use pdfFiller editor → save back to source.
+## GOOGLE_DRIVE — Filling, Editing, and Signing Google Drive Documents
+The Google Drive integration: installing the add-on, authorizing, opening Drive files in pdfFiller.
+## DROPBOX — Filling, Editing, and Signing Dropbox Documents
+The Dropbox integration: connecting Dropbox and opening files via ""Open with pdfFiller.""
+## ONEDRIVE — Filling, Editing, and Signing OneDrive Documents
+The OneDrive integration and how it differs from the Office 365 add-in path.
+## BOX — Filling, Editing, and Signing Box Documents
+The Box integration: connecting a Box account and opening files in pdfFiller's editor.
+## XERO — Editing and Signing Xero Documents
+The Xero accounting platform integration: editing invoices, payrolls, and reports with pdfFiller tools.
+## SALESFORCE — pdfFiller and Salesforce Workflow Automation
+How pdfFiller connects to Salesforce via airSlate's workflow automation: editing PDFs, pre-filling documents with Salesforce data, collecting e-signatures, and automating document workflows within Salesforce.
+## SHAREPOINT — Editing and Signing SharePoint Documents
+The SharePoint integration via Microsoft AppSource: opening and editing documents from SharePoint in pdfFiller.
+## SLACK — Sending and Signing Documents via Slack
+The Slack integration via Zapier or Make: sending documents for signing and receiving completion notifications.
+## OFFICE365 — pdfFiller for Office 365 / Microsoft 365
+The Office 365 Add-in: opening OneDrive documents as fillable PDFs in pdfFiller's editor.
+## SCENARIOS — Integration Scenarios by Role, Platform, and Document Type
+3–4 professional scenarios where a cloud storage integration (Google Drive, Dropbox, OneDrive, Salesforce, SharePoint, etc.) resolves a specific document access or editing workflow problem. Each scenario names a role from target_audience, the integration platform, a document type, and the action performed.
+## LIMITS — Limitations and Known Constraints
+OAuth permission requirements per integration, supported Google Workspace and Microsoft 365 editions, file size limits for cloud-imported documents, and which integrations are available on free vs. paid plans.
+## SECURITY — Security and Data Handling
+How OAuth tokens are used and stored, what data pdfFiller accesses from connected cloud accounts, TLS encryption in transit, and file retention policy after a cloud-imported document is processed.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's cloud storage integrations and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Platform Integrations
+Which cloud storage integrations are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps pdfFiller's integration ecosystem and links to group_form_filler, group_sign, group_share, group_extensions."
 group_hipaa,900-1100,"pdfFiller's HIPAA compliance mode lets Business plan customers configure their account to meet HIPAA requirements for handling electronic Protected Health Information (ePHI). Enabled via Account Settings → Authentication and Access Security → HIPAA compliance toggle, after which the customer signs a Business Associate Agreement (BAA) with pdfFiller.
  
 
@@ -866,27 +974,29 @@ group_hipaa,900-1100,"pdfFiller's HIPAA compliance mode lets Business plan custo
  - ""HIPAA-compliant electronic signature"" is the standard pdfFiller e-signature operating under HIPAA-mode security — not a separate product
  - Do not make specific legal or regulatory compliance guarantees beyond what pdfFiller's own documentation states
  - Named competitors: SodaPDF","## FEAT_DEF — What HIPAA Compliance Mode Does in pdfFiller
- Explains pdfFiller's HIPAA compliance mode: encryption, data storage, access controls, audit trail, BAA, and the Fax/Notarize/USPS constraint.
- ## ENABLE_HIPAA — Enabling HIPAA Compliance on Your pdfFiller Account
- Activation workflow: My Account → Settings → Authentication and Access Security → toggle → sign BAA.
- ## BAA — The Business Associate Agreement (BAA)
- What a BAA is in the HIPAA context and how to obtain and sign it with pdfFiller.
- ## SECURITY_CONTROLS — Encryption, Storage, and Access Controls
- SHA-256 encryption, US-based Amazon S3 storage, document permissions, two-factor authentication.
- ## AUDIT_TRAIL_HIPAA — Audit Trail for HIPAA Compliance
- How pdfFiller's Audit Trail supports HIPAA's documentation requirements.
- ## HIPAA_ESIGN — HIPAA-Compliant Electronic Signature
- How the standard pdfFiller e-signature workflow operates under HIPAA-mode security controls.
- ## PROTECT_MEDICAL — Protecting Medical Records with pdfFiller
- Applying pdfFiller's combined HIPAA controls to healthcare document workflows.
- ## HIPAA_TEAMS — HIPAA Compliance for Teams and Healthcare Organizations
- Enabling HIPAA compliance for a team workspace and managing team member access.
- ## HIPAA_CLOUD — HIPAA Compliance with Cloud Storage Integrations
- How HIPAA compliance applies when using Google Drive, Dropbox, OneDrive, and Box integrations.
- ## HIPAA_COMPARE — pdfFiller HIPAA Compliance vs. Alternatives
- How pdfFiller's HIPAA offering compares to SodaPDF and other PDF tools in healthcare settings.
- ## CLOSING — Summary and Next Steps
- Recaps the HIPAA workflow, restates the Fax/Notarize/USPS constraint, and links to group_protect, group_sign, group_file_management."
+Explains pdfFiller's HIPAA compliance mode: encryption, data storage, access controls, audit trail, BAA, and the Fax/Notarize/USPS constraint.
+## ENABLE_HIPAA — Enabling HIPAA Compliance on Your pdfFiller Account
+Activation workflow: My Account → Settings → Authentication and Access Security → toggle → sign BAA.
+## BAA — The Business Associate Agreement (BAA)
+What a BAA is in the HIPAA context and how to obtain and sign it with pdfFiller.
+## SECURITY_CONTROLS — Encryption, Storage, and Access Controls
+SHA-256 encryption, US-based Amazon S3 storage, document permissions, two-factor authentication.
+## AUDIT_TRAIL_HIPAA — Audit Trail for HIPAA Compliance
+How pdfFiller's Audit Trail supports HIPAA's documentation requirements.
+## HIPAA_ESIGN — HIPAA-Compliant Electronic Signature
+How the standard pdfFiller e-signature workflow operates under HIPAA-mode security controls.
+## PROTECT_MEDICAL — Protecting Medical Records with pdfFiller
+Applying pdfFiller's combined HIPAA controls to healthcare document workflows.
+## HIPAA_TEAMS — HIPAA Compliance for Teams and Healthcare Organizations
+Enabling HIPAA compliance for a team workspace and managing team member access.
+## HIPAA_CLOUD — HIPAA Compliance with Cloud Storage Integrations
+How HIPAA compliance applies when using Google Drive, Dropbox, OneDrive, and Box integrations.
+## HIPAA_COMPARE — pdfFiller HIPAA Compliance vs. Alternatives
+How pdfFiller's HIPAA offering compares to SodaPDF and other PDF tools in healthcare settings.
+## FREE_ACCESS — Free vs. Paid Access for HIPAA Compliance Mode
+HIPAA compliance mode and the Business Associate Agreement (BAA) are paid-plan features. Specify which plan tiers include HIPAA compliance and how to activate it. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the HIPAA workflow, restates the Fax/Notarize/USPS constraint, and links to group_protect, group_sign, group_file_management."
 group_images,900-1200,"Image manipulation tool in pdfFiller's browser-based editor. Accessed via the Image icon in the main toolbar — clicking it opens a file selection window; the selected image is placed on the active page as a movable, resizable overlay element.
  
 
@@ -911,41 +1021,45 @@ group_images,900-1200,"Image manipulation tool in pdfFiller's browser-based edit
  - Image Tool adds images as overlay elements, not embedded into the PDF content layer
  - Supported formats: JPEG, PNG, GIF — not SVG, TIFF, or WebP
  - Named competitors: Adobe Acrobat, PDF24, ilovepdf, Smallpdf","## FEAT_DEF — Feature Definition
- What the Image Tool does and when to use it to add, edit, or replace an image in a PDF.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The workflow problem image editing addresses — inserting logos, photos, or diagrams without rebuilding the document.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths and format conversion behavior before image editing.
- ## IMAGE_FORMATS — Supported Image Formats
- Accepted image file types (JPEG, PNG, GIF) and unsupported formats.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific image operation named in the keyword.
- ## RESIZE_REPOSITION — Resizing and Repositioning Images
- How to drag and resize images using corner handles after placement.
- ## ROTATE_LAYER — Rotating and Layering Images
- How to rotate an image element and manage its layer order.
- ## OPACITY — Opacity and Transparency Control
- How to adjust image transparency; plan-tier availability.
- ## CROP_CUTOUT — Cropping and Cutting Out Image Areas
- How resize handles approximate a crop and when to pre-crop before uploading.
- ## REPLACE_IMAGE — Replacing an Existing Image
- How to remove a placed image element and insert a new one.
- ## MERGE_OVERLAY — Merging and Overlaying Photos with PDF Content
- How multiple image elements can be stacked and positioned alongside PDF content.
- ## MANAGE_AFTER — Managing Image Elements After Placement
- How to select, move, resize, duplicate, undo, or delete placed image elements.
- ## FILE_FORMATS — Supported Document Formats and Export Options
- Accepted input PDF types and export formats after image editing.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete professional scenarios where in-browser image editing solves a workflow problem.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, mobile behavior, and no-installation access.
- ## LIMITS — Limitations and Known Constraints
- What the Image Tool cannot do: no crop dialog, no SVG/TIFF/WebP, opacity plan-dependent.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Image Tool and Adobe Acrobat, PDF24, ilovepdf, Smallpdf.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects image editing to the broader pdfFiller workflow."
+What the Image Tool does and when to use it to add, edit, or replace an image in a PDF.
+## WORKFLOW — Workflow Problem This Feature Solves
+The workflow problem image editing addresses — inserting logos, photos, or diagrams without rebuilding the document.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths and format conversion behavior before image editing.
+## IMAGE_FORMATS — Supported Image Formats
+Accepted image file types (JPEG, PNG, GIF) and unsupported formats.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific image operation named in the keyword.
+## RESIZE_REPOSITION — Resizing and Repositioning Images
+How to drag and resize images using corner handles after placement.
+## ROTATE_LAYER — Rotating and Layering Images
+How to rotate an image element and manage its layer order.
+## OPACITY — Opacity and Transparency Control
+How to adjust image transparency; plan-tier availability.
+## CROP_CUTOUT — Cropping and Cutting Out Image Areas
+How resize handles approximate a crop and when to pre-crop before uploading.
+## REPLACE_IMAGE — Replacing an Existing Image
+How to remove a placed image element and insert a new one.
+## MERGE_OVERLAY — Merging and Overlaying Photos with PDF Content
+How multiple image elements can be stacked and positioned alongside PDF content.
+## MANAGE_AFTER — Managing Image Elements After Placement
+How to select, move, resize, duplicate, undo, or delete placed image elements.
+## FILE_FORMATS — Supported Document Formats and Export Options
+Accepted input PDF types and export formats after image editing.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios where in-browser image editing solves a workflow problem.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile behavior, and no-installation access.
+## LIMITS — Limitations and Known Constraints
+What the Image Tool cannot do: no crop dialog, no SVG/TIFF/WebP, opacity plan-dependent.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Image Tool and Adobe Acrobat, PDF24, ilovepdf, Smallpdf.
+## FREE_ACCESS — Free vs. Paid Access for Image Tools
+Which image operations (insert, resize, rotate) are available on the free plan and which require a paid subscription (opacity control, bulk image replace). Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects image editing to the broader pdfFiller workflow."
 group_linktofill,1100-1400,"pdfFiller's LinkToFill feature converts a PDF or fillable form into a hosted online link (URL), allowing distribution via a shareable URL, QR code, website button, or app embed without requiring recipients to have a pdfFiller account. Recipients can fill and submit online; submission activity is tracked in Sent → LinkToFill.
  
 
@@ -965,31 +1079,39 @@ group_linktofill,1100-1400,"pdfFiller's LinkToFill feature converts a PDF or fil
  - ""Create signing link"" pages address the same LinkToFill workflow applied to named document types
  - Submission tracking in Sent → LinkToFill is distinct from the document-level Audit Trail
  - Named competitors: Adobe Acrobat, Smallpdf, Sejda","## FEAT_DEF — What LinkToFill Does in pdfFiller
- Explains that LinkToFill converts any PDF or fillable form into a hosted online link, covering the three distribution formats (link, QR code, embed code).
- ## CONVERT_PDF_URL — Converting a PDF to a URL (Creating a Shareable Link)
- The core ""PDF to URL"" workflow: selecting a document and generating a hosted URL.
- ## CREATE_LINK — Creating a Link for a PDF
- The step-by-step process of generating a shareable link from an existing document.
- ## SHARE_AS_LINK — Sharing a PDF as a Link
- How the generated URL lets recipients view or fill documents without downloading.
- ## HOST_PDF — Hosting a PDF or Form Online with LinkToFill
- The hosting dimension: pdfFiller stores the document and serves it to anyone with the link.
- ## HOST_FILLABLE — Hosting Fillable Forms and Converting PDF Forms to Online Forms
- Using LinkToFill to turn a PDF form into an online form that recipients complete and submit.
- ## QR_EMBED — Distributing via QR Code, Website Button, or Embed Code
- Generating a QR code, website button, or embed code beyond the URL.
- ## SIGNING_LINKS — Creating Signing Links for Specific Document Types
- How LinkToFill generates a fill-and-sign link for specific named documents.
- ## TRACK_SUBMISSIONS — Tracking Form Submissions and Fill Activity
- Sent → LinkToFill for monitoring distribution and viewing fill counts.
- ## HOST_TEAMS — Hosting PDFs for Teams, Organizations, and Business
- Multi-user and organizational LinkToFill use cases.
- ## CLOUD_COMPARE — LinkToFill with Cloud Storage and vs. Competitors
- Using LinkToFill with Google Drive, Dropbox, OneDrive, and Box; comparison with Adobe Acrobat, Smallpdf, Sejda.
- ## DEVICE_BROWSER — Converting PDFs to Links on Specific Devices and Browsers
- Device- and browser-specific guidance for the PDF-to-URL and create-link workflows.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Recaps LinkToFill's core function and links to group_form_creator, group_sign, and group_share."
+Explains that LinkToFill converts any PDF or fillable form into a hosted online link, covering the three distribution formats (link, QR code, embed code).
+## CONVERT_PDF_URL — Converting a PDF to a URL (Creating a Shareable Link)
+The core ""PDF to URL"" workflow: selecting a document and generating a hosted URL.
+## CREATE_LINK — Creating a Link for a PDF
+The step-by-step process of generating a shareable link from an existing document.
+## SHARE_AS_LINK — Sharing a PDF as a Link
+How the generated URL lets recipients view or fill documents without downloading.
+## HOST_PDF — Hosting a PDF or Form Online with LinkToFill
+The hosting dimension: pdfFiller stores the document and serves it to anyone with the link.
+## HOST_FILLABLE — Hosting Fillable Forms and Converting PDF Forms to Online Forms
+Using LinkToFill to turn a PDF form into an online form that recipients complete and submit.
+## QR_EMBED — Distributing via QR Code, Website Button, or Embed Code
+Generating a QR code, website button, or embed code beyond the URL.
+## SIGNING_LINKS — Creating Signing Links for Specific Document Types
+How LinkToFill generates a fill-and-sign link for specific named documents.
+## TRACK_SUBMISSIONS — Tracking Form Submissions and Fill Activity
+Sent → LinkToFill for monitoring distribution and viewing fill counts.
+## HOST_TEAMS — Hosting PDFs for Teams, Organizations, and Business
+Multi-user and organizational LinkToFill use cases.
+## CLOUD_COMPARE — LinkToFill with Cloud Storage and vs. Competitors
+Using LinkToFill with Google Drive, Dropbox, OneDrive, and Box; comparison with Adobe Acrobat, Smallpdf, Sejda.
+## DEVICE_BROWSER — Converting PDFs to Links on Specific Devices and Browsers
+Device- and browser-specific guidance for the PDF-to-URL and create-link workflows.
+## SCENARIOS — LinkToFill Scenarios by Role and Document Type
+3–4 professional scenarios where LinkToFill resolves a specific form distribution or data collection problem. Each scenario names a role from target_audience, a document type, and whether delivery was via direct link, QR code, website embed, or signing link.
+## LIMITS — Limitations and Known Constraints
+Maximum form submissions per link per plan tier, link expiration and manual deactivation options, QR code regeneration behavior when a link is updated, and which submission tracking features require a paid plan.
+## SECURITY — Security and Data Handling
+How submitted form data is stored and accessed, TLS encryption for link-based form submissions, file retention policy, and password-protection options for hosted forms.
+## FREE_ACCESS — Free vs. Paid Access for LinkToFill
+Which LinkToFill features (create link, QR code, submission tracking, embed code) are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Recaps LinkToFill's core function and links to group_form_creator, group_sign, and group_share."
 group_merge,1200-1500,"PDF merging tool in pdfFiller's browser-based platform. Combines multiple files into a single PDF without installing software.
  
 
@@ -1017,39 +1139,39 @@ group_merge,1200-1500,"PDF merging tool in pdfFiller's browser-based platform. C
  - Source documents in MyDocs remain unchanged after merging
  - Merge and Rearrange Pages are distinct tools
  - Named competitors: ilovepdf, Adobe Acrobat Online, Smallpdf, PDF24","## FEAT_DEF — Feature Definition
- What the Merge tool does and when to use it over Rearrange Pages or Split.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The workflow problem merging addresses — consolidating contracts, attachments, or reports into one file.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths for source files: local device, MyDocs library, and cloud storage.
- ## INPUT_FORMATS — Supported Input File Formats
- File types accepted for merging and how non-PDF inputs are converted automatically.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to covering the full merge workflow from file selection to download.
- ## REORDER_PAGES — Reordering Pages Before Merging
- How to use drag-and-drop thumbnails to set final page order before clicking Merge.
- ## OUTPUT — Output File and Save Options
- What the merged output looks like, download options, and saving to MyDocs.
- ## REARRANGE_DISTINCTION — Merge vs. Rearrange Pages
- When to use Merge (combine separate files) vs. Rearrange Pages (reorganize within one document).
- ## EDIT_AFTER — Editing the Merged Document After Combining
- How to open the merged PDF in the editor to annotate, fill, or sign.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: combining a contract with exhibits, merging invoices, compiling a bid.
- ## LIMITS — Limitations and Known Constraints
- File count and size limits, conversion fidelity caveats, and plan-tier constraints.
- ## FREE_ACCESS — Free vs. Paid Access
- Which merge capabilities are available on free plans.
- ## FILE_FORMATS — Supported Document Formats and Export Options
- Output format options and post-merge export paths.
- ## BROWSERS — Browser and Device Compatibility
- Browser support, no-installation access, and mobile behavior.
- ## SECURITY — Security and Data Handling
- File encryption in transit and compliance context for sensitive documents.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Merge and ilovepdf, Adobe Acrobat Online, Smallpdf, PDF24.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects merging to broader pdfFiller capabilities (merge → edit → sign → share)."
+What the Merge tool does and when to use it over Rearrange Pages or Split.
+## WORKFLOW — Workflow Problem This Feature Solves
+The workflow problem merging addresses — consolidating contracts, attachments, or reports into one file.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for source files: local device, MyDocs library, and cloud storage.
+## INPUT_FORMATS — Supported Input File Formats
+File types accepted for merging and how non-PDF inputs are converted automatically.
+## STEPS — Step-by-Step Instructions
+Numbered how-to covering the full merge workflow from file selection to download.
+## REORDER_PAGES — Reordering Pages Before Merging
+How to use drag-and-drop thumbnails to set final page order before clicking Merge.
+## OUTPUT — Output File and Save Options
+What the merged output looks like, download options, and saving to MyDocs.
+## REARRANGE_DISTINCTION — Merge vs. Rearrange Pages
+When to use Merge (combine separate files) vs. Rearrange Pages (reorganize within one document).
+## EDIT_AFTER — Editing the Merged Document After Combining
+How to open the merged PDF in the editor to annotate, fill, or sign.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: combining a contract with exhibits, merging invoices, compiling a bid.
+## LIMITS — Limitations and Known Constraints
+File count and size limits, conversion fidelity caveats, and plan-tier constraints.
+## FREE_ACCESS — Free vs. Paid Access
+Which merge capabilities are available on free plans.
+## FILE_FORMATS — Supported Document Formats and Export Options
+Output format options and post-merge export paths.
+## BROWSERS — Browser and Device Compatibility
+Browser support, no-installation access, and mobile behavior.
+## SECURITY — Security and Data Handling
+File encryption in transit and compliance context for sensitive documents.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Merge and ilovepdf, Adobe Acrobat Online, Smallpdf, PDF24.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects merging to broader pdfFiller capabilities (merge → edit → sign → share)."
 group_notarization,900-1100,"Remote online notarization (RON) service in pdfFiller — a workflow that sends a document to pdfFiller's third-party notarization partner for a live video session with a commissioned online notary. pdfFiller acts as the submission interface; the notarization is performed by an independent partner service.
  
 
@@ -1079,35 +1201,41 @@ group_notarization,900-1100,"Remote online notarization (RON) service in pdfFill
  - RON availability varies by US state — do not claim universal availability
  - Notarization ≠ e-signature, witnessed signature, or document certification
  - Named competitors: Notarize by Proof, NotaryCam, DocVerify, OneNotary","## FEAT_DEF — Feature Definition
- What remote online notarization (RON) is, how pdfFiller's Notarize feature works, and when to use it vs. e-signature.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Why users need notarization for real estate transactions, affidavits, and powers of attorney.
- ## ACCESS_PATHS — How to Access the Notarize Feature
- Where Notarize appears: document row menu → Send → Notarize, All Tools panel, and Sent → Notarize.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths for documents that need notarization.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to: selecting the document, entering signer details, completing identity verification, joining the video session, receiving the notarized document.
- ## RON_EXPLAINED — What Remote Online Notarization Is
- What RON means, how the live video session works, and why identity verification is required.
- ## ID_VERIFICATION — Identity Verification Requirements
- What forms of identification are accepted and when the ID check occurs.
- ## STATE_AVAILABILITY — State-by-State RON Availability
- Which US states permit RON and how pdfFiller's /notarization/[state] pages surface jurisdiction-specific information.
- ## DOC_TYPES — Document Types Commonly Notarized
- Which document types are most frequently submitted: bill of sale, affidavit, power of attorney, quitclaim deed, lease agreement.
- ## TRACK_STATUS — Tracking Notarization Status
- How to monitor a submitted request via the Sent → Notarize subfolder.
- ## NOTARY_VS_ESIGN — Notarization vs. E-Signature
- What notarization legally accomplishes vs. what an e-signature accomplishes.
- ## SCENARIOS — Document-Specific and Role-Specific Scenarios
- 3–4 concrete scenarios: notarizing a quitclaim deed, submitting a notarized affidavit, notarizing a power of attorney.
- ## BROWSERS — Browser and Device Compatibility
- Browser and device requirements for the video notarization session.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and Notarize by Proof, NotaryCam, DocVerify, OneNotary.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects the notarization step to the broader pdfFiller workflow: prepare → fill and sign → submit for notarization → download."
+What remote online notarization (RON) is, how pdfFiller's Notarize feature works, and when to use it vs. e-signature.
+## WORKFLOW — Workflow Problem This Feature Solves
+Why users need notarization for real estate transactions, affidavits, and powers of attorney.
+## ACCESS_PATHS — How to Access the Notarize Feature
+Where Notarize appears: document row menu → Send → Notarize, All Tools panel, and Sent → Notarize.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for documents that need notarization.
+## STEPS — Step-by-Step Instructions
+Numbered how-to: selecting the document, entering signer details, completing identity verification, joining the video session, receiving the notarized document.
+## RON_EXPLAINED — What Remote Online Notarization Is
+What RON means, how the live video session works, and why identity verification is required.
+## ID_VERIFICATION — Identity Verification Requirements
+What forms of identification are accepted and when the ID check occurs.
+## STATE_AVAILABILITY — State-by-State RON Availability
+Which US states permit RON and how pdfFiller's /notarization/[state] pages surface jurisdiction-specific information.
+## DOC_TYPES — Document Types Commonly Notarized
+Which document types are most frequently submitted: bill of sale, affidavit, power of attorney, quitclaim deed, lease agreement.
+## TRACK_STATUS — Tracking Notarization Status
+How to monitor a submitted request via the Sent → Notarize subfolder.
+## NOTARY_VS_ESIGN — Notarization vs. E-Signature
+What notarization legally accomplishes vs. what an e-signature accomplishes.
+## SCENARIOS — Document-Specific and Role-Specific Scenarios
+3–4 concrete scenarios: notarizing a quitclaim deed, submitting a notarized affidavit, notarizing a power of attorney.
+## BROWSERS — Browser and Device Compatibility
+Browser and device requirements for the video notarization session.
+## LIMITS — Limitations and Known Constraints
+State-by-state RON availability, identity verification requirements and accepted ID types, document types not eligible for online notarization, notary session expiration constraints, and plan-tier availability.
+## SECURITY — Security and Data Handling
+How identity verification data is handled, session recording retention, TLS encryption, audit trail immutability, and compliance with state-level RON security requirements.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and Notarize by Proof, NotaryCam, DocVerify, OneNotary.
+## FREE_ACCESS — Free vs. Paid Access for Online Notarization
+Notarization is a paid add-on or premium feature. Specify which plan tiers include notarization access and any per-session fees. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects the notarization step to the broader pdfFiller workflow: prepare → fill and sign → submit for notarization → download."
 group_pdf_creator,1200-1500,"PDF creation capabilities in pdfFiller's browser-based platform. ""Creating a PDF"" covers multiple entry paths — the path depends on the user's starting point.
  
 
@@ -1129,39 +1257,39 @@ group_pdf_creator,1200-1500,"PDF creation capabilities in pdfFiller's browser-ba
  - Upload format conversion is automatic but layout fidelity depends on source complexity
  - Creating a fillable PDF requires Add Fields mode — documents don't become fillable automatically
  - Named competitors: Adobe Acrobat, Smallpdf, PDF24, ilovepdf, doPDF","## FEAT_DEF — Feature Definition
- What ""creating a PDF"" means in pdfFiller and which starting path fits the user's situation.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Generating a PDF from scratch or from an existing file without desktop software.
- ## START_BLANK — Creating a PDF from a Blank Document
- How to open the editor with an empty page and build a PDF from scratch.
- ## UPLOAD_CONVERT — Uploading and Converting Files to PDF
- How to upload Word, Excel, PowerPoint, and image files that convert to PDF on upload.
- ## CLOUD_IMPORT — Importing from Cloud Storage
- How to connect Google Drive, Dropbox, OneDrive, or Box and import files as PDFs.
- ## CREATE_FILLABLE — Creating Fillable and Interactive PDFs
- How to switch to Add Fields mode and place interactive fields to produce a fillable form.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific creation path named in the keyword.
- ## EDIT_AFTER — Editing the PDF After Creation
- How to use the full editor to add text, images, annotations, and fields.
- ## SAVE_EXPORT — Saving and Exporting the Created PDF
- How to save to MyDocs, download immediately, or export to other formats.
- ## FILE_FORMATS — Supported Input and Output Formats
- Accepted input formats and available export formats after creation.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete professional scenarios: building a fillable intake form, converting a Word proposal.
- ## DESKTOP_VS_ONLINE — Online PDF Creator vs. Desktop Software
- How browser-based creation compares to desktop PDF printer drivers.
- ## FREE_ACCESS — Free vs. Paid Access
- Which PDF creation capabilities are available on free plans.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support, mobile access, no-plugin access.
- ## SECURITY — Security and Data Handling
- How uploaded source files are handled and encryption in transit.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and Adobe Acrobat, Smallpdf, PDF24, ilovepdf, doPDF.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects creation to the broader workflow (create → edit → fill → sign → share)."
+What ""creating a PDF"" means in pdfFiller and which starting path fits the user's situation.
+## WORKFLOW — Workflow Problem This Feature Solves
+Generating a PDF from scratch or from an existing file without desktop software.
+## START_BLANK — Creating a PDF from a Blank Document
+How to open the editor with an empty page and build a PDF from scratch.
+## UPLOAD_CONVERT — Uploading and Converting Files to PDF
+How to upload Word, Excel, PowerPoint, and image files that convert to PDF on upload.
+## CLOUD_IMPORT — Importing from Cloud Storage
+How to connect Google Drive, Dropbox, OneDrive, or Box and import files as PDFs.
+## CREATE_FILLABLE — Creating Fillable and Interactive PDFs
+How to switch to Add Fields mode and place interactive fields to produce a fillable form.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific creation path named in the keyword.
+## EDIT_AFTER — Editing the PDF After Creation
+How to use the full editor to add text, images, annotations, and fields.
+## SAVE_EXPORT — Saving and Exporting the Created PDF
+How to save to MyDocs, download immediately, or export to other formats.
+## FILE_FORMATS — Supported Input and Output Formats
+Accepted input formats and available export formats after creation.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete professional scenarios: building a fillable intake form, converting a Word proposal.
+## DESKTOP_VS_ONLINE — Online PDF Creator vs. Desktop Software
+How browser-based creation compares to desktop PDF printer drivers.
+## FREE_ACCESS — Free vs. Paid Access
+Which PDF creation capabilities are available on free plans.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, no-plugin access.
+## SECURITY — Security and Data Handling
+How uploaded source files are handled and encryption in transit.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and Adobe Acrobat, Smallpdf, PDF24, ilovepdf, doPDF.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects creation to the broader workflow (create → edit → fill → sign → share)."
 group_pdf_reader,1100-1400,"pdfFiller functions as an online PDF reader and document viewer, allowing users to open, read, and view PDF documents (and DOCX files) in a browser without downloading a desktop reader application. When a user uploads or opens a document in pdfFiller, it renders in the editor interface. From there, users can proceed to fill, edit, annotate, sign, or share.
  
 
@@ -1180,29 +1308,39 @@ group_pdf_reader,1100-1400,"pdfFiller functions as an online PDF reader and docu
  - DOCX reader is a distinct sub-feature
  - Do not conflate reading/viewing with editing or annotating
  - Named competitors: Adobe Acrobat, Adobe Reader, Foxit Reader, Wondershare PDFelement, Nitro PDF, Smallpdf","## FEAT_DEF — What pdfFiller's Online PDF Reader Does
- Explains that pdfFiller is a browser-based PDF and DOCX reader: users upload or open a document and pdfFiller renders it without requiring a desktop reader.
- ## OPEN_PDF — Opening and Reading a PDF Online
- Core open/read workflow: uploading a PDF and how pdfFiller renders it for reading.
- ## VIEW_PDF — Viewing a PDF in the Browser
- The ""view PDF"" intent: opening a document in pdfFiller to review its contents and navigate pages.
- ## DOCX_READER — Using pdfFiller as an Online DOCX Reader
- The DOCX reader feature: uploading a Word (.docx) file and how pdfFiller renders it for reading.
- ## VIEW_MULTIPLE — Viewing Multiple PDFs
- How to open and manage multiple PDF documents within pdfFiller.
- ## OPEN_GOOGLE_DOCS — Opening a PDF in Google Docs via pdfFiller
- How pdfFiller facilitates opening or converting a PDF into Google Docs format.
- ## CLOUD_STORAGE_READER — Opening PDFs from Google Drive, Dropbox, OneDrive, and Box
- How to import and open documents from connected cloud storage services.
- ## READER_TEAMS — pdfFiller as an Online PDF Reader for Teams and Organizations
- Team and organizational reader use cases: shared access and multi-user scenarios.
- ## READER_COMPARE — pdfFiller vs. Desktop PDF Readers
- How pdfFiller's online reader compares to Adobe Acrobat, Adobe Reader, Foxit Reader, Nitro PDF, Smallpdf.
- ## DEVICE_BROWSER — Reading PDFs on Specific Devices and Browsers
- Device- and browser-specific open/read/view guidance.
- ## FORMS_READER — Reading and Opening PDF Forms Online
- Opening fillable PDF forms and converting PDF forms to fillable website forms.
- ## CLOSING — Summary and Next Steps
- Recaps pdfFiller as a browser-based PDF and DOCX reader and links to group_form_filler, group_edit, group_annotate, group_convert."
+Explains that pdfFiller is a browser-based PDF and DOCX reader: users upload or open a document and pdfFiller renders it without requiring a desktop reader.
+## OPEN_PDF — Opening and Reading a PDF Online
+Core open/read workflow: uploading a PDF and how pdfFiller renders it for reading.
+## VIEW_PDF — Viewing a PDF in the Browser
+The ""view PDF"" intent: opening a document in pdfFiller to review its contents and navigate pages.
+## DOCX_READER — Using pdfFiller as an Online DOCX Reader
+The DOCX reader feature: uploading a Word (.docx) file and how pdfFiller renders it for reading.
+## VIEW_MULTIPLE — Viewing Multiple PDFs
+How to open and manage multiple PDF documents within pdfFiller.
+## OPEN_GOOGLE_DOCS — Opening a PDF in Google Docs via pdfFiller
+How pdfFiller facilitates opening or converting a PDF into Google Docs format.
+## CLOUD_STORAGE_READER — Opening PDFs from Google Drive, Dropbox, OneDrive, and Box
+How to import and open documents from connected cloud storage services.
+## READER_TEAMS — pdfFiller as an Online PDF Reader for Teams and Organizations
+Team and organizational reader use cases: shared access and multi-user scenarios.
+## READER_COMPARE — pdfFiller vs. Desktop PDF Readers
+How pdfFiller's online reader compares to Adobe Acrobat, Adobe Reader, Foxit Reader, Nitro PDF, Smallpdf.
+## DEVICE_BROWSER — Reading PDFs on Specific Devices and Browsers
+Device- and browser-specific open/read/view guidance.
+## FORMS_READER — Reading and Opening PDF Forms Online
+Opening fillable PDF forms and converting PDF forms to fillable website forms.
+## SCENARIOS — PDF Reader Scenarios by Role and Document Type
+3–4 professional scenarios where opening and reading a document online resolves a specific access or compatibility problem. Each scenario names a role from target_audience, a document type, and the reading context (mobile, shared link, cloud storage, form review).
+## FILE_FORMATS — Supported File Types for Online Reading
+File types that can be opened and read in pdfFiller's online reader — including PDF, DOCX, image formats, and cloud-imported files — and any format-specific display limitations (e.g., scanned PDFs without OCR, password-protected PDFs).
+## LIMITS — Limitations and Known Constraints
+Maximum file size for online reading, password-protected PDF handling, display limitations for scanned PDFs without OCR, and which reader features require a paid account.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## FREE_ACCESS — Free vs. Paid Access for the Online Reader
+Which reading and document-access features are available without a paid account and which require a subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps pdfFiller as a browser-based PDF and DOCX reader and links to group_form_filler, group_edit, group_annotate, group_convert."
 group_print,1000-1300,"Print functionality in pdfFiller lets users send any document to a physical printer or save it as a PDF using the browser's print dialog, without needing to open the document in the editor first. The Print icon appears on each document row in My Docs and is also accessible from the document preview panel and the More menu.
  
 
@@ -1221,31 +1359,41 @@ group_print,1000-1300,"Print functionality in pdfFiller lets users send any docu
  - Printing password-protected PDFs requires the document to already be accessible in pdfFiller
  - Print actions do not involve editing or annotating content
  - Named competitors: Adobe Acrobat, Smallpdf","## FEAT_DEF — What the Print Feature Does in pdfFiller
- Explains that pdfFiller's Print function triggers the browser's native print dialog and describes the three access points.
- ## PRINT_PDF — Printing a PDF Document
- Core print workflow: locating a document, clicking Print, selecting a printer, and confirming.
- ## PRINT_TO_PDF — Printing to PDF (Save as PDF via Print Dialog)
- The ""print to PDF"" use case: selecting Save as PDF in the browser dialog.
- ## PRINT_WITH_COMMENTS — Printing a PDF with Comments
- Ensuring annotations and comments added in pdfFiller are visible in the printed output.
- ## PRINT_PROTECTED — Printing Password-Protected or Locked PDFs
- How to print a PDF that is password-protected, clarifying pdfFiller does not circumvent encryption.
- ## PRINT_DUPLEX — Printing Double-Sided (Duplex) PDFs
- Selecting the duplex option in the browser print dialog.
- ## PRINT_BOOKLET — Printing a PDF as a Booklet
- Selecting booklet layout options in the browser print dialog across Chrome, Edge, and Firefox.
- ## PRINT_MULTIPLE — Printing Multiple PDF Files
- How to print multiple documents from My Docs.
- ## PRINT_FORMS — Printing Fillable Forms and Documents
- Ensuring field data is preserved in the print output for fillable PDFs and forms.
- ## PRINT_BROWSER_DEVICE — Printing from Specific Browsers and Devices
- Browser- and platform-specific print guidance: Chrome, Edge, Firefox, Windows, Android, mobile.
- ## PRINT_TEAMS — Printing PDF Documents for Organizations and Teams
- Team-level print workflows and bulk printing considerations.
- ## PRINT_DOCX — Printing DOCX and Other Document Types
- How to print non-PDF files opened through pdfFiller.
- ## CLOSING — Summary and Next Steps
- Recaps pdfFiller's print access points and links to related clusters: group_convert, group_protect."
+Explains that pdfFiller's Print function triggers the browser's native print dialog and describes the three access points.
+## PRINT_PDF — Printing a PDF Document
+Core print workflow: locating a document, clicking Print, selecting a printer, and confirming.
+## PRINT_TO_PDF — Printing to PDF (Save as PDF via Print Dialog)
+The ""print to PDF"" use case: selecting Save as PDF in the browser dialog.
+## PRINT_WITH_COMMENTS — Printing a PDF with Comments
+Ensuring annotations and comments added in pdfFiller are visible in the printed output.
+## PRINT_PROTECTED — Printing Password-Protected or Locked PDFs
+How to print a PDF that is password-protected, clarifying pdfFiller does not circumvent encryption.
+## PRINT_DUPLEX — Printing Double-Sided (Duplex) PDFs
+Selecting the duplex option in the browser print dialog.
+## PRINT_BOOKLET — Printing a PDF as a Booklet
+Selecting booklet layout options in the browser print dialog across Chrome, Edge, and Firefox.
+## PRINT_MULTIPLE — Printing Multiple PDF Files
+How to print multiple documents from My Docs.
+## PRINT_FORMS — Printing Fillable Forms and Documents
+Ensuring field data is preserved in the print output for fillable PDFs and forms.
+## PRINT_BROWSER_DEVICE — Printing from Specific Browsers and Devices
+Browser- and platform-specific print guidance: Chrome, Edge, Firefox, Windows, Android, mobile.
+## PRINT_TEAMS — Printing PDF Documents for Organizations and Teams
+Team-level print workflows and bulk printing considerations.
+## PRINT_DOCX — Printing DOCX and Other Document Types
+How to print non-PDF files opened through pdfFiller.
+## SCENARIOS — Print Scenarios by Role and Document Type
+3–4 professional scenarios where a specific print configuration (duplex, booklet, with comments, password-protected) resolves a document production or distribution problem. Each scenario names a role from target_audience, a document type, and the specific print setting used.
+## LIMITS — Limitations and Known Constraints
+Browser-specific print dialog behavior differences, duplex support by OS and printer type, maximum file size for print operations, and which print configurations require a paid plan.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's print feature and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Printing
+Whether printing is available on the free plan and any limits that apply (e.g., print with comments, print protected PDFs). Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps pdfFiller's print access points and links to related clusters: group_convert, group_protect."
 group_protect,900-1200,"PDF password security features in pdfFiller. The primary tool is Protect Document (Tools → Protect Document): users select a document and page scope — entire document or specific pages — enter a password, and click Apply. The protected PDF requires that password to open, whether downloaded locally or shared via a pdfFiller link.
  
 
@@ -1259,35 +1407,41 @@ group_protect,900-1200,"PDF password security features in pdfFiller. The primary
  - ""Make PDF read-only"" is accomplished via Protect Document
  - Access path is Tools → Protect Document
  - Named competitors: ilovepdf, Smallpdf, pdf2go, Adobe Acrobat","## FEAT_DEF — Feature Definition
- What pdfFiller's Protect Document does: adding a password required to open a PDF, applicable to the entire document or selected pages.
- ## ACCESS — How to Access the Protect Document Feature
- How to reach Protect Document: Tools → Protect Document, available from the document action menu.
- ## STEPS_LOCK — Adding a Password to a PDF
- Full step-by-step walkthrough for adding a password using Protect Document.
- ## STEPS_UNLOCK — Opening a Password-Protected PDF
- How to open a password-protected PDF in pdfFiller by entering the known password.
- ## PAGE_SCOPE — Protecting the Entire Document vs. Specific Pages
- Choosing between full document protection versus specific page ranges.
- ## CONFIDENTIAL_FOLDER — The Confidential Folder
- How the Confidential folder provides in-app secure storage: phone verification, isolated document visibility.
- ## READ_ONLY — Creating a Read-Only PDF for Recipients
- How Protect Document creates a read-only state for external recipients.
- ## DOWNLOADED_VS_SHARED — Password Protection on Download vs. Shared Link
- How password protection applies when downloading versus sharing via a pdfFiller link.
- ## USE_CASES — When to Password-Protect a PDF
- When to protect a PDF: legal contracts, HR documents, financial records, tax forms, personal IDs.
- ## COMPARISON — Comparison with Named Alternatives
- pdfFiller vs. ilovepdf, Smallpdf, pdf2go, and Adobe for password protection.
- ## SECURITY_STANDARDS — Encryption Standards and File Privacy
- What encryption pdfFiller applies and how the platform handles file privacy during processing.
- ## ONLINE_VS_DESKTOP — Browser-Based vs. Desktop Password Protection
- Advantages of browser-based protection over desktop tools.
- ## INTEGRATION — Protect Document in the Broader Workflow
- How Protect Document fits before sharing via Send to Sign, LinkToFill, or email.
- ## MOBILE — Password-Protecting a PDF on Mobile
- How to password-protect a PDF from a mobile browser or tablet.
- ## CLOSING — Next Steps
- Closing prompt to try Protect Document, framed around securing any PDF in minutes with no software to install."
+What pdfFiller's Protect Document does: adding a password required to open a PDF, applicable to the entire document or selected pages.
+## ACCESS — How to Access the Protect Document Feature
+How to reach Protect Document: Tools → Protect Document, available from the document action menu.
+## STEPS_LOCK — Adding a Password to a PDF
+Full step-by-step walkthrough for adding a password using Protect Document.
+## STEPS_UNLOCK — Opening a Password-Protected PDF
+How to open a password-protected PDF in pdfFiller by entering the known password.
+## PAGE_SCOPE — Protecting the Entire Document vs. Specific Pages
+Choosing between full document protection versus specific page ranges.
+## CONFIDENTIAL_FOLDER — The Confidential Folder
+How the Confidential folder provides in-app secure storage: phone verification, isolated document visibility.
+## READ_ONLY — Creating a Read-Only PDF for Recipients
+How Protect Document creates a read-only state for external recipients.
+## DOWNLOADED_VS_SHARED — Password Protection on Download vs. Shared Link
+How password protection applies when downloading versus sharing via a pdfFiller link.
+## USE_CASES — When to Password-Protect a PDF
+When to protect a PDF: legal contracts, HR documents, financial records, tax forms, personal IDs.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile device compatibility, and behavior differences for password protection workflows across desktop and mobile browsers.
+## LIMITS — Limitations and Known Constraints
+Encryption standard used, maximum password length, page-range protection availability by plan tier, and behavior differences between password protection on download vs. on shared links.
+## COMPARISON — Comparison with Named Alternatives
+pdfFiller vs. ilovepdf, Smallpdf, pdf2go, and Adobe for password protection.
+## SECURITY_STANDARDS — Encryption Standards and File Privacy
+What encryption pdfFiller applies and how the platform handles file privacy during processing.
+## ONLINE_VS_DESKTOP — Browser-Based vs. Desktop Password Protection
+Advantages of browser-based protection over desktop tools.
+## INTEGRATION — Protect Document in the Broader Workflow
+How Protect Document fits before sharing via Send to Sign, LinkToFill, or email.
+## MOBILE — Password-Protecting a PDF on Mobile
+How to password-protect a PDF from a mobile browser or tablet.
+## FREE_ACCESS — Free vs. Paid Access for Document Protection
+Whether password protection is available on the free plan and which protection features (read-only, confidential folder) require a subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps
+Closing prompt to try Protect Document, framed around securing any PDF in minutes with no software to install."
 group_rearrange,900-1200,"Page management tools in pdfFiller's browser-based editor. Covers all structural page operations — reordering, rotating, deleting, inserting, and duplicating — without creating separate files.
  
 
@@ -1312,39 +1466,43 @@ group_rearrange,900-1200,"Page management tools in pdfFiller's browser-based edi
  - Deleting a page with form fields triggers a confirmation dialog
  - Add Blank Page inserts an empty editable page — not a page from another document
  - Named competitors: ilovepdf, Smallpdf, Adobe Acrobat, PDF24, Sejda","## FEAT_DEF — Feature Definition
- What the page management tools cover and when to use the Manage modal vs. quick sidebar controls.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Fixing scan order, correcting orientation, cleaning blank pages, or preparing documents for signing.
- ## REORDER_PAGES — Reordering PDF Pages
- How to drag pages into a new order and use Move Up/Down arrows for quick shifts.
- ## ROTATE_PAGES — Rotating PDF Pages
- How to rotate pages 90° per click and correct sideways or upside-down scans.
- ## DELETE_PAGES — Deleting Pages
- How to delete a single page or batch-delete in the Manage modal.
- ## ADD_PAGE — Inserting a Blank Page
- How to use the three Add Blank Page entry points and what can be placed on inserted pages.
- ## DUPLICATE_PAGES — Duplicating Pages
- How to duplicate pages including all content and form fields via the Manage modal.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific page operation named in the keyword.
- ## MANAGE_MODAL — Using the Manage Modal for Batch Operations
- How to open the Manage modal, select multiple pages, and use the full toolbar before clicking Apply.
- ## SIDEBAR_CONTROLS — Quick Sidebar Controls
- How to use the thumbnail sidebar for fast single-page actions.
- ## EDIT_AFTER — Editing Pages After Structural Changes
- How to add text, images, or fields to blank or duplicated pages after reordering.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: fixing page order, rotating a scan, deleting a cover page, inserting a signature page.
- ## FILE_FORMATS — Supported Document Formats
- Input formats accepted and output format after changes are applied.
- ## FREE_ACCESS — Free vs. Paid Access
- Which page management operations are available on free plans.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support, drag-and-drop behavior, mobile access.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller page management and ilovepdf, Smallpdf, Adobe Acrobat, PDF24, Sejda.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects page management to pdfFiller's broader workflow (organize → edit → sign → share)."
+What the page management tools cover and when to use the Manage modal vs. quick sidebar controls.
+## WORKFLOW — Workflow Problem This Feature Solves
+Fixing scan order, correcting orientation, cleaning blank pages, or preparing documents for signing.
+## REORDER_PAGES — Reordering PDF Pages
+How to drag pages into a new order and use Move Up/Down arrows for quick shifts.
+## ROTATE_PAGES — Rotating PDF Pages
+How to rotate pages 90° per click and correct sideways or upside-down scans.
+## DELETE_PAGES — Deleting Pages
+How to delete a single page or batch-delete in the Manage modal.
+## ADD_PAGE — Inserting a Blank Page
+How to use the three Add Blank Page entry points and what can be placed on inserted pages.
+## DUPLICATE_PAGES — Duplicating Pages
+How to duplicate pages including all content and form fields via the Manage modal.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific page operation named in the keyword.
+## MANAGE_MODAL — Using the Manage Modal for Batch Operations
+How to open the Manage modal, select multiple pages, and use the full toolbar before clicking Apply.
+## SIDEBAR_CONTROLS — Quick Sidebar Controls
+How to use the thumbnail sidebar for fast single-page actions.
+## EDIT_AFTER — Editing Pages After Structural Changes
+How to add text, images, or fields to blank or duplicated pages after reordering.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: fixing page order, rotating a scan, deleting a cover page, inserting a signature page.
+## FILE_FORMATS — Supported Document Formats
+Input formats accepted and output format after changes are applied.
+## LIMITS — Limitations and Known Constraints
+Maximum number of pages per rearrange operation, file types supported, which batch operations (delete all pages, manage modal) require a paid plan, and behavior when rearranging scanned vs. native PDFs.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## FREE_ACCESS — Free vs. Paid Access
+Which page management operations are available on free plans.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, drag-and-drop behavior, mobile access.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller page management and ilovepdf, Smallpdf, Adobe Acrobat, PDF24, Sejda.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects page management to pdfFiller's broader workflow (organize → edit → sign → share)."
 group_request_signature,1000-1300,"E-signature request workflow in pdfFiller. Sends a document to one or multiple named recipients for legally binding electronic signing via a secure email link — recipients do not need a pdfFiller account.
  
 
@@ -1368,39 +1526,39 @@ group_request_signature,1000-1300,"E-signature request workflow in pdfFiller. Se
  - Audit trail availability may be plan-dependent
  - Do not conflate with the Sign tool (self-signing) or LinkToFill (mass anonymous collection)
  - Named competitors: DocuSign, Adobe Acrobat Sign, PandaDoc, SignWell, Dropbox Sign","## FEAT_DEF — Feature Definition
- What the Request e-signatures workflow does and when to use it versus self-signing or LinkToFill.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Routing contracts and agreements to named parties for binding signatures without printing or switching tools.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths for the document to be signed.
- ## ADD_FIELDS — Assigning Signature and Form Fields
- How to switch to Add fields mode, place signature and form fields, and assign each to the correct recipient.
- ## RECIPIENTS — Adding and Managing Recipients
- How to add signers and viewers by email, assign roles, and set order before sending.
- ## SIGNING_ORDER — Sequential vs. Parallel Signing
- How to configure signing order and when to use sequential vs. parallel routing.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to from document selection through Review and Send.
- ## TRACK_STATUS — Tracking Signing Progress
- How to monitor who has signed and who is pending, and how to resend or cancel.
- ## REMINDERS_DEADLINES — Reminders and Expiration Deadlines
- How to configure automated reminder emails and expiration dates.
- ## AUDIT_TRAIL — Audit Trail and Legal Record
- What the audit trail captures and its role in legal enforceability.
- ## LEGAL_VALIDITY — Legal Validity of E-Signatures
- How pdfFiller's e-signatures comply with ESIGN and UETA.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: sending a service contract, routing an employment agreement, collecting NDAs.
- ## FREE_ACCESS — Free vs. Paid Access
- Which e-signature request capabilities are available on free plans.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support for both sender and recipient.
- ## SECURITY — Security and Data Handling
- Encrypted delivery, secure signing link, and compliance context.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and DocuSign, Adobe Acrobat Sign, PandaDoc, SignWell, Dropbox Sign.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects to pdfFiller's broader workflow (edit → fill → request signatures → track completion)."
+What the Request e-signatures workflow does and when to use it versus self-signing or LinkToFill.
+## WORKFLOW — Workflow Problem This Feature Solves
+Routing contracts and agreements to named parties for binding signatures without printing or switching tools.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for the document to be signed.
+## ADD_FIELDS — Assigning Signature and Form Fields
+How to switch to Add fields mode, place signature and form fields, and assign each to the correct recipient.
+## RECIPIENTS — Adding and Managing Recipients
+How to add signers and viewers by email, assign roles, and set order before sending.
+## SIGNING_ORDER — Sequential vs. Parallel Signing
+How to configure signing order and when to use sequential vs. parallel routing.
+## STEPS — Step-by-Step Instructions
+Numbered how-to from document selection through Review and Send.
+## TRACK_STATUS — Tracking Signing Progress
+How to monitor who has signed and who is pending, and how to resend or cancel.
+## REMINDERS_DEADLINES — Reminders and Expiration Deadlines
+How to configure automated reminder emails and expiration dates.
+## AUDIT_TRAIL — Audit Trail and Legal Record
+What the audit trail captures and its role in legal enforceability.
+## LEGAL_VALIDITY — Legal Validity of E-Signatures
+How pdfFiller's e-signatures comply with ESIGN and UETA.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: sending a service contract, routing an employment agreement, collecting NDAs.
+## FREE_ACCESS — Free vs. Paid Access
+Which e-signature request capabilities are available on free plans.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support for both sender and recipient.
+## SECURITY — Security and Data Handling
+Encrypted delivery, secure signing link, and compliance context.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and DocuSign, Adobe Acrobat Sign, PandaDoc, SignWell, Dropbox Sign.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects to pdfFiller's broader workflow (edit → fill → request signatures → track completion)."
 group_scan_ocr,1200-1500,"OCR (Optical Character Recognition) and scanned document processing tools in pdfFiller — converting image-based or scanned PDFs into editable, searchable, and extractable text, and handling image-to-PDF conversion and scan quality improvement.
  
 
@@ -1422,39 +1580,45 @@ group_scan_ocr,1200-1500,"OCR (Optical Character Recognition) and scanned docume
  - Clean Up and Sharpen improve visual fidelity but do not make text selectable
  - DOCX OCR and non-PDF OCR (Word, Excel, PPT, PNG) are valid paths
  - Named competitors: Adobe Acrobat, Smallpdf, Sejda, ABBYY FineReader, Adobe Scan","## FEAT_DEF — Feature Definition
- What OCR is, what pdfFiller's OCR tool does to a scanned PDF, and the distinction between native and scanned PDFs.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Why scanned PDFs cannot be edited or extracted without OCR.
- ## ACCESS_PATHS — How to Access OCR and Scan Tools
- Where OCR, Clean Up, Sharpen, and Scan to PDF appear in the UI.
- ## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
- Upload paths for scanned documents and images.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to: running OCR, editing after OCR, converting scanned PDF to Word, scanning image to PDF.
- ## OCR_ENGINE — How OCR Works: Language, Accuracy, and Output
- Language selection, how recognized text becomes a selectable layer, accuracy dependencies.
- ## EDIT_SCANNED — Editing a Scanned PDF After OCR
- The two-step workflow: (1) apply OCR, (2) use Edit Mode.
- ## SCAN_TO_PDF — Scanning Images and Photos to PDF
- How to upload a JPG, PNG, or photo and convert to PDF (no OCR applied automatically).
- ## CONVERT_SCANNED — Converting Scanned PDFs to Word, Excel, and Text
- How OCR + format conversion produces editable output from a scanned source.
- ## EXTRACT_TEXT — Extracting and Copying Text from Scanned Documents
- How to extract recognized text, including Extract in Bulk for batch extraction.
- ## CLEANUP_SHARPEN — Clean Up and Sharpen Scanned PDFs
- What Clean Up filters do and what Sharpen does — distinct from OCR.
- ## NON_PDF_OCR — OCR for Word, Excel, PPT, PNG, and DOCX Files
- How OCR applies to non-PDF formats.
- ## SCANNED_VS_NATIVE — Scanned PDFs vs. Native PDFs
- The technical distinction and which tools apply in each case.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- Concrete scenarios: extracting text from a scanned contract, converting a paper form to editable Word.
- ## BROWSERS — Browser and Device Compatibility
- Browser support and mobile behavior.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller OCR and Adobe Acrobat, Smallpdf, ABBYY FineReader, Adobe Scan.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects OCR to the broader workflow: scan → apply OCR → edit → fill → sign → share."
+What OCR is, what pdfFiller's OCR tool does to a scanned PDF, and the distinction between native and scanned PDFs.
+## WORKFLOW — Workflow Problem This Feature Solves
+Why scanned PDFs cannot be edited or extracted without OCR.
+## ACCESS_PATHS — How to Access OCR and Scan Tools
+Where OCR, Clean Up, Sharpen, and Scan to PDF appear in the UI.
+## UPLOAD_OPTIONS — Getting Documents Into pdfFiller
+Upload paths for scanned documents and images.
+## STEPS — Step-by-Step Instructions
+Numbered how-to: running OCR, editing after OCR, converting scanned PDF to Word, scanning image to PDF.
+## OCR_ENGINE — How OCR Works: Language, Accuracy, and Output
+Language selection, how recognized text becomes a selectable layer, accuracy dependencies.
+## EDIT_SCANNED — Editing a Scanned PDF After OCR
+The two-step workflow: (1) apply OCR, (2) use Edit Mode.
+## SCAN_TO_PDF — Scanning Images and Photos to PDF
+How to upload a JPG, PNG, or photo and convert to PDF (no OCR applied automatically).
+## CONVERT_SCANNED — Converting Scanned PDFs to Word, Excel, and Text
+How OCR + format conversion produces editable output from a scanned source.
+## EXTRACT_TEXT — Extracting and Copying Text from Scanned Documents
+How to extract recognized text, including Extract in Bulk for batch extraction.
+## CLEANUP_SHARPEN — Clean Up and Sharpen Scanned PDFs
+What Clean Up filters do and what Sharpen does — distinct from OCR.
+## NON_PDF_OCR — OCR for Word, Excel, PPT, PNG, and DOCX Files
+How OCR applies to non-PDF formats.
+## SCANNED_VS_NATIVE — Scanned PDFs vs. Native PDFs
+The technical distinction and which tools apply in each case.
+## SCENARIOS — Industry and Role-Specific Scenarios
+Concrete scenarios: extracting text from a scanned contract, converting a paper form to editable Word.
+## BROWSERS — Browser and Device Compatibility
+Browser support and mobile behavior.
+## LIMITS — Limitations and Known Constraints
+OCR language support, accuracy limitations on low-resolution or handwritten scans, maximum file size for OCR processing, and which OCR operations (extract text, convert scanned to Word) require a paid plan.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller OCR and Adobe Acrobat, Smallpdf, ABBYY FineReader, Adobe Scan.
+## FREE_ACCESS — Free vs. Paid Access for Scan and OCR
+Which scan and OCR features are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects OCR to the broader workflow: scan → apply OCR → edit → fill → sign → share."
 group_share,1200-1500,"Sharing and delivery tools in pdfFiller let users distribute completed documents through multiple channels. Delivery methods include email, SMS/text message, fax, USPS physical mail, and shareable links. The Sent folder organizes all outgoing documents by channel (Email/SMS, Faxes, USPS mail, Notarize, E-signature requests, LinkToFill). Collaboration is supported via the Share for Collaboration workflow, which invites co-editors to work on a document.
  
 
@@ -1475,33 +1639,43 @@ group_share,1200-1500,"Sharing and delivery tools in pdfFiller let users distrib
  - E-signature requests should be noted as a send channel but not described in depth
  - USPS mail is a physical mailing service — pdfFiller prints and mails on the user's behalf
  - Named competitors: Adobe Acrobat, DocuSign, Smallpdf","## FEAT_DEF — What Sharing and Delivery Tools Do in pdfFiller
- Explains pdfFiller's multi-channel delivery system and how all sent documents are tracked in the Sent folder.
- ## SEND_EMAIL — Sending a Document via Email
- Workflow for delivering a completed document by email and how sent documents appear in Sent → Email/SMS.
- ## SEND_SMS — Sending a Document via SMS or Text Message
- The SMS/text delivery option and how delivery status is tracked.
- ## SEND_FAX — Sending a Document via Fax
- The online fax workflow and how fax status is monitored in Sent → Faxes.
- ## SEND_USPS — Sending a Document via USPS Physical Mail
- How pdfFiller prints and physically mails the document on the user's behalf.
- ## SHARE_ONLINE — Sharing a PDF Online via Link
- How to generate a shareable link so recipients can view a document without a pdfFiller account.
- ## SHARE_COLLAB — Sharing a PDF for Collaboration
- The Share for Collaboration workflow: inviting co-editors and where shared documents appear.
- ## LINKTOFILL_SHARE — Sharing a Form via LinkToFill Link, QR Code, or Embed
- How to create a LinkToFill shareable fill link, QR code, or embed code for form distribution.
- ## EMAILABLE_FORM — Making and Sending an Emailable PDF Form
- The Emailable Forms feature: preparing a fillable form that recipients complete via email.
- ## BULK_SEND — Bulk Sending Documents to Multiple Recipients
- The bulk send workflow: sending to multiple recipients at once and managing the campaign.
- ## SENT_TRACKING — Tracking Sent Documents in the Sent Folder
- The Sent folder structure and how to read delivery status indicators.
- ## DEVICE_BROWSER — Sending and Sharing PDFs from Specific Devices and Browsers
- Device- and browser-specific share workflows.
- ## CLOUD_STORAGE — Importing from and Sending to Cloud Storage
- Cloud storage integration: importing from Google Drive, Dropbox, OneDrive, and Box.
- ## CLOSING — Summary and Next Steps
- Recaps the full delivery channel menu and links to related clusters."
+Explains pdfFiller's multi-channel delivery system and how all sent documents are tracked in the Sent folder.
+## SEND_EMAIL — Sending a Document via Email
+Workflow for delivering a completed document by email and how sent documents appear in Sent → Email/SMS.
+## SEND_SMS — Sending a Document via SMS or Text Message
+The SMS/text delivery option and how delivery status is tracked.
+## SEND_FAX — Sending a Document via Fax
+The online fax workflow and how fax status is monitored in Sent → Faxes.
+## SEND_USPS — Sending a Document via USPS Physical Mail
+How pdfFiller prints and physically mails the document on the user's behalf.
+## SHARE_ONLINE — Sharing a PDF Online via Link
+How to generate a shareable link so recipients can view a document without a pdfFiller account.
+## SHARE_COLLAB — Sharing a PDF for Collaboration
+The Share for Collaboration workflow: inviting co-editors and where shared documents appear.
+## LINKTOFILL_SHARE — Sharing a Form via LinkToFill Link, QR Code, or Embed
+How to create a LinkToFill shareable fill link, QR code, or embed code for form distribution.
+## EMAILABLE_FORM — Making and Sending an Emailable PDF Form
+The Emailable Forms feature: preparing a fillable form that recipients complete via email.
+## BULK_SEND — Bulk Sending Documents to Multiple Recipients
+The bulk send workflow: sending to multiple recipients at once and managing the campaign.
+## SENT_TRACKING — Tracking Sent Documents in the Sent Folder
+The Sent folder structure and how to read delivery status indicators.
+## DEVICE_BROWSER — Sending and Sharing PDFs from Specific Devices and Browsers
+Device- and browser-specific share workflows.
+## CLOUD_STORAGE — Importing from and Sending to Cloud Storage
+Cloud storage integration: importing from Google Drive, Dropbox, OneDrive, and Box.
+## SCENARIOS — Sharing and Delivery Scenarios by Role and Document Type
+3–4 professional scenarios where a specific delivery method (email, SMS, fax, USPS, link, bulk send) resolves a document distribution problem. Each scenario names a role from target_audience, a document type, and the specific sharing channel used.
+## LIMITS — Limitations and Known Constraints
+Maximum recipients for bulk send per plan tier, file size limits for email and fax delivery, USPS delivery timeline and supported regions, SMS delivery country restrictions, and shared link expiration options.
+## SECURITY — Security and Data Handling
+How documents are protected during email, SMS, fax, and link delivery — TLS encryption, shared link access controls, file retention after delivery, and audit trail for sent documents.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's sharing and delivery options and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Sharing and Delivery
+Which sharing methods are available on the free plan (email, link) and which require a paid subscription (bulk send, USPS, fax, SMS). Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps the full delivery channel menu and links to related clusters."
 group_signature,1000-1300,"Electronic signature tool in pdfFiller's browser-based editor. Accessed via the Signature button in the main editor toolbar. Covers the self-sign flow — adding the user's own signature or initials — not requesting others' signatures.
  
 
@@ -1530,43 +1704,45 @@ group_signature,1000-1300,"Electronic signature tool in pdfFiller's browser-base
  - Saved signature is not auto-applied — user places it manually per document
  - Signature tool is not the same as Signature Field (fields for others are in Add Fields mode)
  - Named competitors: DocuSign, Adobe Acrobat Sign, Dropbox Sign, signNow","## FEAT_DEF — Feature Definition
- What the Signature tool does, the distinction between self-signing and sending for signature.
- ## WORKFLOW — Workflow Problem This Feature Solves
- The document workflow problem requiring a signature.
- ## SIGN_METHODS — Three Ways to Create a Signature
- Draw, Type, and Upload: what each produces, when to choose each, and their legal equivalence.
- ## DRAW_SIGN — Drawing a Signature
- How to use the Draw method with a mouse, touchpad, or stylus.
- ## TYPE_SIGN — Typing a Signature
- How to type a name and choose a font style and color.
- ## UPLOAD_SIGN — Uploading a Signature Image
- How to upload an image file of an existing handwritten signature.
- ## INITIALS — Adding Initials
- How to create and place initials using the same three methods.
- ## CUSTOMIZATION — Signature Appearance Options
- Per-method customization: font, color, thickness, resize and reposition.
- ## SAVE_REUSE — Saving and Reusing Signatures
- How signatures are saved to the account and how to set a default.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific signing action named in the keyword.
- ## LEGAL — Legal Validity and Compliance
- How pdfFiller signatures comply with ESIGN, UETA, eIDAS, and GDPR.
- ## AUDIT_TRAIL — Audit Trail and Verified Badge
- How pdfFiller generates a timestamped audit trail and attaches the Verified badge.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: signing a lease, authorizing a contract, completing a form.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support, mobile signing behavior.
- ## LIMITS — Limitations and Known Constraints
- What the tool cannot do: requesting others' signatures, auto-applying saved signatures.
- ## SECURITY — Security and Data Handling
- Encryption standards for signed documents.
- ## ESIGN_CONNECT — Connecting Self-Signing to Send to Sign Workflows
- How signing your own document connects to Send to Sign when additional signers are needed.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller and DocuSign, Adobe Acrobat Sign, Dropbox Sign, signNow.
- ## CLOSING — Next Steps
- Connects the signature action to the broader pdfFiller workflow (fill → sign → share)."
+What the Signature tool does, the distinction between self-signing and sending for signature.
+## WORKFLOW — Workflow Problem This Feature Solves
+The document workflow problem requiring a signature.
+## SIGN_METHODS — Three Ways to Create a Signature
+Draw, Type, and Upload: what each produces, when to choose each, and their legal equivalence.
+## DRAW_SIGN — Drawing a Signature
+How to use the Draw method with a mouse, touchpad, or stylus.
+## TYPE_SIGN — Typing a Signature
+How to type a name and choose a font style and color.
+## UPLOAD_SIGN — Uploading a Signature Image
+How to upload an image file of an existing handwritten signature.
+## INITIALS — Adding Initials
+How to create and place initials using the same three methods.
+## CUSTOMIZATION — Signature Appearance Options
+Per-method customization: font, color, thickness, resize and reposition.
+## SAVE_REUSE — Saving and Reusing Signatures
+How signatures are saved to the account and how to set a default.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific signing action named in the keyword.
+## LEGAL — Legal Validity and Compliance
+How pdfFiller signatures comply with ESIGN, UETA, eIDAS, and GDPR.
+## AUDIT_TRAIL — Audit Trail and Verified Badge
+How pdfFiller generates a timestamped audit trail and attaches the Verified badge.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: signing a lease, authorizing a contract, completing a form.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile signing behavior.
+## LIMITS — Limitations and Known Constraints
+What the tool cannot do: requesting others' signatures, auto-applying saved signatures.
+## SECURITY — Security and Data Handling
+Encryption standards for signed documents.
+## ESIGN_CONNECT — Connecting Self-Signing to Send to Sign Workflows
+How signing your own document connects to Send to Sign when additional signers are needed.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller and DocuSign, Adobe Acrobat Sign, Dropbox Sign, signNow.
+## FREE_ACCESS — Free vs. Paid Access for E-Signature
+Whether self-signing is available on the free plan and which signature features (saved signatures, audit trail, legal compliance badge) require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Next Steps
+Connects the signature action to the broader pdfFiller workflow (fill → sign → share)."
 group_split,1000-1300,"PDF splitting and page extraction tool in pdfFiller's browser-based platform. Separates a multi-page PDF into smaller files without modifying the source document.
  
 
@@ -1593,39 +1769,39 @@ group_split,1000-1300,"PDF splitting and page extraction tool in pdfFiller's bro
  - When many pages are split individually, output is delivered as a ZIP package
  - Split and Delete Pages are distinct: Split creates new files; Delete Pages removes pages from the existing document
  - Named competitors: ilovepdf, Smallpdf, Adobe Acrobat Online, PDF24, Sejda","## FEAT_DEF — Feature Definition
- What the Split tool does and when to use Extract pages vs. Split by range vs. Split by all pages.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Isolating pages for distribution, breaking large files into sections, or extracting a single page.
- ## EXTRACT_PAGES — Extracting Specific Pages
- How to select individual pages to pull into a new standalone PDF.
- ## SPLIT_BY_RANGE — Splitting by Page Range
- How to define custom page ranges and generate multiple named output files.
- ## SPLIT_ALL_PAGES — Splitting Every Page into Separate Files
- How to split a document so each page becomes its own PDF and how the ZIP archive output works.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific split operation named in the keyword.
- ## OUTPUT — Output Files and Download Options
- How output files are saved to MyDocs and individual vs. ZIP package behavior.
- ## SOURCE_INTACT — Source Document After Splitting
- Clarification that the original document is not modified or deleted after any split operation.
- ## SPLIT_VS_TOOLS — Split vs. Related Tools
- How Split differs from Delete Pages and Rearrange Pages.
- ## EDIT_AFTER — Editing Split Files After Creation
- How to open any output file in the editor to annotate, fill, or sign.
- ## FILE_FORMATS — Supported Formats and Output
- Input formats accepted and the fact that all output files are always PDF.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: extracting a signed page, separating report chapters, isolating a form page.
- ## LIMITS — Limitations and Known Constraints
- File size limits, page count limits, and plan-tier constraints.
- ## FREE_ACCESS — Free vs. Paid Access
- Which split capabilities are available on free plans.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support, mobile access, and no-installation access.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Split and ilovepdf, Smallpdf, Adobe Acrobat Online, PDF24, Sejda.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects splitting to the broader workflow (split → edit → sign → share)."
+What the Split tool does and when to use Extract pages vs. Split by range vs. Split by all pages.
+## WORKFLOW — Workflow Problem This Feature Solves
+Isolating pages for distribution, breaking large files into sections, or extracting a single page.
+## EXTRACT_PAGES — Extracting Specific Pages
+How to select individual pages to pull into a new standalone PDF.
+## SPLIT_BY_RANGE — Splitting by Page Range
+How to define custom page ranges and generate multiple named output files.
+## SPLIT_ALL_PAGES — Splitting Every Page into Separate Files
+How to split a document so each page becomes its own PDF and how the ZIP archive output works.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific split operation named in the keyword.
+## OUTPUT — Output Files and Download Options
+How output files are saved to MyDocs and individual vs. ZIP package behavior.
+## SOURCE_INTACT — Source Document After Splitting
+Clarification that the original document is not modified or deleted after any split operation.
+## SPLIT_VS_TOOLS — Split vs. Related Tools
+How Split differs from Delete Pages and Rearrange Pages.
+## EDIT_AFTER — Editing Split Files After Creation
+How to open any output file in the editor to annotate, fill, or sign.
+## FILE_FORMATS — Supported Formats and Output
+Input formats accepted and the fact that all output files are always PDF.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: extracting a signed page, separating report chapters, isolating a form page.
+## LIMITS — Limitations and Known Constraints
+File size limits, page count limits, and plan-tier constraints.
+## FREE_ACCESS — Free vs. Paid Access
+Which split capabilities are available on free plans.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, and no-installation access.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Split and ilovepdf, Smallpdf, Adobe Acrobat Online, PDF24, Sejda.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects splitting to the broader workflow (split → edit → sign → share)."
 group_tables,1000-1300,"pdfFiller provides native table tools in the PDF editor for inserting, editing, formatting, and extracting tables, and for generating a table of contents.
  
 
@@ -1645,27 +1821,39 @@ group_tables,1000-1300,"pdfFiller provides native table tools in the PDF editor 
  - ""Extract data from PDF to Excel"" belongs here when the extraction target is table data; broader PDF-to-Excel format conversion belongs to Convert
  - Editing a ""table in image/JPG"" uses the Image Tool or OCR+edit approach, not a native table editor
  - Named competitors: Adobe Acrobat (table editing)","## FEAT_DEF — What Table Tools Do in pdfFiller
- Explains pdfFiller's four distinct table capabilities: inserting, editing, generating a table of contents, and extracting tables.
- ## INSERT_TABLE — Inserting a Table in a PDF
- The table insert workflow: opening the Insert tab, selecting Table, choosing rows and columns, and placing the table.
- ## EDIT_TABLE — Editing a Table in a PDF
- Table editing capabilities: changing cell text, adding/deleting rows and columns, resizing, changing colors and borders.
- ## FORMAT_TABLE — Formatting, Resizing, and Styling a Table
- Formatting operations: resizing columns and rows, adjusting borders, applying background colors, sorting data.
- ## FILLABLE_TABLE — Creating a Fillable Table with Interactive Fields
- How to make a table interactive by placing fillable fields inside cells via Add Fields mode.
- ## TABLE_OF_CONTENTS — Adding a Table of Contents to a PDF
- The TOC feature: accessing via Insert → Page Templates, customizing styles, inserting the clickable TOC.
- ## EXTRACT_TABLES — Extracting Tables from a PDF
- The Extract Tables feature: uploading a PDF, how pdfFiller detects table data, batch processing up to 10 files.
- ## EXTRACT_TO_EXCEL — Extracting PDF Table Data to Excel
- How to pull structured table data from a PDF and export in Excel-compatible format.
- ## TABLE_OTHER_FORMATS — Table Operations in Images, JPG, Excel, PowerPoint, and WPS Files
- Table operations when the source file is not a native PDF.
- ## DEVICE_BROWSER — Table Operations on Specific Devices and Browsers
- Device- and browser-specific guidance for table operations.
- ## CLOSING — Summary and Next Steps
- Recaps pdfFiller's four table tools and links to group_form_creator, group_convert, and group_edit."
+Explains pdfFiller's four distinct table capabilities: inserting, editing, generating a table of contents, and extracting tables.
+## INSERT_TABLE — Inserting a Table in a PDF
+The table insert workflow: opening the Insert tab, selecting Table, choosing rows and columns, and placing the table.
+## EDIT_TABLE — Editing a Table in a PDF
+Table editing capabilities: changing cell text, adding/deleting rows and columns, resizing, changing colors and borders.
+## FORMAT_TABLE — Formatting, Resizing, and Styling a Table
+Formatting operations: resizing columns and rows, adjusting borders, applying background colors, sorting data.
+## FILLABLE_TABLE — Creating a Fillable Table with Interactive Fields
+How to make a table interactive by placing fillable fields inside cells via Add Fields mode.
+## TABLE_OF_CONTENTS — Adding a Table of Contents to a PDF
+The TOC feature: accessing via Insert → Page Templates, customizing styles, inserting the clickable TOC.
+## EXTRACT_TABLES — Extracting Tables from a PDF
+The Extract Tables feature: uploading a PDF, how pdfFiller detects table data, batch processing up to 10 files.
+## EXTRACT_TO_EXCEL — Extracting PDF Table Data to Excel
+How to pull structured table data from a PDF and export in Excel-compatible format.
+## TABLE_OTHER_FORMATS — Table Operations in Images, JPG, Excel, PowerPoint, and WPS Files
+Table operations when the source file is not a native PDF.
+## DEVICE_BROWSER — Table Operations on Specific Devices and Browsers
+Device- and browser-specific guidance for table operations.
+## SCENARIOS — Table Scenarios by Role and Document Type
+3–4 professional scenarios where inserting, editing, or extracting a table in a PDF resolves a specific data presentation or extraction problem. Each scenario names a role from target_audience, a document type, and the specific table operation performed.
+## FILE_FORMATS — Supported File Types for Table Operations
+File types supported for table insertion and editing, and available export formats when extracting table data (including Excel, CSV, and plain text). Note format-specific behavior for scanned PDFs and image files.
+## LIMITS — Limitations and Known Constraints
+Table detection accuracy limitations on scanned PDFs, maximum table size for extraction, which table operations (fillable table fields, table of contents) require a paid plan, and supported export formats.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's table tools and the named alternatives in cluster_context. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Table Tools
+Which table operations are available on the free plan and which require a paid subscription. Reference plan tiers only — no prices.
+## CLOSING — Summary and Next Steps
+Recaps pdfFiller's four table tools and links to group_form_creator, group_convert, and group_edit."
 group_watermark,900-1200,"Watermark tool in pdfFiller's browser-based editor. Accessed via Tools → Watermark in the editor toolbar.
  
 
@@ -1691,36 +1879,40 @@ group_watermark,900-1200,"Watermark tool in pdfFiller's browser-based editor. Ac
  - pdfFiller cannot remove cryptographically embedded watermarks — Erase tool covers visible watermark text visually only
  - Bates Numbering is a legal/archival-specific feature, not a general page stamp
  - Named competitors: ilovepdf, Smallpdf, Sejda, Adobe Acrobat, PDF24","## FEAT_DEF — Feature Definition
- What the Watermark tool does and the distinction between text watermarks, image watermarks, and document-wide stamping tools.
- ## WORKFLOW — Workflow Problem This Feature Solves
- Branding, classifying, or protecting PDFs before sharing or archiving.
- ## TEXT_WATERMARK — Adding a Text Watermark
- How to enter custom text and apply it as a semi-transparent overlay across pages.
- ## IMAGE_WATERMARK — Adding an Image or Logo Watermark
- How to upload a logo or emblem and apply it as an image watermark.
- ## CUSTOMIZE — Customizing Watermark Appearance
- How to adjust size, color, transparency, and rotation.
- ## PAGE_SCOPE — Applying to One Page, All Pages, or Custom Ranges
- How to control which pages receive the watermark.
- ## EDIT_REMOVE — Editing and Removing a Watermark
- How to reopen the Watermark tool to modify, swap, or delete a watermark.
- ## REMOVE_EXISTING — Removing Watermarks from Uploaded Documents
- How the Erase tool can cover visible watermark text and where this approach has limits.
- ## DATE_STAMP — Date Stamp Tool
- How to apply a document-wide date stamp via the Watermark Panel.
- ## PAGE_NUMBERING — Page Numbering Tool
- How to add sequential page numbers with configurable format and placement.
- ## BATES_NUMBERING — Bates Numbering for Legal and Archival Use
- How to apply Bates numbers across all pages for legal discovery and archival records.
- ## STEPS — Step-by-Step Instructions
- Numbered how-to for the specific watermark operation named in the keyword.
- ## SCENARIOS — Industry and Role-Specific Scenarios
- 3–4 concrete scenarios: marking a draft CONFIDENTIAL, branding a proposal with a logo, applying Bates numbers.
- ## BROWSERS — Browser and Device Compatibility
- Browser and OS support, mobile access, and no-installation access.
- ## FREE_ACCESS — Free vs. Paid Access
- Which watermarking capabilities are available on free plans.
- ## COMPARISON — Comparison with Named Alternatives
- Factual differentiators between pdfFiller Watermark and ilovepdf, Smallpdf, Sejda, Adobe Acrobat, PDF24.
- ## CLOSING — Next Steps and Broader Workflow Connection
- Connects watermarking to the broader workflow (watermark → sign → share → track)."
+What the Watermark tool does and the distinction between text watermarks, image watermarks, and document-wide stamping tools.
+## WORKFLOW — Workflow Problem This Feature Solves
+Branding, classifying, or protecting PDFs before sharing or archiving.
+## TEXT_WATERMARK — Adding a Text Watermark
+How to enter custom text and apply it as a semi-transparent overlay across pages.
+## IMAGE_WATERMARK — Adding an Image or Logo Watermark
+How to upload a logo or emblem and apply it as an image watermark.
+## CUSTOMIZE — Customizing Watermark Appearance
+How to adjust size, color, transparency, and rotation.
+## PAGE_SCOPE — Applying to One Page, All Pages, or Custom Ranges
+How to control which pages receive the watermark.
+## EDIT_REMOVE — Editing and Removing a Watermark
+How to reopen the Watermark tool to modify, swap, or delete a watermark.
+## REMOVE_EXISTING — Removing Watermarks from Uploaded Documents
+How the Erase tool can cover visible watermark text and where this approach has limits.
+## DATE_STAMP — Date Stamp Tool
+How to apply a document-wide date stamp via the Watermark Panel.
+## PAGE_NUMBERING — Page Numbering Tool
+How to add sequential page numbers with configurable format and placement.
+## BATES_NUMBERING — Bates Numbering for Legal and Archival Use
+How to apply Bates numbers across all pages for legal discovery and archival records.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific watermark operation named in the keyword.
+## SCENARIOS — Industry and Role-Specific Scenarios
+3–4 concrete scenarios: marking a draft CONFIDENTIAL, branding a proposal with a logo, applying Bates numbers.
+## BROWSERS — Browser and Device Compatibility
+Browser and OS support, mobile access, and no-installation access.
+## LIMITS — Limitations and Known Constraints
+Supported image formats and maximum file size for watermark images, opacity range constraints, maximum text watermark length, and which scope options (all pages vs. custom page ranges) are available on free vs. paid plans.
+## SECURITY — Security and Data Handling
+How uploaded documents are handled during and after this operation: TLS encryption in transit, file retention and automatic deletion timeline, and any compliance or audit considerations relevant to this workflow.
+## FREE_ACCESS — Free vs. Paid Access
+Which watermarking capabilities are available on free plans.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller Watermark and ilovepdf, Smallpdf, Sejda, Adobe Acrobat, PDF24.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects watermarking to the broader workflow (watermark → sign → share → track)."

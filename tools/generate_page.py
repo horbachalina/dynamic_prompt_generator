@@ -312,6 +312,9 @@ def generate_single_page(
             import json
             url_slug = urlparse(url).path.rstrip("/").split("/")[-1]
             if not url_slug:
+                hostname = urlparse(url).hostname or ""
+                url_slug = hostname.split(".")[0] if hostname else ""
+            if not url_slug:
                 raise ValueError(f"Could not derive a url_slug from URL: {url!r}")
             config = dict(config_cache)
             config["url_slug"] = url_slug

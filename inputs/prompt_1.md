@@ -20,10 +20,8 @@ Rules (apply in order):
 Verification: Ask — would a real user type this exact phrase into Google? If yes, it is correct. If it still contains brand names, marketing language, or call-to-action words, strip further.
 
 Examples:
-  "Stay mobile Annotate PDF on Smartphone For Free"  →  PRIMARY_KEYWORD: Annotate PDF on Smartphone
-  "Compress PDF with our PDF compressor feature"      →  PRIMARY_KEYWORD: Compress PDF
-  "Go paperless Sign Documents Online Today"          →  PRIMARY_KEYWORD: Sign Documents Online
-  "Edit PDF documents with pdfFiller"                 →  PRIMARY_KEYWORD: Edit PDF documents
+  "Compress PDF with our PDF compressor feature"  →  PRIMARY_KEYWORD: Compress PDF
+  "Edit PDF documents with pdfFiller"             →  PRIMARY_KEYWORD: Edit PDF documents
 
 Output PRIMARY_KEYWORD explicitly at the top of Section A as: `PRIMARY_KEYWORD: [extracted phrase]`
 Use PRIMARY_KEYWORD (not the full h1) as the anchor for A4 and all keyword density targets.
@@ -73,8 +71,7 @@ Before analysis, read every config field. If a field is empty or missing, skip a
    5a. SEMANTIC VARIANTS (4–5): ≥1 question query, ≥1 short head term (2–3 words), ≥1 long tail (6+ words). Exclude near-duplicates.
    5b. LSI KEYWORDS (5–6, comma-separated inline): Related features, formats, platforms, document types, professional tasks.
    5c. COMPARISON QUERIES (2–3): Tool-evaluation searches.
-   5d. INDUSTRY/ROLE VARIANTS (3–4): Feature + professional context matching target_audience.
-   5e. DENSITY TARGET: Primary keyword [N] times; [N] variants across body; ≥1 LSI per section.
+   5d. INDUSTRY/ROLE VARIANTS + DENSITY: 3–4 variants (feature + professional context matching target_audience); set density: primary [N] times, ≥1 LSI per section.
 
 ---
 ## B. PAGE BLUEPRINT
@@ -97,7 +94,7 @@ Before analysis, read every config field. If a field is empty or missing, skip a
    STRUCTURE_NOTE: One structural instruction (≤12 words). Example: "Frame as problem → consequence → solution."
 
 10. COMPARISON BRIEF: 3+ named competitors relevant to this keyword. For each: 1 sentence differentiator (grounded in positioning_statement) + 1 sentence honest tradeoff. Max 2 sentences per competitor.
-    If feature-only and no competitor in keyword: write "Comparison not central — brief mention in body only." No competitor entries.
+    If feature-only and no competitor in keyword: write "Comparison not central — fold into CLOSING only." No competitor entries.
 
 ---
 ## PRE-OUTPUT CHECKLIST
