@@ -1916,3 +1916,70 @@ Which watermarking capabilities are available on free plans.
 Factual differentiators between pdfFiller Watermark and ilovepdf, Smallpdf, Sejda, Adobe Acrobat, PDF24.
 ## CLOSING — Next Steps and Broader Workflow Connection
 Connects watermarking to the broader workflow (watermark → sign → share → track)."
+group_ai_document_creation,1300-1600,"Document creation in pdfFiller — building a new document from scratch using either standard creation paths or an AI-powered chat modal.
+
+Two primary creation paths:
+
+Standard creation (no AI):
+  Start blank: Add New → Blank document → opens empty PDF in the full editor
+  Upload & convert: Add New → Upload document → Word, Excel, PowerPoint, and image files auto-convert to PDF
+  Cloud import: Add New → Import from cloud → connects to Google Drive, Dropbox, OneDrive, or Box
+  From saved template: Add New → Create from template → opens a pre-built fillable structure for a new completion
+
+AI-assisted creation (chat modal):
+  Create Document with AI button (purple, left sidebar) → opens AI assistant panel as a side panel or modal
+  User selects from quick suggestions (e.g., Non-disclosure Agreement, Lease Agreement, Employment Agreement) or types a natural-language description
+  AI responds with a first-draft document or asks clarifying questions to refine the request
+  Generated draft is saved to workspace and opened in the full editor for review and editing
+
+Document vs. Template distinction:
+  A document is a single-use file — created, edited, signed, and stored
+  A template is a reusable fillable structure saved to Personal Templates or Team Templates
+  Any created document (AI-generated or manual) can be converted to a template via More menu → Tools → Convert to Template
+
+Post-creation workflow (both paths):
+  Document opens in the full editor → user reviews and refines content → optionally switches to Add Fields mode to add fillable fields → saves, signs, or sends
+
+Key accuracy rules:
+  - The AI generates document TEXT (content, clauses, structure) — it does NOT automatically place fillable fields; Add Fields mode is a separate manual step
+  - AI-generated content carries an accuracy disclaimer (""Double-check for accuracy"") — do not claim AI produces legally binding documents without human review
+  - Quick suggestions (NDA, Lease, Employment Agreement) are starting-point drafts — professional legal review is recommended before use
+  - ""Create Document with AI"" creates new content from scratch — this is distinct from AI Rewriter, which modifies existing document text
+  - Standard creation paths are always available; AI creation path availability may depend on plan tier
+  - Both paths land in the same full editor for final review and editing
+  - Named competitors: DocuSign AI, PandaDoc, Adobe Acrobat AI, Notion AI, JotForm AI","## FEAT_DEF — What Document Creation in pdfFiller Offers
+Both creation paths at a glance: standard (blank, upload, cloud, template) and AI chat modal. When each path is the right choice and what both produce.
+## WORKFLOW — When to Start a Document from Scratch
+The workflow problem: no template exists, no source file is available, or the user needs a first draft of a legal agreement or business document without starting from zero.
+## CREATE_PATHS — Standard Creation Paths
+The four non-AI paths: Start blank, Upload and convert, Cloud import, and Create from template. Criteria for choosing each and what happens after selection.
+## AI_CREATE — Creating a Document with the AI Chat Modal
+How the AI document creation modal works: where to find the button, how the chat panel opens, quick-suggestion document types (NDA, Lease Agreement, Employment Agreement), and how to describe a document in natural language.
+## AI_DRAFT_FLOW — How the AI Builds the First Draft
+The AI conversation flow: input → AI clarifying questions (when triggered) → draft output → what the draft contains (structure, clauses, placeholder fields) → how to iterate on the draft in chat before saving.
+## DOCUMENT_TYPES — Document and Agreement Types the AI Can Draft
+Agreement categories well-suited for AI drafting (NDAs, lease agreements, employment agreements, service contracts) vs. document types that require professional input. Named quick suggestions vs. custom-described requests.
+## STEPS — Step-by-Step Instructions
+Numbered how-to for the specific creation path named in the keyword: blank creation, upload and convert, AI modal, or template-based start. Cover the path implied by the keyword — do not default to AI path for non-AI keywords.
+## EDIT_AFTER — Editing and Refining the Document After Creation
+Both paths land in the full editor. What to do there: review AI-generated text, add or remove content, adjust formatting, insert images or annotations.
+## ADD_FIELDS — Making the Document Fillable After Creation
+How to switch from the regular editor to Add Fields mode to place text fields, checkboxes, signature fields, date fields, and dropdowns on the created document. Required step if the document needs to be a fillable form or sent for completion by others.
+## SAVE_TEMPLATE — Saving the Created Document as a Reusable Template
+After creation (AI-generated or manual), converting to a Personal Template or Team Template via More menu → Tools → Convert to Template. Use As Is vs. Add Fields options. How template reuse differs from single-use document saving.
+## REVIEW_ACCURACY — Reviewing AI-Generated Content Before Use
+The accuracy disclaimer, what the AI can and cannot guarantee, why clauses must be checked against jurisdiction-specific requirements, and how to correct or replace AI-generated content in the editor.
+## SCENARIOS — Document Creation Scenarios by Role and Document Type
+3–4 professional scenarios covering both creation paths: one AI-assisted (e.g., legal assistant generating an NDA draft via chat), one standard creation (e.g., HR manager starting from blank to build a custom intake form), and industry-specific examples drawn from target_audience.
+## BROWSERS — Browser and Device Compatibility
+Browser support, mobile access, and no-installation access for both creation paths including the AI chat modal.
+## LIMITS — Limitations and Known Constraints
+AI generation limits (document types, draft length, language support), accuracy and legal limitations, plan-tier availability of the AI creation path, what the AI does not do (does not place fillable fields, does not guarantee legal accuracy), and file format constraints for upload-and-convert.
+## SECURITY — Security and Data Handling
+How documents created via both paths are stored, TLS encryption in transit, how AI chat inputs and prompts are handled, file retention and deletion policy, and compliance context for AI-generated legal documents.
+## COMPARISON — Comparison with Named Alternatives
+Factual differentiators between pdfFiller's document creation tools and DocuSign AI, PandaDoc, Adobe Acrobat AI, and Notion AI. One differentiator and one honest tradeoff per competitor. Source all competitor names from cluster_context.
+## FREE_ACCESS — Free vs. Paid Access for Document Creation
+Which creation paths are available on the free plan (standard paths: blank, upload, convert) and which require a paid subscription (AI chat modal, team templates). Reference plan tiers only — no prices.
+## CLOSING — Next Steps and Broader Workflow Connection
+Connects document creation to the broader pdfFiller workflow: create → edit → add fields → sign → share. Links to group_fillable_fields, group_signature, group_request_signature, and group_create_template."
