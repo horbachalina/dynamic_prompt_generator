@@ -40,7 +40,7 @@ Write sections in blueprint order. Each field is binding:
 > **Important — PURPOSE field:** `PURPOSE` is a writer reference only. **Do not render it or include it anywhere in the HTML output.** This rule is absolute.
 
 **Blueprint Section 10 (COMPARISON BRIEF):**
-- ≥3 competitors listed → dedicated `<h3>` section; one `<p>` per competitor; all names, differentiators, and tradeoffs from Section 10 only.
+- ≥3 competitors listed → dedicated `<h3>` section; heading must be a natural question or statement relevant to the keyword (e.g. "How Does pdfFiller Compare?" or "pdfFiller vs. Alternatives") — never use "Comparison Brief" or any blueprint label as a heading; one `<p>` per competitor; all names, differentiators, and tradeoffs from Section 10 only.
 - "Comparison not central" → no dedicated section; fold 1–2 sentences into CLOSING only.
 - Never scatter comparison content across unrelated sections.
 
@@ -105,7 +105,7 @@ Before writing any HTML — and again after completing the full draft — verify
 2. **Word count:** within `TARGET_WORD_COUNT` (blueprint Section 9). Verify each section against its MIN_WORDS floor — extend underbuilt sections using Step 4 before continuing. Most commonly underbuilt: STEPS, SCENARIOS, WORKFLOW.
 3. **Prohibitions:** All banned words (Step 3) removed. Banned openers and closers absent from every section.
 4. **Headings:** every `<h3>` = exact HEADING field text, never a section code name. PURPOSE field absent from output.
-5. **COMPARISON (if present):** all competitors from blueprint Section 10 only.
+5. **COMPARISON (if present):** all competitors from blueprint Section 10 only; `<h3>` heading is a natural keyword-relevant phrase — not "Comparison Brief" or any blueprint label.
 6. **Language compliance:** Re-read the full draft. Count every sentence, heading, or list item written in a language other than `locale_config.language`. If the count is greater than zero, rewrite every violation before submitting.
 
 ---
