@@ -15,7 +15,13 @@ Read the `language` field in `locale_config`. This is the only permitted languag
 - BRAND NAME: exact string in `website`. Copy character-for-character. Never paraphrase, shorten, or change the case.
 - TARGET AUDIENCE: role names from `target_audience` only — never "users" or "people."
 - WORD COUNT: `TARGET_WORD_COUNT` from blueprint Section 9, line 1 — treat as hard floor and ceiling. Per-section MIN_WORDS are individual floors, not the article target.
-- KEYWORD DENSITY: from blueprint Section 5d. Apply the stated primary keyword frequency and variant count across the full article body.
+- KEYWORD DENSITY: from blueprint Section 5e (KEYWORD DISTRIBUTION PLAN). Treat every rule as mandatory:
+  - Hit PRIMARY_COUNT exactly (±1 tolerance). Track occurrences as you write.
+  - TL;DR must contain PRIMARY_KEYWORD verbatim.
+  - Every SEMANTIC VARIANT from 5a appears ≥1 time in body.
+  - Every LSI phrase from 5b appears ≥1 time, in the section where it is assigned via LSI_EMBED — verbatim or with minor inflection.
+  - Every INDUSTRY/ROLE VARIANT from 5d appears ≥1 time in SCENARIOS or WORKFLOW.
+  - Never more than 2 primary keyword occurrences per paragraph.
 
 ### 1C. BLUEPRINT VALIDATION
 Before writing, scan the blueprint for missing or contradictory fields:
@@ -30,9 +36,11 @@ Write sections in blueprint order. Each field is binding:
 | Field | Rule |
 |---|---|
 | `HEADING` | Render as `<h3>` exactly as written. If HEADING is an all-caps identifier (e.g., FEAT_DEF, WORKFLOW), it is a blueprint error — derive a natural heading from PURPOSE instead. If HEADING contains "Easily", "Conveniently", "Simply", "Seamlessly", or "Quickly", it is a blueprint error — rewrite removing the banned term. |
+| `HEADING_KEYWORD` | When `yes`, the rendered `<h3>` must contain PRIMARY_KEYWORD or a 5a variant. If the blueprint HEADING does not contain one, rewrite the `<h3>` so it does while preserving meaning and staying ≤65 characters. |
 | `FORMAT` | prose = `<p>`. ordered_list = `<ol>`. unordered_list = `<ul>`. |
 | `MIN_WORDS` | Hard floor. Extend using Step 4 techniques — never with filler. |
-| `KEYWORD_EMBED` | Weave each phrase naturally in a complete sentence. Never in headings or list labels. If two terms joined by `+`, embed each in a separate sentence — do not merge into one forced phrase. |
+| `KEYWORD_EMBED` | Weave each phrase naturally in a complete sentence in this section's body. May appear in the `<h3>` only when HEADING_KEYWORD is yes. Never in list labels. If two terms joined by `+`, embed each in a separate sentence — do not merge into one forced phrase. |
+| `LSI_EMBED` | Each listed phrase must appear ≥1 time, verbatim or with minor inflection, inside this section's body. Omission is not acceptable. |
 | `MUST_INCLUDE` | Every bullet generates ≥1 sentence containing that specific fact. Omission is not acceptable. |
 | `MUST_AVOID` | Hard prohibition. Scan and remove before finalizing. |
 | `STRUCTURE_NOTE` | Follow exactly, including sequence and nesting depth. |
@@ -103,10 +111,14 @@ Before writing any HTML — and again after completing the full draft — verify
 
 1. **Brand:** exactly 5–6 occurrences.
 2. **Word count:** within `TARGET_WORD_COUNT` (blueprint Section 9). Verify each section against its MIN_WORDS floor — extend underbuilt sections using Step 4 before continuing. Most commonly underbuilt: STEPS, SCENARIOS, WORKFLOW.
-3. **Prohibitions:** All banned words (Step 3) removed. Banned openers and closers absent from every section.
-4. **Headings:** every `<h3>` = exact HEADING field text, never a section code name. PURPOSE field absent from output.
-5. **COMPARISON (if present):** all competitors from blueprint Section 10 only; `<h3>` heading is a natural keyword-relevant phrase — not "Comparison Brief" or any blueprint label.
-6. **Language compliance:** Re-read the full draft. Count every sentence, heading, or list item written in a language other than `locale_config.language`. If the count is greater than zero, rewrite every violation before submitting.
+3. **Primary keyword count:** matches PRIMARY_COUNT from blueprint 5e (±1 tolerance). Confirm: 1 in `<h2>`, 1 in TL;DR `<p>` verbatim, ≥2 in `<h3>` headings, remainder in body. Never more than 2 per paragraph.
+4. **Semantic variants (5a):** count each variant in the body — every variant appears ≥1 time. Insert any missing variant before submitting.
+5. **LSI coverage (5b):** count each LSI phrase — every LSI appears ≥1 time in the section it was assigned to via LSI_EMBED. Insert any missing LSI before submitting.
+6. **Industry/role variants (5d):** every variant appears ≥1 time in SCENARIOS or WORKFLOW.
+7. **Prohibitions:** All banned words (Step 3) removed. Banned openers and closers absent from every section.
+8. **Headings:** every `<h3>` matches HEADING field text, except when HEADING_KEYWORD: yes required a rewrite to include the primary keyword or a 5a variant. Never a section code name. PURPOSE field absent from output.
+9. **COMPARISON (if present):** all competitors from blueprint Section 10 only; `<h3>` heading is a natural keyword-relevant phrase — not "Comparison Brief" or any blueprint label.
+10. **Language compliance:** Re-read the full draft. Count every sentence, heading, or list item written in a language other than `locale_config.language`. If the count is greater than zero, rewrite every violation before submitting.
 
 ---
 ## OUTPUT FORMAT

@@ -1,8 +1,17 @@
 locale,cluster,url,h1
-en,group_compress,https://compress-pdf.pdffiller.com/,Compress PDF with our PDF compressor feature
-de,group_compress,https://www.pdffiller.com/de/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-es,group_compress,https://www.pdffiller.com/es/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-fr,group_compress,https://www.pdffiller.com/fr/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-it,group_compress,https://www.pdffiller.com/it/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-nl,group_compress,https://www.pdffiller.com/nl/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
-pt-BR,group_compress,https://www.pdffiller.com/pt/functionality/24478-compress-pdf.htm,Compress PDF with our PDF compressor feature
+en,group_ai_features,https://www.pdffiller.com/en/ai-features/online-ai-pdf-editor-simplify-your-pdf-editing-pdffiller,Online AI-Powered PDF Editor
+en,group_annotate,https://www.pdffiller.com/en/functionality/155-annotate-pdf-form-document-file-application-annotation-highlight-underline-comment-sticky-note-online-website-mac-windows-adobe-editor,Annotate PDFs Online Using pdfFiller
+en,group_compress,https://www.pdffiller.com/en/functionality/24478-compress-pdf,Compress PDF with our PDF compressor feature
+en,group_convert,https://www.pdffiller.com/en/functionality/121-convert-upload-microsoft-word-powerpoint-doc-ppt-to-pdf-format-files-documents-forms-applications-from-any-device-dropbox-to-into-pdffiller-online-editor-cloud-storage,Convert Word DOC to PDF with our converter
+en,group_create_template,https://www.pdffiller.com/en/functionality/85-create-make-modify-edit-use-pdf-save-as-template-forms-documents-applications-files-list-online-editor-pdffiller,Create a PDF Template
+en,group_edit,https://www.pdffiller.com/en/functionality/63-insert-add-import-edit-place-upload-fill-with-pictures-to-in-into-pdf-forms-documents-files-application-contract-online-editor-easily-pdffiller,Insert Images into PDF
+en,group_form_creator,https://www.pdffiller.com/en/web-form,Simplify data collection with an all-in-one PDF form creator
+en,group_images,https://www.pdffiller.com/en/functionality/63-insert-add-import-edit-place-upload-fill-with-pictures-to-in-into-pdf-forms-documents-files-application-contract-online-editor-easily-pdffiller,Insert Images into PDF
+en,group_merge,https://www.pdffiller.com/en/functionality/81-merge-combine-pdf-pages-fomrs-documents-files-applications-multiple-into-one-editor-pdffiller,Combine PDF files with our fast PDF merger
+en,group_pdf_creator,https://www.pdffiller.com/en/functionality/108-access-find-search-create-use-make-storable-pdf-forms-documents-files-applications-online-from-any-device-pc-ipad-iphone-macbook-laptop-mobile-editor-pdffiller,Create Storable PDFs Online
+en,group_protect,https://www.pdffiller.com/en/functionality/205-encrypt-pdf-document-file-form-application-text-number-data-on-any-device-online-ipad-pc-computer-iphone-android-windows-mac-software-service,Encrypt PDF Online
+en,group_rearrange,https://www.pdffiller.com/en/functionality/65-edit-pdf-page-online-add-remove-reorder-delete-rearrange-document-form-file-mac-windows-tool-website-mobile-software-service,Edit Pages in PDF
+en,group_request_signature,https://www.pdffiller.com/en/functionality/request-pdf-signature-search-edit-fill-sign-fax-save-pdf-online-pdffiller,Get PDF Documents Signed
+en,group_signature,https://www.pdffiller.com/en/functionality/56-add-insert-create-upload-write-type-capture-digital-electronic-signatures-into-pdf-form-document-file-application-contract-certificate-online-website-mac-editor,Add Signatures into PDF
+en,group_split,https://www.pdffiller.com/en/functionality/24412-split-pdf-pages,Easily extract pages from PDF with PDF splitter
+en,group_watermark,https://www.pdffiller.com/en/functionality/22853-add-watermark-pdf-insert-apply-custom-document-file-form-online-webstie-mac-tool-service,Watermark PDF: add watermark to your PDF files

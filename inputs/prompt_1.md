@@ -69,9 +69,15 @@ Before analysis, read every config field. If a field is empty or missing, skip a
 
 5. SEO KEYWORD SET:
    5a. SEMANTIC VARIANTS (4–5): ≥1 question query, ≥1 short head term (2–3 words), ≥1 long tail (6+ words). Exclude near-duplicates.
-   5b. LSI KEYWORDS (5–6, comma-separated inline): Related features, formats, platforms, document types, professional tasks.
+   5b. LSI KEYWORDS (8–10, comma-separated inline): Must span at least four of these categories — feature synonyms, file formats, action verbs, document-context phrases, platforms, professional tasks. No abstract filler (e.g. "document management", "digital documents").
    5c. COMPARISON QUERIES (2–3): Tool-evaluation searches.
-   5d. INDUSTRY/ROLE VARIANTS + DENSITY: 3–4 variants (feature + professional context matching target_audience); set density: primary [N] times, ≥1 LSI per section.
+   5d. INDUSTRY/ROLE VARIANTS (3–4): Feature + professional context matching target_audience.
+   5e. KEYWORD DISTRIBUTION PLAN (compute explicit numbers — no placeholders, no [N] tokens):
+       - PRIMARY_COUNT = ceil(target_word_count_upper_bound / 150). Output the integer.
+       - Of PRIMARY_COUNT: 1 in H2, 1 in TL;DR (verbatim), 2–3 in H3 headings (exact or close inflection), remainder distributed across body. Never more than 2 per paragraph.
+       - Every SEMANTIC VARIANT from 5a appears ≥1 time in body.
+       - Every LSI phrase from 5b appears ≥1 time in body; assign each LSI to exactly one section in B9 (see LSI_EMBED).
+       - Every INDUSTRY/ROLE VARIANT from 5d appears ≥1 time in SCENARIOS or WORKFLOW.
 
 ---
 ## B. PAGE BLUEPRINT
@@ -86,8 +92,10 @@ Before analysis, read every config field. If a field is empty or missing, skip a
 9. SECTION OUTLINE + CONTENT BRIEFS: On the first line output `TARGET_WORD_COUNT: [exact value from cluster_config.target_word_count]`. Then select sections from section_menu, constrained by the page type you inferred above — minimum 10 sections; choose more when the page type is complex (e.g., comparison, integration-feature, competitor-feature) or the keyword targets a broad feature set. Use judgment: a narrow single-feature keyword warrants 10–11 sections; a multi-feature, document-heavy, or competitor-focused keyword warrants 12–14. Maintain section_menu order. All field values must be terse — bullets are noun phrases or short clauses, not sentences. For each section:
 
    HEADING: Human-readable heading for this specific keyword (≤65 characters). Question-form where it matches search intent. Never use the section code name (FEAT_DEF, WORKFLOW, STEPS, etc.).
+   HEADING_KEYWORD: yes | no. If yes, HEADING must contain PRIMARY_KEYWORD or a 5a variant. At least 3 sections across the outline must be marked yes; feature-definition and step-by-step sections should default to yes.
    PURPOSE: 1 sentence — what the reader gains.
-   KEYWORD_EMBED: 1–2 keyword phrases to embed. If two, join with +.
+   KEYWORD_EMBED: 1–2 keyword phrases to embed (PRIMARY_KEYWORD or a 5a variant). If two, join with +.
+   LSI_EMBED: 1–2 phrases drawn from 5b, assigned to this section only. No LSI phrase may appear in more than one section's LSI_EMBED.
    MUST_INCLUDE: 3–4 bullets (hard max 4) — specific facts, UI element names, or platform constraints not inferable from the section heading alone. ≥1 named role + document type (differ across sections; match target_audience; exclude cluster_context defaults). ≥1 limitation or conditional. Each bullet ≤12 words.
    MUST_AVOID: ≤8 words — the exact pattern to prevent.
    FORMAT | MIN_WORDS: [prose|unordered_list|ordered_list] [200 / 350 (7+ steps) / 250 (3+ scenarios) / 150]
@@ -100,10 +108,14 @@ Before analysis, read every config field. If a field is empty or missing, skip a
 ## PRE-OUTPUT CHECKLIST
 Verify before closing </blueprint> tags:
 - A1–A5 present and non-empty
+- A5b lists 8–10 LSI phrases spanning ≥4 categories
+- A5e outputs an explicit integer PRIMARY_COUNT — no [N] tokens anywhere
 - B6 explicitly names ≥1 structural risk from cluster_context and states how this angle avoids it
 - B7 H1 ≤65 characters, none of the banned phrases present
 - B9 section count: ≥10; justified by page_type complexity and keyword breadth
 - B9 MIN_WORDS sum ≥ lower bound of target_word_count
+- B9 HEADING_KEYWORD: yes on ≥3 sections
+- B9 every LSI phrase from 5b is assigned to exactly one section's LSI_EMBED; no LSI left unassigned
 - B10 names ≥3 competitors OR contains "Comparison not central"
 - If locale_config.tone_of_voice is non-empty: confirm all must-avoid patterns from tone_of_voice are absent from every section
 - If locale_config.language is not English: confirm zero English sentences in the blueprint
